@@ -1,4 +1,4 @@
-package models.dto.bindingModels;
+package com.example.myknitshop.models.dto.bindingModels;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
