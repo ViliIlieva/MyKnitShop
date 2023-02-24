@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="~{fragments/head}">
+<head>
+    <title>Бримчица - магазин за ръчно изработени плетива</title>
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
 
 <body>
 <!-- Topbar Start -->
-<div th:insert="~{fragments/topbar}"></div>
+<div th:include="~{fragments/topbar}"></div>
 <!-- Topbar End -->
 
 <!-- Navbar Start -->
-<div th:insert="~{fragments/navbar}"></div>
+<div th:include="~{fragments/navbar}"></div>
 <!-- Navbar End -->
 
 

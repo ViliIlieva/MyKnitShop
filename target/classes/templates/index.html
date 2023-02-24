@@ -1,42 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 
-<head th:insert="~{fragments/head}">
+<head>
+    <title>Бримчица - магазин за ръчно изработени плетива</title>
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
 
 <body>
     <!-- Topbar Start -->
-   <div th:insert="~{fragments/topbar}"></div>
+   <div th:include="~{fragments/topbar}"></div>
     <!-- Topbar End -->
 
-
     <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
-                <a href="index.html" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary"></span>БРИМЧИЦА</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Начало</a>
-                        <a href="about.html" class="nav-item nav-link">За Мен</a>
-                        <a href="product.html" class="nav-item nav-link">Продукти</a>
-                    </div>
-                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary"></span>БРИМЧИЦА</h1>
-                    </a>
-                    <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="gallery.html" class="nav-item nav-link">Галерия</a>
-                        <a href="contact.html" class="nav-item nav-link">Контакти</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <div th:include="~{fragments/navbar}"></div>
     <!-- Navbar End -->
 
 
@@ -45,7 +22,7 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" alt="Image" src="img/carousel-1.jpg">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Добре Дошли В Бримчица</h4>
@@ -209,35 +186,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
-        <div class="container text-center py-5">
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <a href="index.html" class="navbar-brand m-0">
-                        <h1 class="m-0 mt-n2 display-4 text-primary"><span class="text-secondary"></span>БРИМЧИЦА</h1>
-                    </a>
-                </div>
-                <div class="col-12 mt-2 mb-4">
-                    <div class="row">
-                        <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
-                            <h5 class="font-weight-bold mb-2">За Контакти</h5>
-                            <p class="mb-2">ул.1ва №34, Куманово, Варна</p>
-                            <p class="mb-0">0899987654</p>
-                        </div>
-                        <div class="col-sm-6 text-center text-sm-left">
-                            <h5 class="font-weight-bold mb-2">Работно Време</h5>
-                            <p class="mb-2">Пон – Съб, 8AM – 5PM</p>
-                            <p class="mb-0">Неделя: Затворено</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <p class="m-0">&copy; <a href="#">Бримчица</a>. Всички права запазени. Изработка Vili,  Дизайн <a href="https://htmlcodex.com">HTML Codex</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div th:insert="~{fragments/footer}"></div>
     <!-- Footer End -->
 
 

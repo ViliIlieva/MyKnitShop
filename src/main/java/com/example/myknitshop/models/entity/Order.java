@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
-public class OrderEntity extends BaseEntity {
+public class Order extends BaseEntity {
 
     @GeneratedValue
     @Column(name = "order_number", nullable = false)
@@ -26,9 +26,19 @@ public class OrderEntity extends BaseEntity {
     private LocalDate dateShipped;
 
     @ManyToOne
-    private UserEntity client;
+    private User client;
 
-    @ManyToMany
-    private Set<ProductEntity> orderedProducts;
-
+    @ManyToMany(targetEntity = Product.class, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "products_orders",
+            joinColumns = @JoinColumn(
+                    name = "order_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "product_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private Set<Product> orderedProducts;
 }

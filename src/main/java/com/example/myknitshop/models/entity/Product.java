@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "products")
-public class ProductEntity extends BaseEntity{
+public class Product extends BaseEntity{
 
     @Column(nullable = false)
     private String name;
@@ -28,12 +27,12 @@ public class ProductEntity extends BaseEntity{
     private String photo;
 
     @ManyToOne
-    private UserEntity author;
+    private User author;
 
     @ManyToOne
-    private CategoryEntity category;
+    private Category category;
 
     @ManyToOne
-    private UserEntity buyer;
+    private User buyer;
 
 }

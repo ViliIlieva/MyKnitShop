@@ -11,14 +11,14 @@ import com.example.myknitshop.models.enums.CategoryEnum;
 @NoArgsConstructor
 @Entity
 @Table(name = "categories")
-public class CategoryEntity extends BaseEntity {
+public class Category extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private CategoryEnum name;
 
     @Column(name = "needed_day", nullable = false)
     private Integer neededDay;
 
-    public CategoryEntity(CategoryEnum name) {
+    public Category(CategoryEnum name) {
         this.name = name;
     }
 }

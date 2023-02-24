@@ -1,15 +1,12 @@
 package com.example.myknitshop.models.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class UserEntity extends BaseEntity{
+public class User extends BaseEntity{
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -28,19 +25,22 @@ public class UserEntity extends BaseEntity{
     private String address;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private UserRoleEntity role;
+    private Role role;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
-    private Set<ProductEntity> products;
+    private Set<Product> products;
 
     @OneToMany(mappedBy = "buyer")
-    private Set<ProductEntity> buyProduct;
+    private Set<Product> buyProduct;
+
+    public User() {
+    }
 
     public String getUsername() {
         return username;
     }
 
-    public UserEntity setUsername(String username) {
+    public User setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -49,7 +49,7 @@ public class UserEntity extends BaseEntity{
         return firstName;
     }
 
-    public UserEntity setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -58,7 +58,7 @@ public class UserEntity extends BaseEntity{
         return lastName;
     }
 
-    public UserEntity setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -67,7 +67,7 @@ public class UserEntity extends BaseEntity{
         return password;
     }
 
-    public UserEntity setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -76,7 +76,7 @@ public class UserEntity extends BaseEntity{
         return email;
     }
 
-    public UserEntity setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -85,34 +85,34 @@ public class UserEntity extends BaseEntity{
         return address;
     }
 
-    public UserEntity setAddress(String address) {
+    public User setAddress(String address) {
         this.address = address;
         return this;
     }
 
-    public UserRoleEntity getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public UserEntity setRole(UserRoleEntity role) {
+    public User setRole(Role role) {
         this.role = role;
         return this;
     }
 
-    public Set<ProductEntity> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public UserEntity setProducts(Set<ProductEntity> products) {
+    public User setProducts(Set<Product> products) {
         this.products = products;
         return this;
     }
 
-    public Set<ProductEntity> getBuyProduct() {
+    public Set<Product> getBuyProduct() {
         return buyProduct;
     }
 
-    public UserEntity setBuyProduct(Set<ProductEntity> buyProduct) {
+    public User setBuyProduct(Set<Product> buyProduct) {
         this.buyProduct = buyProduct;
         return this;
     }
