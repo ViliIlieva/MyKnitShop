@@ -21,66 +21,65 @@
             <img class="w-100" alt="Image" src="img/carousel-1.jpg">
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                 <div class="p-3" style="max-width: 900px;">
-                    <h4 class="text-white text-uppercase mb-md-3">Добре Дошли В Бримчица</h4>
-                    <h1 class="display-3 text-white mb-md-4">Сайт За Ръчно Плетиво</h1>
-                    <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Learn More</a>
+
+                    <div class="container text-light ">
+                        <h1 class="display-3">
+                            <strong class="text-white bg-blur rounded border-left border-white pl-3 border-bottom">ВХОД</strong></h1>
+                        <h3 class="text-white mt-5 text-center"><strong class="bg-blur rounded border-white pl-3 border-bottom">
+                            Въведете валидно потребителско име и парола</strong>
+                        </h3>
+                    </div>
+                    <div class="container bg-blur rounded p-10 mt-10 w-0 ">
+                        <form th:action="@{/login}"
+                              th:method="post" th:object="${loginDTO}"
+                              class="text-center text-light">
+
+                                <div th:each="error: ${#fields.errors()}" th:text="${error}">
+                                    <strong th:if="${badCredentials}" class="bg-blur rounded text-danger">
+                                        Грешна комбинация от потребителско име и парола.
+                                    </strong>
+                                </div>
+                            </h3>
+                            <div class="form-group row">
+                                <label for="username" class="col-sm-10 col-form-label">Потребителско име</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                           id="username"
+                                           name="username"
+                                           th:field="*{username}"
+                                           th:errorclass="is-invalid "
+                                           aria-describedby="usernameHelpInline" placeholder="Username">
+                                    <small id="usernameHelpInline"
+                                           class="invalid-feedback bg-danger text-light rounded">
+                                        Дължината трябва да е между 3 и 20 символа.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-10 col-form-label">Парола</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control"
+                                           id="password"
+                                           name="password"
+                                           th:field="*{password}"
+                                           th:errorclass="is-invalid"
+                                           aria-describedby="passwordHelpInline" placeholder="Password">
+                                    <small id="passwordHelpInline"
+                                           class="invalid-feedback bg-danger text-light rounded">
+                                        Дължината трябва да е между 3 и 20 символа.
+                                    </small>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info w-100">Вход</button>
+                        </form>
+                        <hr class="bg-light">
+                    </div>
+
                 </div>
             </div>
         </div>
 
 
-        <div class="container text-light ">
-            <h1 class="display-3">
-                <strong class="bg-blur rounded border-left border-white pl-3 border-bottom">ВХОД</strong></h1>
-            <h3 class="mt-5 text-center"><strong class="bg-blur rounded border-white pl-3 border-bottom">
-                Въведете валидно потребителско име и парола</strong>
-            </h3>
-        </div>
-        <div class="container bg-blur rounded p-5 mt-5 w-75 ">
-            <form th:action="@{/login}"
-                  th:method="post" th:object="${loginDTO}"
-                  class="text-center text-light">
-                <h3 class="mt-5 text-center">
-                    <div th:each="error: ${#fields.errors()}" th:text="${error}">
-                        <strong th:if="${badCredentials}" class="bg-blur rounded text-danger">
-                            Грешна комбинация от потребителско име и парола.
-                        </strong>
-                    </div>
-                </h3>
-                <div class="form-group row">
-                    <label for="username" class="col-sm-2 col-form-label">Потребителско име</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"
-                               id="username"
-                               name="username"
-                               th:field="*{username}"
-                               th:errorclass="is-invalid "
-                               aria-describedby="usernameHelpInline" placeholder="Username">
-                        <small id="usernameHelpInline"
-                               class="invalid-feedback bg-danger text-light rounded">
-                            Дължината трябва да е между 3 и 20 символа.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="password" class="col-sm-2 col-form-label">Парола</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"
-                               id="password"
-                               name="password"
-                               th:field="*{password}"
-                               th:errorclass="is-invalid"
-                               aria-describedby="passwordHelpInline" placeholder="Password">
-                        <small id="passwordHelpInline"
-                               class="invalid-feedback bg-danger text-light rounded">
-                            Дължината трябва да е между 3 и 20 символа.
-                        </small>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-info w-50">Вход</button>
-            </form>
-            <hr class="bg-light">
-        </div>
 
     </div>
 
