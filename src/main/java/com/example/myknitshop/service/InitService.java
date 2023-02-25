@@ -11,7 +11,6 @@ import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -41,8 +40,8 @@ public class InitService {
 
     private void initRoles() {
         if (userRoleRepository.count() == 0) {
-            var clientRole = new Role().setName(UserRoleEnum.CLIENT);
-            var adminRole = new Role().setName(UserRoleEnum.ADMIN);
+            var clientRole = new Role().setUserRole (UserRoleEnum.CLIENT);
+            var adminRole = new Role().setUserRole (UserRoleEnum.ADMIN);
 
             userRoleRepository.save(clientRole);
             userRoleRepository.save(adminRole);
@@ -80,7 +79,7 @@ public class InitService {
                 setFirstName("Velislava").
                 setLastName("Ilieva").
                 setPassword("owner").
-                setRole(userRoleRepository.findByName(UserRoleEnum.ADMIN));
+                setUserRoles(userRoleRepository.findAll());
 
         userRepository.save(adminUser);
     }
@@ -92,7 +91,7 @@ public class InitService {
                 setFirstName("Petar").
                 setLastName("Petrov").
                 setPassword("client").
-                setRole(userRoleRepository.findByName(UserRoleEnum.CLIENT));
+                setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.CLIENT));
 
         userRepository.save(clientUser);
     }

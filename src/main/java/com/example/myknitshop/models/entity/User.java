@@ -2,6 +2,8 @@ package com.example.myknitshop.models.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,8 +26,8 @@ public class User extends BaseEntity{
 
     private String address;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> userRoles = new ArrayList<> ();
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private Set<Product> products;
@@ -90,12 +92,12 @@ public class User extends BaseEntity{
         return this;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getUserRoles() {
+        return userRoles;
     }
 
-    public User setRole(Role role) {
-        this.role = role;
+    public User setUserRoles(List<Role> userRoles) {
+        this.userRoles = userRoles;
         return this;
     }
 
