@@ -11,6 +11,8 @@ import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -21,17 +23,21 @@ public class InitService {
     private final UserRoleRepository userRoleRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final PasswordEncoder passwordEncoder;
+    private String adminPass;
 
     public InitService(UserRoleRepository userRoleRepository,
                        UserRepository userRepository,
-                       @Value("owner") String defaultPassword,
-                       CategoryRepository categoryRepository) {
+                       @Value("${app.default.admin.password}") String adminPass,
+                       CategoryRepository categoryRepository,
+                       PasswordEncoder passwordEncoder) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.adminPass = adminPass;
     }
 
-    @PostConstruct
     public void init() {
         initRoles();
         initCategories();
@@ -40,8 +46,8 @@ public class InitService {
 
     private void initRoles() {
         if (userRoleRepository.count() == 0) {
-            var clientRole = new Role().setUserRole (UserRoleEnum.CLIENT);
-            var adminRole = new Role().setUserRole (UserRoleEnum.ADMIN);
+            var clientRole = new Role().setUserRole (UserRoleEnum.ADMIN);
+            var adminRole = new Role().setUserRole (UserRoleEnum.CLIENT);
 
             userRoleRepository.save(clientRole);
             userRoleRepository.save(adminRole);
@@ -78,7 +84,7 @@ public class InitService {
                 setEmail("owner@example.com").
                 setFirstName("Velislava").
                 setLastName("Ilieva").
-                setPassword("owner").
+                setPassword(passwordEncoder.encode (adminPass)).
                 setUserRoles(userRoleRepository.findAll());
 
         userRepository.save(adminUser);
@@ -90,7 +96,7 @@ public class InitService {
                 setEmail("client@example.com").
                 setFirstName("Petar").
                 setLastName("Petrov").
-                setPassword("client").
+                setPassword(passwordEncoder.encode("client")).
                 setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.CLIENT));
 
         userRepository.save(clientUser);

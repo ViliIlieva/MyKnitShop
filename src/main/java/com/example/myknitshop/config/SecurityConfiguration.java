@@ -3,10 +3,13 @@ package com.example.myknitshop.config;
 import com.example.myknitshop.models.enums.UserRoleEnum;
 import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.service.AppUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -15,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Controller;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration {
 
     @Bean
@@ -25,10 +29,15 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        String[] resources = new String[]{
+                "/","/css/**","/lib/**","/images/**","/js/**","/scss/**", "/mail/**"
+        };
+
         http.
                 // define which requests are allowed and which not
                         authorizeHttpRequests ().
                 // everyone can download static resources (css, js, images)
+                        requestMatchers (resources).permitAll ().
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // everyone can login and register
                         requestMatchers ("/", "/login", "/register").permitAll().
@@ -48,16 +57,15 @@ public class SecurityConfiguration {
                 // where to go in case that the login is successful
                         defaultSuccessUrl("/").
                 // where to go in case that the login failed
-                        failureForwardUrl("/users/login-error").
+                        failureForwardUrl("/login-error").
                 and().
                 // configure logut
                         logout().
                 // which is the logout url
-                        logoutUrl("/logout").
+                        logoutSuccessUrl("/index").
                 // invalidate the session and delete the cookies
                         invalidateHttpSession(true).
                 deleteCookies("JSESSIONID");
-
 
         return http.build();
     }

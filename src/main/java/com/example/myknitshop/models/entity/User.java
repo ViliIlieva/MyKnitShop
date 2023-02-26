@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -26,7 +26,16 @@ public class User extends BaseEntity{
 
     private String address;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id",
+                    referencedColumnName = "id"))
     private List<Role> userRoles = new ArrayList<> ();
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)

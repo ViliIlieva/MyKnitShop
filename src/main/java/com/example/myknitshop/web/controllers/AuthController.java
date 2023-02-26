@@ -2,6 +2,7 @@ package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.models.dto.bindingModels.LoginDTO;
 import com.example.myknitshop.models.dto.bindingModels.UserRegistrationDTO;
+import com.example.myknitshop.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class UserController {
+public class AuthController {
+
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @ModelAttribute("registrationDTO")//ако го няма инициран да го създадем ДТО-то
     public UserRegistrationDTO initRegistrationDTO() {
@@ -30,25 +37,27 @@ public class UserController {
         return "register";
     }
 
-//    @PostMapping("/register")
-//    @PreAuthorize("isAnonymous()")
-//    public String register(@Valid UserRegistrationDTO registrationDTO,
-//                           BindingResult bindingResult,
-//                           RedirectAttributes redirectAttributes){
-//        if (bindingResult.hasErrors () ) {
-//            redirectAttributes.addFlashAttribute ("registrationDTO", registrationDTO);
-//            redirectAttributes.addFlashAttribute (
-//                    "org.springframework.validation.BindingResult.registrationDTO", bindingResult);
-//
-//            return "redirect:/register";
-//        }
-//        return "redirect:/login";
-//    }
+    @PostMapping("/register")
+    public String register(@Valid UserRegistrationDTO registrationDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes){
+
+//TODO да проверя ако не е успял да се логне пак да редиректна логин
+        if (bindingResult.hasErrors ()) {
+            redirectAttributes.addFlashAttribute ("registrationDTO", registrationDTO);
+            redirectAttributes.addFlashAttribute (
+                    "org.springframework.validation.BindingResult.registrationDTO", bindingResult);
+
+            return "redirect:/register";
+        }
+        authService.registerAndLogin (registrationDTO);
+        return "redirect:/";
+    }
 
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, Model model) {
-        if(error != null){
 
+        if(error != null){
            model.addAttribute("error", "Error");
         }
 

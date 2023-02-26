@@ -44,7 +44,6 @@ public class AppUserDetailsService implements UserDetailsService {
     //обяснява на Spring какво може да прави юзъра с тази си роля
     private GrantedAuthority map(Role userRole) {
         return new SimpleGrantedAuthority ("ROLE_" +
-                userRole.
-                        getUserRole ().name ());
+                userRole.getUserRole ().name ());
     }
 }

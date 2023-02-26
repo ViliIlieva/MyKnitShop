@@ -1,21 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
 <div th:fragments="topbar"
      class="container-fluid bg-primary py-3 d-none d-md-block">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white pr-3" href="/register">Регистрация</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white px-3" href="/login">Вход</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white pl-3" href="/add/product">Добави продукт</a>
+
+                    <a class="text-white px-3" sec:authorize="isAuthenticated()">
+                        Добре дошъл, <th:block sec:authentication="name">X</th:block>!</a>
+
+                    <a class="text-white pr-3" th:href="@{/register}" sec:authorize="!isAuthenticated()">
+                        Регистрация</a>
+                    <span class="text-white"></span>
+                    <a class="text-white px-3" th:href="@{/login}" sec:authorize="!isAuthenticated()">
+                        Вход</a>
+                    <span class="text-white"></span>
+                    <a class="text-white pl-3" th:href="@{/add/product}" sec:authorize="hasRole('ROLE_ADMIN')">
+                        Добави продукт</a>
                 </div>
             </div>
-            <div class="col-md-6 text-center text-lg-right">
+            <div class="col-md-6 text-center text-lg-right" sec:authorize="isAuthenticated()">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="/logout">Изход</a>
+                    <a class="text-white px-3" th:href="@{/logout}">Изход</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+</body>
+</html>

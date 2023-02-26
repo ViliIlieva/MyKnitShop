@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 
-//    User findByEmail(String username);
+    Optional<User> findByEmail(String email);
 
 
 //    @Query("SELECT u FROM User u ORDER BY size(u.orders) DESC")
