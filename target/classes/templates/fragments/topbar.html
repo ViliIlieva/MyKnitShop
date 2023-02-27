@@ -26,7 +26,11 @@
             </div>
             <div class="col-md-6 text-center text-lg-right" sec:authorize="isAuthenticated()">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" th:href="@{/logout}">Изход</a>
+                    <form
+                            th:method="POST"
+                            th:action="@{/logout}">
+                    <input class="btn btn-link nav-link text-white px-3" type="submit" value="Изход"></input>
+                    </form>
                 </div>
             </div>
         </div>

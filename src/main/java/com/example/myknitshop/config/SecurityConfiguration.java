@@ -15,7 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration {
 
     @Bean
@@ -27,7 +26,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         String[] resources = new String[]{
-                "/","/css/**","/lib/**","/images/**","/js/**","/scss/**", "/mail/**"
+                "/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**"
         };
 
         http.
@@ -35,36 +34,37 @@ public class SecurityConfiguration {
                         authorizeHttpRequests ().
                 // everyone can download static resources (css, js, images)
                         requestMatchers (resources).permitAll ().
-                        requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
+                        requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                 // everyone can login and register
-                        requestMatchers ("/", "/login", "/register", "/about", "/product").permitAll().
+                        requestMatchers ("/", "/login", "/register", "/about", "/product", "login-error").permitAll ().
                 // страница достъпна само за админа
-                        requestMatchers ("/add/product").hasRole(UserRoleEnum.ADMIN.name()).
+                        requestMatchers ("/add/product").hasRole (UserRoleEnum.ADMIN.name ()).
                 // all other pages are available for logger in users
-                        anyRequest().authenticated().
-                and().
+                        anyRequest ().authenticated ().
+                and ().
                 // configuration of form login
-                        formLogin().
+                        formLogin ().
                 // the custom login form
-                        loginPage("/login").
+                        loginPage ("/login").
                 // the name of the username form field
-                        usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                        usernameParameter (UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                 // the name of the password form field
-                        passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
+                        passwordParameter (UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 // where to go in case that the login is successful
-                        defaultSuccessUrl("/").
+                        defaultSuccessUrl ("/").
                 // where to go in case that the login failed
-                        failureForwardUrl("/login-error").
-                and().
+                        failureForwardUrl ("/login-error").//в контролера в логин връща грешките
+                and ().
                 // configure logut
-                        logout().
+                        logout ().
+                        logoutUrl ("/logout").//не е необходимо в контролера да правим POST заявка, това я генерира само
                 // which is the logout url
-                        logoutSuccessUrl("/index").
+                        logoutSuccessUrl ("/").
                 // invalidate the session and delete the cookies
-                        invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+                        invalidateHttpSession (true).
+                deleteCookies ("JSESSIONID");
 
-        return http.build();
+        return http.build ();
     }
 
     @Bean
