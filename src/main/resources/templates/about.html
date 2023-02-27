@@ -7,23 +7,14 @@
 </head>
 
 <body>
-<!-- Topbar Start -->
-<div th:include="~{fragments/topbar}"></div>
-<!-- Topbar End -->
-
-<!-- Navbar Start -->
-<div th:include="~{fragments/navbar}"></div>
-<!-- Navbar End -->
-
-
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div th:action="@{/about}" class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">About</h1>
+            <h1 class="text-white display-3 mt-lg-5">Здравейте!</h1>
             <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <p class="m-0"><a class="text-white" th:href="@{/}">Начало</a></p>
                 <i class="fa fa-circle px-3"></i>
-                <p class="m-0">About</p>
+                <p class="m-0"><a class="text-white" th:href="@{/product}">Продукти</a></p>
             </div>
         </div>
     </div>
@@ -35,28 +26,36 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
-                    <h1 class="section-title position-relative text-center mb-5">Traditional & Delicious Ice Cream Since 1950</h1>
+                    <h1 class="section-title position-relative text-center mb-5">
+                        Майсторя Всичко с Въображение и Настроение</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 py-5">
-                    <h4 class="font-weight-bold mb-3">About Us</h4>
-                    <h5 class="text-muted mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea</h5>
-                    <p>Takimata sed vero vero no sit sed, justo clita duo no duo amet et, nonumy kasd sed dolor eos diam lorem eirmod. Amet sit amet amet no. Est nonumy sed labore eirmod sit magna. Erat at est justo sit ut. Labor diam sed ipsum et eirmod</p>
-                    <a href="" class="btn btn-secondary mt-2">Learn More</a>
+                    <h4 class="font-weight-bold mb-3">За Мен</h4>
+                    <h5 class="text-muted mb-3">Моята работа звучи лесна и приятна и е така! Обичам да творя всичко от прежда,
+                        да предизвиквам себе си с нови неща.</h5>
+                    <p>За моите творения използвам основно естествени материали - памук, вълна, бамбук, дърво, кокос, миди, кабъчета.
+                    Правя го не отдавна, но го правя с голямо удоволствие и внимание към детайла.
+                    Много обичам природата и творя чрез нея. Освен вдъхновение тя е и наш дом, за който сме длъжни да се грижим.</p>
+                    <a href="" class="btn btn-secondary mt-2">Детайли за поръчка</a>
                 </div>
                 <div class="col-lg-4" style="min-height: 400px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="img/about.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="images/about.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-4 py-5">
-                    <h4 class="font-weight-bold mb-3">Our Features</h4>
-                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
-                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Eos kasd eos dolor</h5>
-                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Eos kasd eos dolor</h5>
-                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Eos kasd eos dolor</h5>
-                    <a href="" class="btn btn-primary mt-2">Learn More</a>
+                    <h4 class="font-weight-bold mb-3">Изберете Сами</h4>
+                    <p>Искам да разясня - това не е просто магазин, в който да си изберете нещо и да си го купите.
+                    Тук изработвам нещата специално за вас. Вие решавате какъв да е:</p>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Моделът</h5>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Размерът</h5>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Цветът</h5>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Материалът</h5>
+                    <p>Цените често се определят индивидуално и в зависимост от сложността на изработката.
+                    Единственото нещо, което трябва да направите, е да се свържете с мен. Виж нашите продукти и може да ти хареса нещо</p>
+                    <a th:href="@{/product}" class="btn btn-primary mt-2">Продукти</a>
                 </div>
             </div>
         </div>
@@ -64,81 +63,44 @@
     <!-- About End -->
 
 
-    <!-- Team Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Experienced & Most Famous Ice Cream Chefs</h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <h1 class="section-title position-relative text-center mb-5">
+                       А Ето Ме И Мен и Някой Детайли Как Да Направите Вашата Поръчка</h1>
                 </div>
-                <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="owl-carousel team-carousel">
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/team-1.jpg" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Full Name</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Designation</h6>
-                                <div class="d-flex justify-content-center pt-1">
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/team-2.jpg" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Full Name</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Designation</h6>
-                                <div class="d-flex justify-content-center pt-1">
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/team-3.jpg" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Full Name</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Designation</h6>
-                                <div class="d-flex justify-content-center pt-1">
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/team-4.jpg" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Full Name</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Designation</h6>
-                                <div class="d-flex justify-content-center pt-1">
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-lg-4 py-5">
+                    <h4 class="font-weight-bold mb-3">За Мен</h4>
+                    <h5 class="text-muted mb-3">Освен любовта ми към плетивото, съм лудо влюбена и в българския фолклор.</h5>
+                    <p>Обичам да танцувам Български народни танци, правя го от както се помня.
+                        Моята баба зароди тази любов в мен, а също и любовта към плетенето.
+                    Плетяхме и пеехме, пеехме и плетяхме.</p>
+                </div>
+                <div class="col-lg-4" style="min-height: 400px;">
+                    <div class="position-relative h-100 rounded overflow-hidden">
+                        <img class="position-absolute w-100 h-100" src="images/me.jpg" style="object-fit: cover;">
                     </div>
+                </div>
+                <div class="col-lg-4 py-5">
+                    <h4 class="font-weight-bold mb-3">Детайли за Поръчка</h4>
+                    <p>Нека да допълня за това, как се пуска поръчка в сайта. След като сте разгледали и харесали някое от
+                    творенията ми, добавете го в кошницата си. Понеже моделите са само мострени, ще е необходимо
+                    да се свържа с Вас по телефон, за да изясните подробностите относно въпросния продукт.
+                    Ще уточните всичко и тогава ще започна изработката му. Ще уточним цената и срока за изработка. Като примерни срокове:</p>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Шапки - до 2 работни дни</h5>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Терлици - до 3 работни дни </h5>
+                    <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Одеала - до 5 работни дни</h5>
+
+                    <p>Работим с куриерски фирми Спиди и Еконт (вие избирате). Винаги има опция тест и преглед,
+                    така че да се уверите, че ще получите точно това, което сте желали. А ако има някакво
+                    разминаване в очакванията Ви - връщате пратката. Ако се наложи, може да се направи корекция.</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Team End -->
-
 
     <!-- Footer Start -->
     <div th:insert="~{fragments/footer}"></div>

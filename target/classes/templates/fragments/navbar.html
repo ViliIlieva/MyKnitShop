@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+
 <div th:fragments="navbar"
         class="container-fluid position-relative nav-bar p-0">
     <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
@@ -10,19 +17,22 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Начало</a>
-                    <a href="about.html" class="nav-item nav-link">За Мен</a>
-                    <a href="product.html" class="nav-item nav-link">Продукти</a>
+                    <a th:href="@{/}" class="nav-item nav-link active">Начало</a>
+                    <a th:href="@{/about}" class="nav-item nav-link">Повече информация</a>
+                    <a th:href="@{/product}" class="nav-item nav-link">Продукти</a>
                 </div>
-                <a href="/" class="navbar-brand mx-5 d-none d-lg-block">
+                <a th:href="@{/}" class="navbar-brand mx-5 d-none d-lg-block">
                     <h1 class="m-0 display-4 text-primary"><span class="text-secondary"></span>БРИМЧИЦА</h1>
                 </a>
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="service.html" class="nav-item nav-link">Service</a>
-                    <a href="gallery.html" class="nav-item nav-link">Галерия</a>
-                    <a href="contact.html" class="nav-item nav-link">Контакти</a>
+                    <a th:href="@{/service}" class="nav-item nav-link">Service</a>
+                    <a th:href="@{/gallery}" class="nav-item nav-link">Галерия</a>
+                    <a th:href="@{/contact}" class="nav-item nav-link">Контакти</a>
                 </div>
             </div>
         </nav>
     </div>
 </div>
+
+</body>
+</html>
