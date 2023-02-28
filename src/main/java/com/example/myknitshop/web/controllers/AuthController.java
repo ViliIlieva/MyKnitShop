@@ -3,7 +3,11 @@ package com.example.myknitshop.web.controllers;
 import com.example.myknitshop.models.dto.bindingModels.LoginDTO;
 import com.example.myknitshop.models.dto.bindingModels.UserRegistrationDTO;
 import com.example.myknitshop.service.AuthService;
+import com.example.myknitshop.util.UserNamePasswordLoginProcessor;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.util.function.BiConsumer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +45,8 @@ public class AuthController {
     @PostMapping("/register")
     public String register(@Valid UserRegistrationDTO registrationDTO,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes) {
+                           RedirectAttributes redirectAttributes,
+                            HttpServletRequest req) {
 
 //TODO да проверя ако не е успял да се логне пак да редиректна логин
         if (bindingResult.hasErrors()) {
@@ -51,8 +56,18 @@ public class AuthController {
 
             return "redirect:/register";
         }
-        authService.registerAndLogin(registrationDTO);
+        authService.registerAndLogin(registrationDTO, withHttpRequest(req));
         return "redirect:/";
+    }
+
+    private UserNamePasswordLoginProcessor withHttpRequest(HttpServletRequest request) {
+        return (userName, password) -> {
+            try {
+                request.login(userName, password);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            }
+        };
     }
 
     @GetMapping("/login")
