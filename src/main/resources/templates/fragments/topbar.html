@@ -20,7 +20,7 @@
                     <a class="text-white px-3" th:href="@{/login}" sec:authorize="!isAuthenticated()">
                         Вход</a>
                     <span class="text-white"></span>
-                    <a class="text-white pl-3" th:href="@{/add/product}" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="text-white pl-3" th:href="@{/products/add}" sec:authorize="hasRole('ROLE_ADMIN')">
                         Добави продукт</a>
                 </div>
             </div>

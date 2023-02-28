@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                 // everyone can login and register
                         requestMatchers ("/", "/login", "/register", "/about", "/product", "login-error").permitAll ().
                 // страница достъпна само за админа
-                        requestMatchers ("/add/product").hasRole (UserRoleEnum.ADMIN.name ()).
+                        requestMatchers ("/products/add").hasRole(UserRoleEnum.ADMIN.name ()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().
                 and ().
@@ -71,6 +71,4 @@ public class SecurityConfiguration {
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new AppUserDetailsService (userRepository);
     }
-
-
 }

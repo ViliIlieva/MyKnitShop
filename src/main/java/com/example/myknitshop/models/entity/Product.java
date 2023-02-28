@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,19 +21,13 @@ public class Product extends BaseEntity{
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
+    @Column(updatable=true,nullable = false)
     private BigDecimal price;
 
-    @Column(updatable=true, nullable=false)
-    private String photo;
-
-    @ManyToOne
-    private User author;
+    @Column(updatable=true, nullable=false, unique = true, columnDefinition = "TEXT")
+    private String img;
 
     @ManyToOne
     private Category category;
-
-    @ManyToOne
-    private User buyer;
 
 }

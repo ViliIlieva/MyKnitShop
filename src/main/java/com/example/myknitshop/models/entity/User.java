@@ -38,10 +38,7 @@ public class User extends BaseEntity {
                     referencedColumnName = "id"))
     private List<Role> userRoles = new ArrayList<> ();
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
-    private Set<Product> products;
-
-    @OneToMany(mappedBy = "buyer")
+    @OneToMany
     private Set<Product> buyProduct;
 
     public User() {
@@ -107,15 +104,6 @@ public class User extends BaseEntity {
 
     public User setUserRoles(List<Role> userRoles) {
         this.userRoles = userRoles;
-        return this;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public User setProducts(Set<Product> products) {
-        this.products = products;
         return this;
     }
 

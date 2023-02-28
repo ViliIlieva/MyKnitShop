@@ -15,6 +15,9 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+#  sql:
+#    init:
+#      mode: always
   jpa:
     hibernate:
       ddl-auto: update
@@ -27,3 +30,4 @@ app:
   default:
     admin:
       password: owner
+

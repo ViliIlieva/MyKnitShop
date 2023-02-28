@@ -8,22 +8,22 @@
 
 <body>
 <!-- Topbar Start -->
-<div th:include="~{fragments/topbar}"></div>
+<div th:insert="~{fragments/topbar}"></div>
 <!-- Topbar End -->
 
 <!-- Navbar Start -->
-<div th:include="~{fragments/navbar}"></div>
+<div th:insert="~{fragments/navbar}"></div>
 <!-- Navbar End -->
 
 
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div th:action="@{/product}" class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Product</h1>
+            <h1 class="text-white display-3 mt-lg-5">Продукти</h1>
             <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <p class="m-0"><a class="text-white" th:href="@{/}">Начало</a></p>
                 <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Product</p>
+                <p class="m-0"><a class="text-white" th:href="@{/about}">Подробности за поръчка</a></p>
             </div>
         </div>
     </div>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center">
-                    <a href="" class="btn btn-primary py-3 px-5">Load More</a>
+                    <a href="" class="btn btn-primary py-3 px-5">Зареди още</a>
                 </div>
             </div>
         </div>

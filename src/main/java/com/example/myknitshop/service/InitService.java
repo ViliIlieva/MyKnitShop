@@ -85,7 +85,7 @@ public class InitService {
                 setFirstName("Velislava").
                 setLastName("Ilieva").
                 setPassword(passwordEncoder.encode (adminPass)).
-                setUserRoles(userRoleRepository.findAll());
+                setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.ADMIN));
 
         userRepository.save(adminUser);
     }
