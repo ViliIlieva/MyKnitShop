@@ -60,12 +60,6 @@ public class InitService {
                     .forEach(categoryName -> {
                         Category category = new Category();
                         category.setName(categoryName);
-                        switch (categoryName) {
-                            case HAT -> category.setNeededDay(2);
-                            case SLIPPERS -> category.setNeededDay(3);
-                            case BLANKET -> category.setNeededDay(5);
-
-                        }
                         categoryRepository.save(category);
                     });
         }

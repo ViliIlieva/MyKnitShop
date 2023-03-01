@@ -22,9 +22,6 @@ public class Order extends BaseEntity {
     @Column(nullable = false, name = "date_ordered")
     private LocalDate dateOrdered;
 
-    @Column(nullable = false, name = "date_shipped")
-    private LocalDate dateShipped;
-
     @ManyToOne
     private User client;
 
