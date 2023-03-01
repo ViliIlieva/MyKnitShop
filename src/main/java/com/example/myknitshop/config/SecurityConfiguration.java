@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                         requestMatchers (resources).permitAll ().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                 // everyone can login and register
-                        requestMatchers ("/", "/login", "/register", "/about", "/product", "login-error").permitAll ().
+                        requestMatchers ("/", "/login", "/register", "/about", "/product", "/login-error").permitAll ().
                 // страница достъпна само за админа
                         requestMatchers ("/products/add").hasRole(UserRoleEnum.ADMIN.name ()).
                 // all other pages are available for logger in users
