@@ -110,7 +110,7 @@ VALUES ('Плетено одеяло',
         35,
         1);
 
--- orders
+-- users_buy_products
 INSERT INTO users_buy_product(user_id, buy_product_id)
 VALUES (2,3);
 INSERT INTO users_buy_product(user_id, buy_product_id)
@@ -126,5 +126,13 @@ VALUES (4,1);
 INSERT INTO users_buy_product(user_id, buy_product_id)
 VALUES (5,2);
 
-
+-- orders
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
+VALUES ('2023-05-01', 1, 2);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
+VALUES ('2023-06-01', 2, 3);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
+VALUES ('2023-07-01', 3, 4);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
+VALUES ('2023-08-01', 4, 5);
 

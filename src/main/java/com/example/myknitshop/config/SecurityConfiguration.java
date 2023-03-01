@@ -32,12 +32,10 @@ public class SecurityConfiguration {
         http.
                 // define which requests are allowed and which not
                         authorizeHttpRequests ().
-                // everyone can download static resources (css, js, images)
                         requestMatchers (resources).permitAll ().
+                        requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
-                // everyone can login and register
                         requestMatchers ("/", "/login", "/register", "/about", "/product", "/login-error").permitAll ().
-                // страница достъпна само за админа
                         requestMatchers ("/products/add").hasRole(UserRoleEnum.ADMIN.name ()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().

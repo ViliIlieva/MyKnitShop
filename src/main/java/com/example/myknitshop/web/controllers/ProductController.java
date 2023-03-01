@@ -18,6 +18,7 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
+
     @ModelAttribute("addProductDTO")
     public AddProductDTO initAddProductDTO(){
         return new AddProductDTO();

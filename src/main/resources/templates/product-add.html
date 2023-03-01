@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Бримчица - магазин за ръчно изработени плетива</title>
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 
 <body class="bg-secondary">
-<!-- Topbar -->
+<!-- Topbar Start -->
 <div th:insert="~{fragments/topbar}"></div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div th:insert="~{fragments/navbar}"></div>
 
 <main role="main" class="bg-secondary">
     <div class="carousel-inner">
+
         <div class="carousel-item active">
             <img class="w-100" alt="Image" src="images/carousel-12.jpg">
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
