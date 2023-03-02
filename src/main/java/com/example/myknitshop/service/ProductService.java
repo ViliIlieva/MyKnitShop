@@ -36,8 +36,7 @@ public class ProductService {
         return this.productRepository.findAll()
                 .stream()
                 .map(product -> {
-                    ProductsViewOnHomePageDTO products = modelMapper.map(product, ProductsViewOnHomePageDTO.class);
-                    return  products;
+                    return modelMapper.map(product, ProductsViewOnHomePageDTO.class);
                 }).toList();
     }
 }
