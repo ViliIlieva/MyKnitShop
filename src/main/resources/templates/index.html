@@ -102,6 +102,7 @@
                                 th:text="*{name}"></h5>
                             <a href="" class="btn btn-sm btn-secondary">Поръчай</a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -119,15 +120,18 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="owl-carousel testimonial-carousel">
+                    <div class="owl-carousel testimonial-carousel" >
 
-                        <div th:each="message : ${messages}"
-                             th:object="${message}" class="text-center">
+                        <div class="text-center" th:each="message : ${messages}"
+                              th:object="${message}">
+                            <div>
                             <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-                            <h4 class="font-weight-light mb-4"
-                                >Съдържание на съобщението</h4>
+                            <h4 th:text="*{description}" class="font-weight-light mb-4"></h4>
+                            </div>
+                            <div>
                             <h5 class="font-weight-bold m-0"
-                                >Име Фамилия</h5>
+                                th:text="|*{author.firstName} *{author.lastName}|"></h5>
+                            </div>
                         </div>
 
                     </div>

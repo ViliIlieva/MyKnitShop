@@ -1,7 +1,7 @@
 -- https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
 -- some test users
 INSERT INTO users (username, first_name, last_name, password, email)
-VALUES ('petar', 'Petar', 'Petrov', '12345', 'user@user');
+VALUES ('petar', 'Branimira', 'Ruseva', '12345', 'user@user');
 
 INSERT INTO users (username, first_name, last_name, password, email)
 VALUES ('ivan', 'Ivan', 'Ivanov', '12345', 'ivan@user');
