@@ -26,6 +26,9 @@ public class User extends BaseEntity {
 
     private String address;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -116,4 +119,12 @@ public class User extends BaseEntity {
         return this;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public User setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
 }

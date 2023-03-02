@@ -1,11 +1,15 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
+import com.example.myknitshop.models.dto.viewModels.ProductsViewOnHomePageDTO;
 import com.example.myknitshop.models.entity.Product;
 import com.example.myknitshop.repository.CategoryRepository;
 import com.example.myknitshop.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -26,5 +30,14 @@ public class ProductService {
         product.setCategory(categoryRepository.findByName(addProductDTO.getCategory()));
         this.productRepository.save(product);
         return true;
+    }
+
+    public List<ProductsViewOnHomePageDTO> getAllProducts() {
+        return this.productRepository.findAll()
+                .stream()
+                .map(product -> {
+                    ProductsViewOnHomePageDTO products = modelMapper.map(product, ProductsViewOnHomePageDTO.class);
+                    return  products;
+                }).toList();
     }
 }
