@@ -1,15 +1,12 @@
 package com.example.myknitshop.service;
 
-import com.example.myknitshop.models.dto.viewModels.MessagesViewOnHomePageDTO;
-import com.example.myknitshop.models.dto.viewModels.ProductsViewOnHomePageDTO;
+import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageDTO;
 import com.example.myknitshop.models.entity.Message;
-import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.repository.MessageRepository;
 import com.example.myknitshop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

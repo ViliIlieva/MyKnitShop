@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -28,6 +27,7 @@ public class Product extends BaseEntity{
     private String img;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Category category;
 
 }

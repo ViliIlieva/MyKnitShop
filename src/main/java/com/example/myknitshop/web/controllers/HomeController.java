@@ -1,7 +1,7 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.models.dto.viewModels.MessagesViewOnHomePageDTO;
-import com.example.myknitshop.models.dto.viewModels.ProductsViewOnHomePageDTO;
+import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageDTO;
+import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePageDTO;
 import com.example.myknitshop.service.MessageService;
 import com.example.myknitshop.service.ProductService;
 import org.springframework.stereotype.Controller;

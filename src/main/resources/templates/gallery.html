@@ -7,9 +7,6 @@
 </head>
 
 <body>
-<!-- Topbar Start -->
-<div th:include="~{fragments/topbar}"></div>
-<!-- Topbar End -->
 
 <!-- Navbar Start -->
 <div th:include="~{fragments/navbar}"></div>
@@ -17,14 +14,10 @@
 
 
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;"
+    th:action="@{/gallery}">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Gallery</h1>
-            <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" href="">Home</a></p>
-                <i class="fa fa-circle px-3"></i>
-                <p class="m-0">Gallery</p>
-            </div>
+            <h1 class="text-white display-3 mt-lg-5">Галерия</h1>
         </div>
     </div>
     <!-- Header End -->

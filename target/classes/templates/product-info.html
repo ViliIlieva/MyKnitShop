@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Бримчица - магазин за ръчно изработени плетива</title>
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
+
+<body>
+
+<div th:insert="~{fragments/navbar}"></div>
+
+<main>
+<div id="container-wrapper">
+
+    <div id="root-details">
+        <form th:action="@{/product/info/{id}}"></form>
+
+        <h1 class="text-left text-black" th:text="*{productInfo.name}"></h1>
+        <hr class="hr-2 bg-white w-30">
+
+        <section id="actor-details" class="m-3">
+            <div class="d-flex bg-light">
+                <section id="movie-name-and-photo-left" class="p-1">
+                    <div class="text-center m-auto p-lg-4">
+                        <img id="image-actor"  width="450" height="450" th:src="*{productInfo.img}">
+                    </div>
+                    <h2 class="text-center text-dark">
+                        <a  class="btn btn-sm btn-secondary w-100">Поръчай</a>
+                    </h2>
+                </section>
+                <section id="movie-description-right" class="p-1">
+                    <div class="bg-light p-4 col-lg-6">
+                        <h2 class="text-dark h4 " th:text="*{productInfo.description}"></h2>
+                        <a class="btn btn-primary py-md-3 px-md-5 mt-2" th:text="|Цена: *{productInfo.price} лв.|"></a>
+                    </div>
+                    <div class="p-4">
+                        <h2 class="text-black h5 col-lg-6"
+                        >Може да бъде изработено в различни цветове и размери. Те ще бъдат уточнени след направена от Вас поръчка.</h2>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>
+</main>
+
+<div th:insert="~{fragments/footer}"></div>
+
+</body>
+</html>

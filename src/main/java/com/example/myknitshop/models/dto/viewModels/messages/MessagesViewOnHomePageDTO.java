@@ -1,4 +1,4 @@
-package com.example.myknitshop.models.dto.viewModels;
+package com.example.myknitshop.models.dto.viewModels.messages;
 
 import com.example.myknitshop.models.entity.User;
 import lombok.Data;

@@ -29,7 +29,6 @@ public class AddProductDTO {
     @Positive
     private BigDecimal price;
 
-    //TODO да направя добавянето на снимка
     @NotNull
     private String img;
 

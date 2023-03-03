@@ -1,18 +1,29 @@
 package com.example.myknitshop.web.controllers;
 
+import com.example.myknitshop.service.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PageController {
+
+    private final ProductService productService;
+
+    public PageController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/about")
     public String about() {
         return "about";
     }
 
-    @GetMapping("/product")
-    public String product() {
-        return "product";
+    @GetMapping("/gallery")
+    public String gallery(Model model) {
+        model.addAttribute ("images", this.productService.getAllProductImage());
+        return "gallery";
     }
+
+
 }
