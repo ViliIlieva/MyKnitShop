@@ -21,7 +21,7 @@ public class PageController {
 
     @GetMapping("/gallery")
     public String gallery(Model model) {
-        model.addAttribute ("images", this.productService.getAllProductImage());
+        model.addAttribute ("img", this.productService.getAllProductImage());
         return "gallery";
     }
 
