@@ -30,12 +30,10 @@ public class Order extends BaseEntity {
             name = "products_orders",
             joinColumns = @JoinColumn(
                     name = "order_id",
-                    referencedColumnName = "id"
-            ),
+                    referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "product_id",
-                    referencedColumnName = "id"
-            )
+                    referencedColumnName = "id")
     )
     private Set<Product> orderedProducts;
 }

@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                         requestMatchers ("/", "/login", "/register", "/about", "/product",
-                                "/login-error", "/product/info/{id}", "/gallery").permitAll ().
+                                "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
                         requestMatchers ("/products/add").hasRole(UserRoleEnum.ADMIN.name ()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().

@@ -44,9 +44,9 @@ VALUES ('Бебешко мерино чувалче за количка',
         135,
         3);
 INSERT INTO products (name, description, img, price, category_id)
-VALUES ('Плетена шапка мече',
+VALUES ('Плетена шапка Мече',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
-        'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-4_kuskn6.jpg',
+        'https://res.cloudinary.com/dmowldibf/image/upload/v1678104408/product-4_bfwfox.jpg',
         23,
         1);
 INSERT INTO products (name, description, img, price, category_id)
@@ -64,7 +64,7 @@ VALUES ('Плетен зимен комплект "Снежковци"',
 INSERT INTO products (name, description, img, price, category_id)
 VALUES ('Плетени терлици',
         'Изработени от прежда 70% вълна и 30% памук. Размерите са индивидуални. Посочената цена е за бебешкия размер. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
-        'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-7_owloum.jpg',
+        'https://res.cloudinary.com/dmowldibf/image/upload/v1678104407/product-7_bo02ka.jpg',
         20,
         2);
 INSERT INTO products (name, description, img, price, category_id)
@@ -82,7 +82,7 @@ VALUES ('Плетени терлички',
 INSERT INTO products (name, description, img, price, category_id)
 VALUES ('Плетена шапка Олаф',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
-        'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-10_xamnyh.jpg',
+        'https://res.cloudinary.com/dmowldibf/image/upload/v1678104146/product-10_j9qcsk.jpg',
         27,
         1);
 INSERT INTO products (name, description, img, price, category_id)
@@ -94,19 +94,19 @@ VALUES ('Плетена шапка бухалче',
 INSERT INTO products (name, description, img, price, category_id)
 VALUES ('Плетена шапка с Пепа',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
-        'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-12_ldbzbk.jpg',
+        'https://res.cloudinary.com/dmowldibf/image/upload/v1678104408/product-12_fw7s27.jpg',
         30,
         1);
 INSERT INTO products (name, description, img, price, category_id)
 VALUES ('Плетена шапка еднорог',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
-        'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-13_dthuff.jpg',
+        'https://res.cloudinary.com/dmowldibf/image/upload/v1678104147/product-13_ftsody.jpg',
         35,
         1);
 INSERT INTO products (name, description, img, price, category_id)
 VALUES ('Плетено одеяло',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
-        'https://res.cloudinary.com/dmowldibf/image/upload/v1677589294/samples/MyKnitShop/product-16_gjm5nf.jpg',
+        'https://res.cloudinary.com/dmowldibf/image/upload/v1678104407/product-16_adnvcb.jpg',
         35,
         1);
 
@@ -136,3 +136,26 @@ VALUES ('2023-07-01', 3, 4);
 INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
 VALUES ('2023-08-01', 4, 5);
 
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (1, 3);
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (1, 7);
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (1, 12);
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (2, 5);
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (3, 1);
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (3, 8);
+INSERT INTO products_orders(`order_id`,`product_id`)
+VALUES (4, 2);
+
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (2, 1);
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (3, 2);
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (4, 3);
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (5, 4);

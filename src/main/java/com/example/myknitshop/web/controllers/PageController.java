@@ -25,5 +25,10 @@ public class PageController {
         return "gallery";
     }
 
+    @GetMapping("/service")
+    public String service() {
+        return "service";
+    }
+
 
 }

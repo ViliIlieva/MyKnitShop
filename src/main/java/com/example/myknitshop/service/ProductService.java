@@ -4,7 +4,9 @@ import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductImgDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePageDTO;
+import com.example.myknitshop.models.entity.Category;
 import com.example.myknitshop.models.entity.Product;
+import com.example.myknitshop.models.enums.CategoryEnum;
 import com.example.myknitshop.repository.CategoryRepository;
 import com.example.myknitshop.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
@@ -53,4 +55,6 @@ public class ProductService {
                     return modelMapper.map (product, ProductImgDTO.class);
                 }).toList ();
     }
+
+
 }

@@ -44,6 +44,9 @@ public class User extends BaseEntity {
     @OneToMany
     private Set<Product> buyProduct;
 
+    @OneToMany
+    private Set<Order> orders;
+
     public User() {
     }
 
@@ -125,6 +128,15 @@ public class User extends BaseEntity {
 
     public User setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public User setOrders(Set<Order> orders) {
+        this.orders = orders;
         return this;
     }
 }

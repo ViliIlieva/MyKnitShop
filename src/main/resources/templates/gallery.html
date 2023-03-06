@@ -28,22 +28,6 @@
     <!-- Portfolio Start -->
     <div class="container-fluid py-5 px-0">
         <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <h1 class="section-title position-relative text-center mb-5">Моите Продукти Изработени с Огромно Внимание и Любов</h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <ul class="list-inline mb-4 pb-2" id="portfolio-flters">
-                        <li class="btn btn-sm btn-outline-primary m-1 active"  data-filter="*">Всички</li>
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Шапки</li>
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Одеала</li>
-                        <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Терлички</li>
-                    </ul>
-                </div>
-            </div>
             <div class="row m-0 portfolio-container">
                 <div class="col-lg-4 col-md-6 p-0 portfolio-item first"
                      th:each="image : ${img}"
@@ -55,7 +39,6 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
