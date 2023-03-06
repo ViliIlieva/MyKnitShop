@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -25,19 +24,19 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        String[] resources = new String[]{
-                "/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**"
-        };
+//        String[] resources = new String[]{
+//                "/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**"
+//        };
 
         http.
                 // define which requests are allowed and which not
                         authorizeHttpRequests ().
-                        requestMatchers (resources).permitAll ().
+//                        requestMatchers (resources).permitAll ().
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                         requestMatchers ("/", "/login", "/register", "/about", "/product",
-                                "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
-                        requestMatchers ("/products/add").hasRole(UserRoleEnum.ADMIN.name ()).
+                                "/login-error", "/product/info/{id}", "/gallery", "/service", "/shopping/card").permitAll ().
+                        requestMatchers ("/products/add", "/admin").hasRole(UserRoleEnum.ADMIN.name ()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().
                 and ().

@@ -25,9 +25,9 @@ public class PageController {
         return "gallery";
     }
 
-    @GetMapping("/service")
-    public String service() {
-        return "service";
+    @GetMapping("/shopping/card")
+    public String shoppingCard() {
+        return "shopping-card";
     }
 
 
