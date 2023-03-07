@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         <div class="cart_container">
-          <div class="cart_title">Кошница<small> (1 item in your cart) </small></div>
+          <div class="cart_title">Кошница <a th:text="|(имаш ${count} добавени продукта)|"> (1 item in your cart) </a></div>
 
           <div class="cart_items"
                th:each="product : ${cardCashProduct}"
@@ -32,7 +32,7 @@
                   </div>
                   <div class="cart_item_quantity cart_info_col">
                     <div class="cart_item_title">Количество</div>
-                    <div class="cart_item_text">1</div>
+                    <div class="cart_item_text" th:text="*{quantity}">1</div>
                   </div>
                   <div class="cart_item_price cart_info_col">
                     <div class="cart_item_title" >Цена</div>
@@ -40,7 +40,7 @@
                   </div>
                   <div class="cart_item_total cart_info_col">
                     <div class="cart_item_title">Общо</div>
-                    <div class="cart_item_text">₹22000</div>
+                    <div class="cart_item_text" th:text="|*{sum} лв.|">₹22000</div>
                   </div>
                 </div>
               </li>
@@ -49,7 +49,7 @@
           <div class="order_total">
             <div class="order_total_content text-md-right">
               <div class="order_total_title">Обща Сума:</div>
-              <div class="order_total_amount">₹22000</div>
+              <div class="order_total_amount" th:text="|${sumForAllProducts} лв.|">₹22000</div>
             </div>
           </div>
           <div class="cart_buttons">

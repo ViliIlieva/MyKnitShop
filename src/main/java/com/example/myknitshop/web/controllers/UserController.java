@@ -17,11 +17,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/purchase/{id}")
-    String buyProduct(@PathVariable("id") Long id, Principal username,
-                      Model model){
-        this.userService.addProductToBuyList(id, username);
 
+    @GetMapping("/purchase/{id}")
+    String buyProduct(@PathVariable("id") Long id, Principal username) {
+        this.userService.addProductToBuyList(id, username);
         return "redirect:/product";
     }
 }

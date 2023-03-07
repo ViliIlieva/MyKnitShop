@@ -12,4 +12,6 @@ public class ProductViewInShoppingCard {
     private String name;
     private BigDecimal price;
     private String img;
+    private int quantity;
+    private BigDecimal sum;
 }

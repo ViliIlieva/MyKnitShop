@@ -26,6 +26,10 @@ public class Product extends BaseEntity{
     @Column(updatable=true, nullable=false, unique = true, columnDefinition = "TEXT")
     private String img;
 
+    private int quantity;
+
+    private BigDecimal sum;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Category category;
