@@ -5,6 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProductImgDTO {
+public class ProductImgView {
     private String img;
 }

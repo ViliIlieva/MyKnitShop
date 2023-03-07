@@ -42,7 +42,10 @@ public class User extends BaseEntity {
     private List<Role> userRoles = new ArrayList<> ();
 
     @OneToMany
-    private Set<Product> buyProduct;
+    private Set<Product> purchaseProduct;
+
+    @OneToMany
+    private Set<Product> allBuyProduct;
 
     @OneToMany
     private Set<Order> orders;
@@ -113,12 +116,21 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public Set<Product> getBuyProduct() {
-        return buyProduct;
+    public Set<Product> getPurchaseProduct() {
+        return purchaseProduct;
     }
 
-    public User setBuyProduct(Set<Product> buyProduct) {
-        this.buyProduct = buyProduct;
+    public User setPurchaseProduct(Set<Product> purchaseProduct) {
+        this.purchaseProduct = purchaseProduct;
+        return this;
+    }
+
+    public Set<Product> getAllBuyProduct() {
+        return allBuyProduct;
+    }
+
+    public User setAllBuyProduct(Set<Product> allBuyProduct) {
+        this.allBuyProduct = allBuyProduct;
         return this;
     }
 

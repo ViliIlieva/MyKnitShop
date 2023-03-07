@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class ProductsViewOnHomePageDTO {
+public class ProductViewInShoppingCard {
     private Long id;
     private String name;
     private BigDecimal price;

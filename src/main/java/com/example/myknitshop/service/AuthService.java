@@ -33,7 +33,6 @@ public class AuthService {
 
     public void registerAndLogin(UserRegistrationDTO userRegistrationDTO,
         UserNamePasswordLoginProcessor userNamePasswordLoginProcessor) {
-//TODO дали трябва да проверявам дали двете пароли съвпадат
 
         User newUser = modelMapper.map (userRegistrationDTO, User.class);
         newUser.setPassword (passwordEncoder.encode (userRegistrationDTO.getPassword ()));

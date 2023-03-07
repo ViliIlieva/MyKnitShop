@@ -1,6 +1,6 @@
 package com.example.myknitshop.service;
 
-import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageDTO;
+import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageView;
 import com.example.myknitshop.models.entity.Message;
 import com.example.myknitshop.repository.MessageRepository;
 import com.example.myknitshop.repository.UserRepository;
@@ -22,15 +22,15 @@ public class MessageService {
         this.modelMapper = modelMapper;
     }
 
-    public List<MessagesViewOnHomePageDTO> getAllMessages() {
+    public List<MessagesViewOnHomePageView> getAllMessages() {
 
         return  this.messageRepository.findAll().stream()
                 .map(this::mapMessageDTO)
                 .collect(Collectors.toList());
     }
 
-    private MessagesViewOnHomePageDTO mapMessageDTO(Message message) {
-        MessagesViewOnHomePageDTO messageDTO = new MessagesViewOnHomePageDTO ();
+    private MessagesViewOnHomePageView mapMessageDTO(Message message) {
+        MessagesViewOnHomePageView messageDTO = new MessagesViewOnHomePageView();
 
         messageDTO.setDescription(message.getDescription());
         messageDTO.setAuthor(message.getAuthor());

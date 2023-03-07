@@ -57,7 +57,9 @@ public class ProductController {
 
     @GetMapping("/product/info/{id}")
     public String productInfo (@PathVariable("id") Long id, Model model){
-        model.addAttribute ("productInfo", this.productService.getProductById(id));
+        model.addAttribute ("productInfo", this.productService.getProductInfoById(id));
         return "product-info";
     }
+
+
 }

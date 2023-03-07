@@ -48,7 +48,7 @@ public class AuthController {
                            RedirectAttributes redirectAttributes,
                             HttpServletRequest req) {
 
-//TODO да проверя ако не е успял да се логне пак да редиректна логин
+
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
             redirectAttributes.addFlashAttribute(

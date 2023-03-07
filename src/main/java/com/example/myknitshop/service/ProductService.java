@@ -1,12 +1,10 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
-import com.example.myknitshop.models.dto.viewModels.products.ProductImgDTO;
-import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoDTO;
-import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePageDTO;
-import com.example.myknitshop.models.entity.Category;
+import com.example.myknitshop.models.dto.viewModels.products.ProductImgView;
+import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
+import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePage;
 import com.example.myknitshop.models.entity.Product;
-import com.example.myknitshop.models.enums.CategoryEnum;
 import com.example.myknitshop.repository.CategoryRepository;
 import com.example.myknitshop.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
@@ -35,26 +33,30 @@ public class ProductService {
         return true;
     }
 
-    public List<ProductsViewOnHomePageDTO> getAllProducts() {
+    public List<ProductsViewOnHomePage> getAllProducts() {
         return this.productRepository.findAll()
                 .stream()
                 .map(product -> {
-                    return modelMapper.map(product, ProductsViewOnHomePageDTO.class);
+                    return modelMapper.map(product, ProductsViewOnHomePage.class);
                 }).toList();
     }
 
-    public ProductWithInfoDTO getProductById(Long id) {
+    public ProductWithInfoView getProductInfoById(Long id) {
         Product product = this.productRepository.findById (id).get ();
-        return this.modelMapper.map (product, ProductWithInfoDTO.class);
+        return this.modelMapper.map (product, ProductWithInfoView.class);
     }
 
-    public List<ProductImgDTO> getAllProductImage() {
+    public List<ProductImgView> getAllProductImage() {
         return this.productRepository.findAll ()
                 .stream ()
                 .map (product -> {
-                    return modelMapper.map (product, ProductImgDTO.class);
+                    return modelMapper.map (product, ProductImgView.class);
                 }).toList ();
     }
+    public Product getProductById(Long id){
+        return this.productRepository.findById(id).get();
+    }
+
 
 
 }

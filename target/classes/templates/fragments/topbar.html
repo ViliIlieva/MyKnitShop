@@ -11,8 +11,8 @@
             <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
 
-                    <a class="text-white px-3" sec:authorize="isAuthenticated()">
-                        Добре дошъл, <th:block sec:authentication="name">X</th:block>!</a>
+                    <h5><a class="text-white px-3" sec:authorize="isAuthenticated()">
+                        Добре дошъл, <th:block sec:authentication="name">X</th:block>!</a></h5>
 
                     <a class="text-white pr-3" th:href="@{/register}" sec:authorize="!isAuthenticated()">
                         Регистрация</a>
@@ -29,7 +29,7 @@
                     <form
                             th:method="POST"
                             th:action="@{/logout}">
-                    <input class="btn btn-link nav-link text-white px-3" type="submit" value="Изход"></input>
+                    <h5><input class="btn btn-link nav-link text-white px-3" type="submit" value="Изход"></input></h5>
                     </form>
                 </div>
             </div>

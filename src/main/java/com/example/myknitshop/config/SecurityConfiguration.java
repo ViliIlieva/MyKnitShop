@@ -24,19 +24,15 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-//        String[] resources = new String[]{
-//                "/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**"
-//        };
-
         http.
                 // define which requests are allowed and which not
                         authorizeHttpRequests ().
-//                        requestMatchers (resources).permitAll ().
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                         requestMatchers ("/", "/login", "/register", "/about", "/product",
                                 "/login-error", "/product/info/{id}", "/gallery", "/service", "/shopping/card").permitAll ().
                         requestMatchers ("/products/add", "/admin").hasRole(UserRoleEnum.ADMIN.name ()).
+                        requestMatchers("/purchase/{id}").hasRole(UserRoleEnum.CLIENT.name()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().
                 and ().

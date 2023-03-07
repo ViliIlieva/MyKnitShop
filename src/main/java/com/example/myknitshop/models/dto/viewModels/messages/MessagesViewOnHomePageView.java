@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class MessagesViewOnHomePageDTO {
+public class MessagesViewOnHomePageView {
     private String description;
     private User author;
 
@@ -14,7 +14,7 @@ public class MessagesViewOnHomePageDTO {
         return description;
     }
 
-    public MessagesViewOnHomePageDTO setDescription(String description) {
+    public MessagesViewOnHomePageView setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -23,7 +23,7 @@ public class MessagesViewOnHomePageDTO {
         return author;
     }
 
-    public MessagesViewOnHomePageDTO setAuthor(User author) {
+    public MessagesViewOnHomePageView setAuthor(User author) {
         this.author = author;
         return this;
     }

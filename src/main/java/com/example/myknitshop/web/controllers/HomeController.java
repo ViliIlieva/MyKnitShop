@@ -1,7 +1,7 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageDTO;
-import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePageDTO;
+import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageView;
+import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePage;
 import com.example.myknitshop.service.MessageService;
 import com.example.myknitshop.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -21,13 +21,13 @@ public class HomeController {
     }
 
     @ModelAttribute("homePageProductDTO")
-    public ProductsViewOnHomePageDTO initHomePageProductsDTO(){
-        return new ProductsViewOnHomePageDTO();
+    public ProductsViewOnHomePage initHomePageProductsDTO(){
+        return new ProductsViewOnHomePage();
     }
 
     @ModelAttribute("messagesDTO")
-    public MessagesViewOnHomePageDTO initMessagesDTO(){
-        return new MessagesViewOnHomePageDTO();
+    public MessagesViewOnHomePageView initMessagesDTO(){
+        return new MessagesViewOnHomePageView();
     }
 
     @GetMapping("/")
