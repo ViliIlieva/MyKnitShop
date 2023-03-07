@@ -21,7 +21,6 @@ public class UserController {
     String buyProduct(@PathVariable("id") Long id, Principal username,
                       Model model){
         this.userService.addProductToBuyList(id, username);
-        model.addAttribute("cardCashProduct", this.userService.getPurchaseListByUser(username));
 
         return "redirect:/product";
     }

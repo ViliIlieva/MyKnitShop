@@ -1,17 +1,23 @@
 package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.service.ProductService;
+import com.example.myknitshop.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.security.Principal;
 
 @Controller
 public class PageController {
 
     private final ProductService productService;
+    private final UserService userService;
 
-    public PageController(ProductService productService) {
+    public PageController(ProductService productService,
+                          UserService userService) {
         this.productService = productService;
+        this.userService = userService;
     }
 
     @GetMapping("/about")
@@ -26,7 +32,9 @@ public class PageController {
     }
 
     @GetMapping("/shopping/card")
-    public String shoppingCard() {
+    public String shoppingCard(Principal username, Model model) {
+        model.addAttribute("cardCashProduct", this.userService.getPurchaseListByUser(username));
+
         return "shopping-card";
     }
 

@@ -111,19 +111,19 @@ VALUES ('Плетено одеяло',
         1);
 
 -- users_buy_products
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (2,3);
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (2,7);
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (2,12);
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (3,5);
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (4,8);
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (4,1);
-INSERT INTO users_buy_product(user_id, buy_product_id)
+INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (5,2);
 
 -- orders
