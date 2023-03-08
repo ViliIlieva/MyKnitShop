@@ -8,21 +8,15 @@
 </head>
 
 <body>
-    <!-- Topbar Start -->
    <div th:include="~{fragments/topbar}"></div>
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
     <div th:include="~{fragments/navbar}"></div>
-    <!-- Navbar End -->
 
 
-    <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5 pb-5">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" alt="Image" src="images/carousel-3.jpg">
+                    <img class="w-100" alt="Image" th:src="@{/images/carousel-3.jpg}">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Добре Дошли В Бримчица</h4>
@@ -32,7 +26,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="images/carousel-2.jpg" alt="Image">
+                    <img class="w-100" th:src="@{/images/carousel-2.jpg}" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">В Бримчица Ние Не Работим</h4>
