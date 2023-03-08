@@ -6,13 +6,14 @@
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 
-<body>
+<body class="order-details">
 
 <div class="container mt-5 p-3 rounded cart">
     <div class="row no-gutters">
         <div class="col-md-8">
             <div class="product-details mr-2">
-                <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fa fa-long-arrow-left"></i>
                     <a th:href="@{/product}" class="btn btn-primary mt-2">Продължи пазаруването</a></div>
                 <hr>
                 <h6 class="mb-0">Кошница</h6>
@@ -76,7 +77,8 @@
                 </div>
                 <button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button">
                     <span th:text="|${sumForAllProducts} лв.|"></span>
-                    <span>Поръчай<i class="fa fa-long-arrow-right ml-1"></i></span>
+                    <span>Поръчай<i class="fa fa-long-arrow-right ml-1" th:href="@{/products/order}"></i></span>
+
                 </button>
             </div>
         </div>

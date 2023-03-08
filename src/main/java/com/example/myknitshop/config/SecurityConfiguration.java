@@ -33,7 +33,7 @@ public class SecurityConfiguration {
                                 "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
                         requestMatchers ("/products/add", "/admin").hasRole(UserRoleEnum.ADMIN.name ()).
                         requestMatchers("/purchase/{id}", "/shopping/card",
-                                "/shopping/card/remove-product-from-list/{id}").hasRole(UserRoleEnum.CLIENT.name()).
+                                "/shopping/card/remove-product-from-list/{id}", "/products/order").hasRole(UserRoleEnum.CLIENT.name()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().
                 and ().
@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                 // the name of the password form field
                         passwordParameter (UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 // where to go in case that the login is successful
-                        defaultSuccessUrl ("/").
+                        defaultSuccessUrl ("/", true).
                 // where to go in case that the login failed
                         failureForwardUrl ("/login-error").//в контролера в логин връща грешките
                 and ().
