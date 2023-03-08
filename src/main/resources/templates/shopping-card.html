@@ -2,64 +2,85 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Бримчица - магазин за ръчно изработени плетива</title>
-  <th:block th:replace="~{fragments/head}"></th:block>
+    <title>Бримчица - магазин за ръчно изработени плетива</title>
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 
 <body>
 
-<div th:insert="~{fragments/topbar}"></div>
-<div th:insert="~{fragments/navbar}"></div>
-
-<div class="cart_section">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <div class="cart_container">
-          <div class="cart_title">Кошница <a th:text="|(имаш ${count} добавени продукта)|"> (1 item in your cart) </a></div>
-
-          <div class="cart_items"
-               th:each="product : ${cardCashProduct}"
-               th:object="${product}">
-            <ul class="cart_list" >
-              <li class="cart_item clearfix">
-                <div class="cart_item_image" >
-                  <img th:src="*{img}" alt=""></div>
-                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                  <div class="cart_item_name cart_info_col">
-                    <div class="cart_item_title">Продукт</div>
-                    <div class="cart_item_text" th:text="*{name}"></div>
-                  </div>
-                  <div class="cart_item_quantity cart_info_col">
-                    <div class="cart_item_title">Количество</div>
-                    <div class="cart_item_text" th:text="*{quantity}">1</div>
-                  </div>
-                  <div class="cart_item_price cart_info_col">
-                    <div class="cart_item_title" >Цена</div>
-                    <div class="cart_item_text" th:text="|*{price} лв.|"></div>
-                  </div>
-                  <div class="cart_item_total cart_info_col">
-                    <div class="cart_item_title">Общо</div>
-                    <div class="cart_item_text" th:text="|*{sum} лв.|">₹22000</div>
-                  </div>
+<div class="container mt-5 p-3 rounded cart">
+    <div class="row no-gutters">
+        <div class="col-md-8">
+            <div class="product-details mr-2">
+                <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i>
+                    <a th:href="@{/product}" class="btn btn-primary mt-2">Продължи пазаруването</a></div>
+                <hr>
+                <h6 class="mb-0">Кошница</h6>
+                <div class="d-flex justify-content-between">
+                    <a th:text="|(имаш ${count} добавени продукта)|"></a>
                 </div>
-              </li>
-            </ul>
-          </div>
-          <div class="order_total">
-            <div class="order_total_content text-md-right">
-              <div class="order_total_title">Обща Сума:</div>
-              <div class="order_total_amount" th:text="|${sumForAllProducts} лв.|">₹22000</div>
+                <div class="cart_items"
+                     th:each="product : ${cardCashProduct}"
+                     th:object="${product}">
+                    <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                        <div class="d-flex flex-row">
+                            <img class="rounded" th:src="*{img}" width="40">
+                            <div class="ml-2">
+                                <span class="font-weight-bold d-block" th:text="*{name}"></span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                            <span class="d-block" th:text="|*{quantity} х|"></span>
+                            <span class="d-block ml-5" th:text="|*{price} лв.|"></span>
+                            <span class="d-block ml-5 font-weight-bold" th:text="|*{sum} лв.|"></span>
+
+                            <a class="ml-3 text-black btn btn-sm btn-secondary col-sm-1 font-weight-bold"
+                               th:href="@{/shopping/card/remove-product-from-list/{id}(id = *{id})}">Х</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <span class="d-block font-weight-bold ml-lg-auto text-right">Обща сума</span>
+                    <span class="d-block ml-5 font-weight-bold" th:text="|${sumForAllProducts} лв.|"></span>
+                </div>
             </div>
-          </div>
-          <div class="cart_buttons">
-            <a th:href="@{/product}" class="btn btn-primary mt-2">Продължи пазаруването</a>
-            <a class="btn btn-secondary mt-2">Поръчай</a>
-          </div>
         </div>
-      </div>
+
+        <div class="col-md-4 ">
+            <div class="payment-info">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><h4 class="text-white font-weight-bold">Детайли за поръчката</h4></span><img
+                        class="rounded"
+                        width="30">
+                </div>
+                <span class="type d-block mt-3 mb-1"></span>
+                <div>
+                    <label class="credit-card-label"><h6 class="text-white font-weight-bold">Адрес за доставка</h6></label>
+                    <input type="text" class="form-control credit-inputs" placeholder="Add Address">
+                </div>
+                <div>
+                    <label class="credit-card-label"><h6 class="text-white font-weight-bold">Телефон за връзка</h6></label>
+                    <input type="text" class="form-control credit-inputs" placeholder="Add phone number">
+                </div>
+
+                <hr class="line">
+                <div class="d-flex justify-content-between information">
+
+                </div>
+                <div class="d-flex justify-content-between information">
+                    <span></span>
+                    <span></span></div>
+                <div class="d-flex justify-content-between information">
+                    <span></span>
+                    <span></span>
+                </div>
+                <button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button">
+                    <span th:text="|${sumForAllProducts} лв.|"></span>
+                    <span>Поръчай<i class="fa fa-long-arrow-right ml-1"></i></span>
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div th:insert="~{fragments/footer}"></div>

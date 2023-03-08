@@ -28,12 +28,24 @@ public class UserService {
     public void addProductToBuyList(Long id, Principal principal) {
         User user = getUsernameByPrincipal (principal);
         Product product = this.productService.getProductById(id);
+
         if(user.getPurchaseProduct ().contains (product)){
             product.setQuantity (product.getQuantity () + 1);
         }
         product.setSum (product.getPrice ().multiply (BigDecimal.valueOf (product.getQuantity ())));
 
         user.getPurchaseProduct().add(product);
+        this.userRepository.save(user);
+    }
+
+    public void removeProduct(Long productId, Principal username) {
+        User user = getUsernameByPrincipal (username);
+        user.removeProductFromPurchaseList(productId);
+
+        Product product = this.productService.getProductById(productId);
+        product.setQuantity(1);
+        product.setSum(null);
+
         this.userRepository.save(user);
     }
 
@@ -61,5 +73,6 @@ public class UserService {
     public User getUsernameByPrincipal(Principal principal){
         return this.userRepository.findByUsername(principal.getName()).get();
     }
+
 
 }

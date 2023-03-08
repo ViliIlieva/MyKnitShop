@@ -17,10 +17,15 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping("/purchase/{id}")
-    String buyProduct(@PathVariable("id") Long id, Principal username) {
-        this.userService.addProductToBuyList(id, username);
+    String buyProduct(@PathVariable("id") Long productId, Principal username) {
+        this.userService.addProductToBuyList(productId, username);
         return "redirect:/product";
+    }
+
+    @GetMapping("/shopping/card/remove-product-from-list/{id}")
+    String removeProductFromPurchaseList(@PathVariable("id") Long productId, Principal username){
+        this.userService.removeProduct(productId, username);
+        return "redirect:/shopping/card";
     }
 }

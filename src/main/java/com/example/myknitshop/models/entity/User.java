@@ -151,4 +151,8 @@ public class User extends BaseEntity {
         this.orders = orders;
         return this;
     }
+
+    public void removeProductFromPurchaseList(Long productId) {
+        this.purchaseProduct.removeIf(p-> p.getId().equals(productId));
+    }
 }
