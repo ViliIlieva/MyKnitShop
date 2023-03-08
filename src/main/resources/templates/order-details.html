@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Бримчица - магазин за ръчно изработени плетива</title>
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
+<body>
+<div th:include="~{fragments/topbar}"></div>
+<div th:include="~{fragments/navbar}"></div>
+
+<div class="container-fluid py-5" th:action="@{/products/order}">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h1 class="section-title position-relative text-center mb-5">Ето Какво Споделят Нашите Клиенти</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="owl-carousel testimonial-carousel" >
+
+                    <div class="text-center" th:each="message : ${messages}"
+                         th:object="${message}">
+                        <div>
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 th:text="*{description}" class="font-weight-light mb-4"></h4>
+                        </div>
+                        <div>
+                            <h5 class="font-weight-bold m-0"
+                                th:text="|*{author.firstName} *{author.lastName}|"></h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

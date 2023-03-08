@@ -28,4 +28,12 @@ public class UserController {
         this.userService.removeProduct(productId, username);
         return "redirect:/shopping/card";
     }
+
+    @GetMapping("/shopping/card")
+    public String shoppingCard(Principal username, Model model) {
+        model.addAttribute("cardCashProduct", this.userService.getPurchaseListByUser(username));
+        model.addAttribute ("count", this.userService.countOfItemInShopCard (username));
+        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
+        return "shopping-card";
+    }
 }

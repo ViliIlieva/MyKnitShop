@@ -17,7 +17,7 @@ public class Order extends BaseEntity {
 
     @GeneratedValue
     @Column(name = "order_number", nullable = false)
-    private int orderNumber;
+    private Long orderNumber;
 
     @Column(nullable = false, name = "date_ordered")
     private LocalDate dateOrdered;
@@ -33,7 +33,6 @@ public class Order extends BaseEntity {
                     referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "product_id",
-                    referencedColumnName = "id")
-    )
+                    referencedColumnName = "id"))
     private Set<Product> orderedProducts;
 }

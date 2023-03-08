@@ -31,13 +31,4 @@ public class PageController {
         return "gallery";
     }
 
-    @GetMapping("/shopping/card")
-    public String shoppingCard(Principal username, Model model) {
-        model.addAttribute("cardCashProduct", this.userService.getPurchaseListByUser(username));
-        model.addAttribute ("count", this.userService.countOfItemInShopCard (username));
-        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
-        return "shopping-card";
-    }
-
-
 }
