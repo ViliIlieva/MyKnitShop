@@ -34,21 +34,20 @@ public class User extends BaseEntity {
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id",
-                    referencedColumnName = "id"
-            ),
+                    referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id",
                     referencedColumnName = "id"))
     private List<Role> userRoles = new ArrayList<> ();
 
     @OneToMany
-    private Set<Product> purchaseProduct;
+    private List<Product> purchaseProduct;
 
     @OneToMany
-    private Set<Product> allBuyProduct;
+    private List<Product> allBuyProduct;
 
     @OneToMany
-    private Set<Order> orders;
+    private List<Order> orders;
 
     public User() {
     }
@@ -116,21 +115,30 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public Set<Product> getPurchaseProduct() {
+    public List<Product> getPurchaseProduct() {
         return purchaseProduct;
     }
 
-    public User setPurchaseProduct(Set<Product> purchaseProduct) {
+    public User setPurchaseProduct(List<Product> purchaseProduct) {
         this.purchaseProduct = purchaseProduct;
         return this;
     }
 
-    public Set<Product> getAllBuyProduct() {
+    public List<Product> getAllBuyProduct() {
         return allBuyProduct;
     }
 
-    public User setAllBuyProduct(Set<Product> allBuyProduct) {
+    public User setAllBuyProduct(List<Product> allBuyProduct) {
         this.allBuyProduct = allBuyProduct;
+        return this;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public User setOrders(List<Order> orders) {
+        this.orders = orders;
         return this;
     }
 
@@ -143,16 +151,8 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public User setOrders(Set<Order> orders) {
-        this.orders = orders;
-        return this;
-    }
-
     public void removeProductFromPurchaseList(Long productId) {
         this.purchaseProduct.removeIf(p-> p.getId().equals(productId));
     }
+
 }

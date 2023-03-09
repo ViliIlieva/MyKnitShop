@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Бримчица - магазин за ръчно изработени плетива</title>
     <th:block th:replace="~{fragments/head}"></th:block>
@@ -8,8 +7,10 @@
 
 <body class="order-details">
 
-<div class="container mt-5 p-3 rounded cart">
-    <div class="row no-gutters">
+<div class="container mt-5 p-3 rounded cart" >
+    <form class="row no-gutters"
+          th:action="@{/shopping/card}"
+          th:method="post" th:object="${makeOrderDTO}">
         <div class="col-md-8">
             <div class="product-details mr-2">
                 <div class="d-flex flex-row align-items-center">
@@ -49,7 +50,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 ">
+        <div class="col-md-4">
             <div class="payment-info">
                 <div class="d-flex justify-content-between align-items-center">
                     <span><h4 class="text-white font-weight-bold">Детайли за поръчката</h4></span><img
@@ -59,7 +60,9 @@
                 <span class="type d-block mt-3 mb-1"></span>
                 <div>
                     <label class="credit-card-label"><h6 class="text-white font-weight-bold">Адрес за доставка</h6></label>
-                    <input type="text" class="form-control credit-inputs" placeholder="Add Address">
+                    <input type="address"
+
+                           class="form-control credit-inputs" placeholder="Add Address">
                 </div>
                 <div>
                     <label class="credit-card-label"><h6 class="text-white font-weight-bold">Телефон за връзка</h6></label>
@@ -85,7 +88,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div th:insert="~{fragments/footer}"></div>

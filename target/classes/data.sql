@@ -27,14 +27,14 @@ VALUES ('Благодарим за страхотното одеало, пасв
 
 -- products
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетено одеяло',
+VALUES ('Плетено одеяло в размер по избор',
         'Одеало плетено на ръце от 100% мерино вълна, без химична обработка, антибактериална "дишаща" тъкан, без статично електричествол. Размери: 50 х 50 на цена 65лв. Цената се определя от размера. Ако желаете изработка на одеяло в индивидуален размер и цвят, различен от посочените, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-1_irpbq2.jpg',
         56,
         3,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетени летни терлички',
+VALUES ('Плетени летни терличета',
         'Изработени от 100% памук, бебешка прежда. Размерите са индивидуални. Посочената цена е за бебешкия размер Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589294/samples/MyKnitShop/product-2_lvfxip.jpg',
         12,
@@ -48,15 +48,15 @@ VALUES ('Бебешко мерино чувалче за количка',
         3,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена шапка Мече',
+VALUES ('Плетена шапка "Меченце"',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104408/product-4_bfwfox.jpg',
         23,
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена диадема Елза',
-        'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
+VALUES ('Плетена диадема "Елза"',
+        'Изработена от 100% памук, бебешка прежда. Ако желаете да бъде изработена в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-5_haow2h.jpg',
         30,
         1,
@@ -69,57 +69,57 @@ VALUES ('Плетен зимен комплект "Снежковци"',
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетени терлици',
+VALUES ('Плетени зимни терлички',
         'Изработени от прежда 70% вълна и 30% памук. Размерите са индивидуални. Посочената цена е за бебешкия размер. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104407/product-7_bo02ka.jpg',
         20,
         2,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена шапка Мишленце',
+VALUES ('Плетена шапка "Мишленце"',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-8_beuv2w.jpg',
         23,
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетени терлички',
+VALUES ('Плетени бебешки терлички',
         'Изработени от 70% вълна и 30% памук, изключително мека бебешка прежда. Размерите са индивидуални. Посочената цена е за бебешкия размер. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-9_jqid16.jpg',
         20,
         2,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена шапка Олаф',
+VALUES ('Плетена шапка "Олаф"',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104146/product-10_j9qcsk.jpg',
         27,
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена шапка бухалче',
+VALUES ('Плетена шапка "Бухалче"',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-11_aqq6uo.jpg',
         35,
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена шапка с Пепа',
+VALUES ('Плетена шапка с "Пепа"',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104408/product-12_fw7s27.jpg',
         30,
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетена шапка еднорог',
+VALUES ('Плетена шапка "Еднорог"',
         'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104147/product-13_ftsody.jpg',
         35,
         1,
         1);
 INSERT INTO products (name, description, img, price, category_id, quantity)
-VALUES ('Плетено одеяло',
-        'Изработена от 100% памук, бебешка прежда. Размерите са индивидуални. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
+VALUES ('Плетена диадема за Принцеси',
+        'Изработена от 100% памук, бебешка прежда. Ако желаете да бъде изработена в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104407/product-16_adnvcb.jpg',
         35,
         1,
@@ -142,14 +142,14 @@ INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (5,2);
 
 -- orders
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
-VALUES ('2023-05-01', 1, 2);
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
-VALUES ('2023-06-01', 2, 3);
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
-VALUES ('2023-07-01', 3, 4);
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`)
-VALUES ('2023-08-01', 4, 5);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-05-01', 1, 2, 'COMPLETED', 56);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-06-01', 2, 3, 'COMPLETED', 78);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-07-01', 3, 4, 'COMPLETED', 25);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-08-01', 4, 5, 'COMPLETED', 64);
 
 INSERT INTO products_orders(`order_id`,`product_id`)
 VALUES (1, 3);

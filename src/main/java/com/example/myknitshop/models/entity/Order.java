@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -22,6 +24,9 @@ public class Order extends BaseEntity {
 
     @Column(nullable = false, name = "date_ordered")
     private LocalDate dateOrdered;
+
+    @Column(name = "order_sum")
+    private BigDecimal orderSum;
 
     @ManyToOne
     private User client;
@@ -39,5 +44,5 @@ public class Order extends BaseEntity {
             inverseJoinColumns = @JoinColumn(
                     name = "product_id",
                     referencedColumnName = "id"))
-    private Set<Product> orderedProducts;
+    private List<Product> orderedProducts;
 }

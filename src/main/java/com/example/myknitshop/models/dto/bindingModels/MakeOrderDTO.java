@@ -1,6 +1,5 @@
 package com.example.myknitshop.models.dto.bindingModels;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -9,14 +8,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserMakeOrderDTO {
+public class MakeOrderDTO {
     private Long id;
 
     @NotBlank
-    @Size(min = 10)
+    @Size(min = 10, message = "Въведете адрес с минимум 10 символа")
     private String address;
 
     @NotBlank
-    @Pattern(regexp="[\\d]")
+    @Pattern(regexp="[\\d]", message = "Въведете телефонен номер")
     private String phoneNumber;
 }

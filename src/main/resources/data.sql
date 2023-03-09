@@ -142,14 +142,14 @@ INSERT INTO users_all_buy_product(user_id, all_buy_product_id)
 VALUES (5,2);
 
 -- orders
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`)
-VALUES ('2023-05-01', 1, 2, 'COMPLETED');
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`)
-VALUES ('2023-06-01', 2, 3, 'COMPLETED');
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`)
-VALUES ('2023-07-01', 3, 4, 'COMPLETED');
-INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`)
-VALUES ('2023-08-01', 4, 5, 'COMPLETED');
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-05-01', 1, 2, 'COMPLETED', 56);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-06-01', 2, 3, 'COMPLETED', 78);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-07-01', 3, 4, 'COMPLETED', 25);
+INSERT INTO orders (`date_ordered`, `order_number`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-08-01', 4, 5, 'COMPLETED', 64);
 
 INSERT INTO products_orders(`order_id`,`product_id`)
 VALUES (1, 3);

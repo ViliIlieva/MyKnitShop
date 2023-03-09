@@ -1,6 +1,5 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.service.ProductService;
 import com.example.myknitshop.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +30,7 @@ public class UserController {
 
     @GetMapping("/shopping/card")
     public String shoppingCard(Principal username, Model model) {
-        model.addAttribute("cardCashProduct", this.userService.getPurchaseListByUser(username));
+        model.addAttribute("cardCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
         model.addAttribute ("count", this.userService.countOfItemInShopCard (username));
         model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
         return "shopping-card";
