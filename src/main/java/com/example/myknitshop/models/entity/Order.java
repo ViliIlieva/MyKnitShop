@@ -1,5 +1,6 @@
 package com.example.myknitshop.models.entity;
 
+import com.example.myknitshop.models.enums.OrderStatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,10 @@ public class Order extends BaseEntity {
 
     @ManyToOne
     private User client;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "order_status")
+    private OrderStatusEnum orderStatus;
 
     @ManyToMany(targetEntity = Product.class, fetch = FetchType.EAGER)
     @JoinTable(

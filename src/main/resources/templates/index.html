@@ -94,7 +94,7 @@
                             </div>
                             <h5 class="font-weight-bold mb-4"
                                 th:text="*{name}"></h5>
-                            <a href="" class="btn btn-sm btn-secondary">Поръчай</a>
+                            <a th:href="@{/product/info/{id} (id = *{id})}" class="btn btn-sm btn-secondary">Детайли и Поръчка</a>
                         </div>
 
                     </div>
