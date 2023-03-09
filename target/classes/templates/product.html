@@ -13,22 +13,6 @@
 
 <div th:insert="~{fragments/navbar}"></div>
 
-
-
-    <!-- Header Start -->
-    <div th:action="@{/product}" class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Продукти</h1>
-            <div class="d-inline-flex align-items-center text-white">
-                <p class="m-0"><a class="text-white" th:href="@{/}">Начало</a></p>
-                <i class="fa fa-circle px-3"></i>
-                <p class="m-0"><a class="text-white" th:href="@{/about}">Подробности за поръчка</a></p>
-            </div>
-        </div>
-    </div>
-    <!-- Header End -->
-
-
     <!-- Products Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
@@ -51,7 +35,8 @@
                         </div>
                         <h5 class="font-weight-bold mb-4"
                             th:text="*{name}"></h5>
-                        <a th:href="@{/product/info/{id} (id = *{id})}" class="btn btn-sm btn-secondary">Детайли</a>
+                        <a th:href="@{/product/info/{id} (id = *{id})}" class="btn btn-sm btn-secondary mb-1">Детайли</a>
+                        <a th:href="@{/purchase/{id}(id = *{id})}" class="btn btn-sm btn-secondary">Добави в Кошницата</a>
                     </div>
                 </div>
 
