@@ -12,10 +12,10 @@ public class MakeOrderDTO {
     private Long id;
 
     @NotBlank
-    @Size(min = 10, message = "Въведете адрес с минимум 10 символа")
+    @Size(min = 10)
     private String address;
 
     @NotBlank
-    @Pattern(regexp="[\\d]", message = "Въведете телефонен номер")
+    @Pattern(regexp="08[7-9][0-9]{7}")
     private String phoneNumber;
 }

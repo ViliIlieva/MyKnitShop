@@ -10,7 +10,8 @@
 <div class="container mt-5 p-3 rounded cart" >
     <form class="row no-gutters"
           th:action="@{/cart}"
-          th:method="post" th:object="${makeOrderDTO}">
+          th:method="patch"
+          th:object="${makeOrderDTO}">
         <div class="col-md-8">
             <div class="product-details mr-2">
                 <div class="d-flex flex-row align-items-center">
@@ -59,14 +60,42 @@
                 </div>
                 <span class="type d-block mt-3 mb-1"></span>
                 <div>
-                    <label class="credit-card-label"><h6 class="text-white font-weight-bold">Адрес за доставка</h6></label>
-                    <input type="address"
-                           class="form-control credit-inputs"
-                           placeholder="Add Address">
+                    <label for="address" class="credit-card-label">
+                        <h6 class="text-white font-weight-bold">Адрес за доставка</h6>
+                    </label>
+
+                        <input type="text"
+                               id="address"
+                               name="address"
+                               th:value="${address}"
+                               th:field="*{address}"
+                               th:errorclass="is-invalid"
+                               class="form-control credit-inputs"
+                               aria-describedby="addressHelpInline"
+                               placeholder="Add Address">
+                    <small id="addressHelpInline"
+                           class="invalid-feedback bg-danger text-light rounded">
+                        Въведете адрес с минимум 10 символа.
+                    </small>
                 </div>
+
                 <div>
-                    <label class="credit-card-label"><h6 class="text-white font-weight-bold">Телефон за връзка</h6></label>
-                    <input type="text" class="form-control credit-inputs" placeholder="Add phone number">
+                    <label for="phoneNumber" class="credit-card-label">
+                        <h6 class="text-white font-weight-bold">Телефон за връзка</h6>
+                    </label>
+                    <input type="text"
+                           id="phoneNumber"
+                           name="phoneNumber"
+                           th:value="${phoneNumber}"
+                           th:field="*{phoneNumber}"
+                           th:errorclass="is-invalid"
+                           class="form-control credit-inputs"
+                           aria-describedby="phoneNumberHelpInline"
+                           placeholder="088xxxxxxx or 087xxxxxxx or 089xxxxxxx">
+                    <small id="phoneNumberHelpInline"
+                           class="invalid-feedback bg-danger text-light rounded">
+                        Въведете правилно телефонния номер.
+                    </small>
                 </div>
 
                 <hr class="line">
@@ -83,8 +112,9 @@
 
                 <div class="d-flex flex-row align-items-center">
                     <i class="fa fa-long-arrow-left"></i>
-                    <a th:href="@{/products/order}" class="btn btn-primary mt-2 ">
-                        Потвърди Поръчката</a>
+                    <button type="submit" class="btn btn-info w-100">Потвърди Поръчката</button>
+<!--                    <a th:href="@{/products/order}" class="btn btn-primary mt-2 ">-->
+<!--                        Потвърди Поръчката</a>-->
                 </div>
             </div>
         </div>

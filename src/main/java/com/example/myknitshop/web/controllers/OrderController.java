@@ -7,10 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -42,7 +39,7 @@ public class OrderController {
         return "cart";
     }
 
-    @PostMapping("/cart")
+    @PatchMapping("/cart")
     public String cart(Principal username, Model model,
                        @Valid MakeOrderDTO makeOrderDTO,
                        BindingResult bindingResult,
@@ -53,29 +50,25 @@ public class OrderController {
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
 
-            return "redirect:/products/order";
+            return "redirect:/cart";
         }
-//TODO да преценя дали трябва и тук да добавя модел Атрибутите, защото ако има грешка като ми редиректне да ги виждам и тях
 
-//        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
-//        model.addAttribute ("count", this.userService.countOfItemInCart(username));
-//        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
+        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
+        model.addAttribute ("count", this.userService.countOfItemInCart(username));
+        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
 
-        return "cart";
+
+        //this.userService.orderProducts (makeOrderDTO, username);
+        return "order-details";
     }
 
 
-    @GetMapping("/products/order")
+    @GetMapping("/order/details")
     public String placeOrder() {
         return "order-details";
     }
 
-//    @PostMapping("/products/order")
-//    public String placeOrder(@Valid MakeOrderDTO makeOrderDTO,
-//                             BindingResult bindingResult,
-//                             RedirectAttributes redirectAttributes,
-//                             Principal username){
-//this.userService.orderProducts (makeOrderDTO, username);
-//        return "order-details";
-//    }
+
+
+
 }
