@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,10 +40,10 @@ public class UserService {
 
         if(user.getPurchaseProduct ().contains (product)){
             product.setQuantity (product.getQuantity () + 1);
+        }else {
+            user.getPurchaseProduct().add(product);
         }
         product.setSum (product.getPrice ().multiply (BigDecimal.valueOf (product.getQuantity ())));
-
-        user.getPurchaseProduct().add(product);
         this.userRepository.save(user);
     }
 
@@ -68,7 +67,7 @@ public class UserService {
                 }).collect(Collectors.toSet());
     }
 
-    public Integer countOfItemInShopCard (Principal principal){
+    public Integer countOfItemInCart(Principal principal){
         return getPurchaseListByUserToViewInShoppingCard (principal).stream ()
                 .mapToInt (ProductViewInShoppingCard::getQuantity).sum ();
     }

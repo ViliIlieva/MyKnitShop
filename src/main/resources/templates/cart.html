@@ -9,7 +9,7 @@
 
 <div class="container mt-5 p-3 rounded cart" >
     <form class="row no-gutters"
-          th:action="@{/shopping/card}"
+          th:action="@{/cart}"
           th:method="post" th:object="${makeOrderDTO}">
         <div class="col-md-8">
             <div class="product-details mr-2">
@@ -23,7 +23,7 @@
                     <a th:text="|(имаш ${count} добавени продукта)|"></a>
                 </div>
                 <div class="cart_items"
-                     th:each="product : ${cardCashProduct}"
+                     th:each="product : ${cartCashProduct}"
                      th:object="${product}">
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                         <div class="d-flex flex-row">
@@ -38,7 +38,7 @@
                             <span class="d-block ml-5 font-weight-bold" th:text="|*{sum} лв.|"></span>
 
                             <a class="ml-3 text-black btn btn-sm btn-secondary col-sm-1 font-weight-bold"
-                               th:href="@{/shopping/card/remove-product-from-list/{id}(id = *{id})}">Х</a>
+                               th:href="@{/cart/remove-product-from-list/{id}(id = *{id})}">Х</a>
                         </div>
                     </div>
                 </div>

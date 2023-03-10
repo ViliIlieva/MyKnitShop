@@ -18,10 +18,6 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
-    @GeneratedValue
-    @Column(name = "order_number", nullable = false)
-    private Long orderNumber;
-
     @Column(nullable = false, name = "date_ordered")
     private LocalDate dateOrdered;
 
