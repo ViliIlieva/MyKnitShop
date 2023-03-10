@@ -5,9 +5,11 @@ import com.example.myknitshop.service.OrderService;
 import com.example.myknitshop.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,24 +28,52 @@ public class OrderController {
         return new MakeOrderDTO ();
     }
 
-//    @GetMapping("/products/order")
-//    public String placeOrder() {
-//        return "order-details";
-//    }
+    @GetMapping("/cart/remove-product-from-list/{id}")
+    String removeProductFromPurchaseList(@PathVariable("id") Long productId, Principal username){
+        this.userService.removeProduct(productId, username);
+        return "redirect:/cart";
+    }
 
-    @GetMapping ("/products/order")
-    public String placeOrder(@Valid MakeOrderDTO makeOrderDTO,
-                             BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes,
-                             Principal username){
-//        if(bindingResult.hasErrors()){
-//            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
-//            redirectAttributes.addFlashAttribute(
-//                    "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
-//
-//            return "redirect:/products/order";
-//        }
+    @GetMapping("/cart")
+    public String cart(){
+        return "cart";
+    }
+
+    @PostMapping("/cart")
+    public String cart(Principal username, Model model,
+                       @Valid MakeOrderDTO makeOrderDTO,
+                       BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes) {
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
+
+            return "redirect:/products/order";
+        }
+
+        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
+        model.addAttribute ("count", this.userService.countOfItemInCart(username));
+        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
+
+
         this.userService.orderProducts (makeOrderDTO, username);
+        return "cart";
+    }
+
+
+    @GetMapping("/products/order")
+    public String placeOrder() {
         return "order-details";
     }
+
+//    @PostMapping("/products/order")
+//    public String placeOrder(@Valid MakeOrderDTO makeOrderDTO,
+//                             BindingResult bindingResult,
+//                             RedirectAttributes redirectAttributes,
+//                             Principal username){
+//
+//        return "order-details";
+//    }
 }

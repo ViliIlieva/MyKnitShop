@@ -27,7 +27,7 @@
                 <div class="navbar-nav mr-auto py-0">
                     <a th:href="@{/admin}" class="nav-item nav-link" sec:authorize="hasRole('ROLE_ADMIN')">Админ панел</a>
                     <a th:href="@{/gallery}" class="nav-item nav-link">Галерия</a>
-                    <a th:href="@{/shopping/card}" class="nav-item nav-link" sec:authorize="hasRole('ROLE_CLIENT')">Кошница</a>
+                    <a th:href="@{/cart}" class="nav-item nav-link" sec:authorize="hasRole('ROLE_CLIENT')">Кошница</a>
                 </div>
             </div>
         </nav>
