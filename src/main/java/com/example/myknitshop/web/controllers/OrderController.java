@@ -33,32 +33,30 @@ public class OrderController {
         this.userService.removeProduct(productId, username);
         return "redirect:/cart";
     }
+//
+//    @GetMapping("/cart")
+//    public String cart(){
+//        return "cart";
+//    }
 
     @GetMapping("/cart")
-    public String cart(){
-        return "cart";
-    }
-
-    @PostMapping("/cart")
     public String cart(Principal username, Model model,
                        @Valid MakeOrderDTO makeOrderDTO,
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
-
-            return "redirect:/products/order";
-        }
+//        if(bindingResult.hasErrors()){
+//            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
+//            redirectAttributes.addFlashAttribute(
+//                    "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
+//
+//            return "redirect:/products/order";
+//        }
 
         model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
         model.addAttribute ("count", this.userService.countOfItemInCart(username));
         model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
 
-
-        this.userService.orderProducts (makeOrderDTO, username);
         return "cart";
     }
 
@@ -73,7 +71,7 @@ public class OrderController {
 //                             BindingResult bindingResult,
 //                             RedirectAttributes redirectAttributes,
 //                             Principal username){
-//
+//this.userService.orderProducts (makeOrderDTO, username);
 //        return "order-details";
 //    }
 }
