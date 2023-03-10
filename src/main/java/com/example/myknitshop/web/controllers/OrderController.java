@@ -33,29 +33,33 @@ public class OrderController {
         this.userService.removeProduct(productId, username);
         return "redirect:/cart";
     }
-//
-//    @GetMapping("/cart")
-//    public String cart(){
-//        return "cart";
-//    }
 
     @GetMapping("/cart")
+    public String cart(Principal username, Model model){
+        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
+        model.addAttribute ("count", this.userService.countOfItemInCart(username));
+        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
+        return "cart";
+    }
+
+    @PostMapping("/cart")
     public String cart(Principal username, Model model,
                        @Valid MakeOrderDTO makeOrderDTO,
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes) {
 
-//        if(bindingResult.hasErrors()){
-//            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
-//            redirectAttributes.addFlashAttribute(
-//                    "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
-//
-//            return "redirect:/products/order";
-//        }
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
 
-        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
-        model.addAttribute ("count", this.userService.countOfItemInCart(username));
-        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
+            return "redirect:/products/order";
+        }
+//TODO да преценя дали трябва и тук да добавя модел Атрибутите, защото ако има грешка като ми редиректне да ги виждам и тях
+
+//        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
+//        model.addAttribute ("count", this.userService.countOfItemInCart(username));
+//        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
 
         return "cart";
     }
