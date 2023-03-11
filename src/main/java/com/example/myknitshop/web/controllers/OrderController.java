@@ -58,13 +58,15 @@ public class OrderController {
         model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
 
 
-        //this.userService.orderProducts (makeOrderDTO, username);
+        this.userService.orderProducts (makeOrderDTO, username);
         return "order-details";
     }
 
 
     @GetMapping("/order/details")
-    public String placeOrder() {
+    public String placeOrder(Principal principal, Model model) {
+
+
         return "order-details";
     }
 

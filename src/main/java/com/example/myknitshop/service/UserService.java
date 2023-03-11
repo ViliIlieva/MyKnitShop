@@ -82,7 +82,7 @@ public class UserService {
         User client = getUserByPrincipal (username);
         Order order = new Order ();
 
-        order.setOrderedProducts (client.getPurchaseProduct ());
+        order.getOrderedProducts ().addAll (client.getPurchaseProduct ());
         order.setDateOrdered (LocalDate.now ());
         order.setClient (client);
         order.setOrderStatus (OrderStatusEnum.OPEN);
@@ -96,6 +96,8 @@ public class UserService {
         client.getPurchaseProduct ().clear ();
         client.getOrders ().add (order);
         this.userRepository.save(client);
+
+
 
     }
 

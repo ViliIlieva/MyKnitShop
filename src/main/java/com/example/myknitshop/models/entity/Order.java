@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class Order extends BaseEntity {
     @Column(name = "order_status")
     private OrderStatusEnum orderStatus;
 
-    @ManyToMany(targetEntity = Product.class, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "products_orders",
             joinColumns = @JoinColumn(
@@ -40,5 +41,5 @@ public class Order extends BaseEntity {
             inverseJoinColumns = @JoinColumn(
                     name = "product_id",
                     referencedColumnName = "id"))
-    private List<Product> orderedProducts;
+    private List<Product> orderedProducts = new ArrayList<> ();
 }
