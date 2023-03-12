@@ -36,44 +36,44 @@ public class UserService {
 
     public void addProductToBuyList(Long id, Principal principal) {
         User user = getUserByPrincipal (principal);
-        Product product = this.productService.getProductById(id);
+        Product product = this.productService.getProductById (id);
 
-        if(user.getPurchaseProduct ().contains (product)){
+        if (user.getPurchaseProduct ().contains (product)) {
             product.setQuantity (product.getQuantity () + 1);
-        }else {
-            user.getPurchaseProduct().add(product);
+        } else {
+            user.getPurchaseProduct ().add (product);
         }
         product.setSum (product.getPrice ().multiply (BigDecimal.valueOf (product.getQuantity ())));
-        this.userRepository.save(user);
+        this.userRepository.save (user);
     }
 
     public void removeProduct(Long productId, Principal username) {
         User user = getUserByPrincipal (username);
-        user.removeProductFromPurchaseList(productId);
+        user.removeProductFromPurchaseList (productId);
 
-        Product product = this.productService.getProductById(productId);
-        product.setQuantity(1);
-        product.setSum(null);
+        Product product = this.productService.getProductById (productId);
+        product.setQuantity (1);
+        product.setSum (null);
 
-        this.userRepository.save(user);
+        this.userRepository.save (user);
     }
 
     public Set<ProductViewInShoppingCard> getPurchaseListByUserToViewInShoppingCard(Principal principal) {
         User user = getUserByPrincipal (principal);
 
-        return user.getPurchaseProduct().stream()
-                .map(product -> {
-                    return modelMapper.map(product, ProductViewInShoppingCard.class);
-                }).collect(Collectors.toSet());
+        return user.getPurchaseProduct ().stream ()
+                .map (product -> {
+                    return modelMapper.map (product, ProductViewInShoppingCard.class);
+                }).collect (Collectors.toSet ());
     }
 
-    public Integer countOfItemInCart(Principal principal){
+    public Integer countOfItemInCart(Principal principal) {
         return getPurchaseListByUserToViewInShoppingCard (principal).stream ()
                 .mapToInt (ProductViewInShoppingCard::getQuantity).sum ();
     }
 
-    public BigDecimal sumForAllPurchaseProduct(Principal principal){
-        return  getPurchaseListByUserToViewInShoppingCard (principal).stream ()
+    public BigDecimal sumForAllPurchaseProduct(Principal principal) {
+        return getPurchaseListByUserToViewInShoppingCard (principal).stream ()
                 .map (ProductViewInShoppingCard::getSum)
                 .reduce (BigDecimal.ZERO, BigDecimal::add);
     }
@@ -92,32 +92,18 @@ public class UserService {
 
         client.setAddress (makeOrderDTO.getAddress ());
         client.setPhoneNumber (makeOrderDTO.getPhoneNumber ());
-        client.getAllBuyProduct ().addAll (client.getPurchaseProduct ());
+        for (Product product : client.getPurchaseProduct ()) {
+            client.addProductToAllBuyProductsList (product);
+        }
         client.getPurchaseProduct ().clear ();
         client.getOrders ().add (order);
-        this.userRepository.save(client);
-
+        this.userRepository.save (client);
 
 
     }
 
 
-//    public Set<Product> getPurchaseListByClient(Principal principal) {
-//        User client = getUserByPrincipal (principal);
-//        return client.getPurchaseProduct();
-//    }
-
-//    public void buyProduct(Principal username, MakeOrderDTO makeOrderDTO) {
-//        User client = getUserByPrincipal (username);
-//
-//        client.setAddress (makeOrderDTO.getAddress ());
-//        client.setPhoneNumber (makeOrderDTO.getPhoneNumber ());
-//        client.getAllBuyProduct ().addAll (client.getPurchaseProduct ());
-//        client.getPurchaseProduct ().clear ();
-//        this.userRepository.save(client);
-//    }
-
-    public User getUserByPrincipal(Principal principal){
-        return this.userRepository.findByUsername(principal.getName()).get();
+    public User getUserByPrincipal(Principal principal) {
+        return this.userRepository.findByUsername (principal.getName ()).get ();
     }
 }

@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class MakeOrderDTO {
-    private Long id;
 
     @NotBlank
     @Size(min = 10)

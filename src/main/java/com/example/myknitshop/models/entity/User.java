@@ -41,9 +41,9 @@ public class User extends BaseEntity {
     private List<Role> userRoles = new ArrayList<> ();
 
     @OneToMany
-    private List<Product> purchaseProduct;
+    private Set<Product> purchaseProduct;
 
-    @OneToMany
+    @ManyToMany
     private List<Product> allBuyProduct;
 
     @OneToMany
@@ -115,11 +115,12 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public List<Product> getPurchaseProduct() {
+    public Set<Product> getPurchaseProduct() {
         return purchaseProduct;
     }
 
-    public User setPurchaseProduct(List<Product> purchaseProduct) {
+
+    public User setPurchaseProduct(Set<Product> purchaseProduct) {
         this.purchaseProduct = purchaseProduct;
         return this;
     }
@@ -153,6 +154,15 @@ public class User extends BaseEntity {
 
     public void removeProductFromPurchaseList(Long productId) {
         this.purchaseProduct.removeIf(p-> p.getId().equals(productId));
+    }
+
+    public void addProductToAllBuyProductsList(Product product){
+        if(this.allBuyProduct.contains (product)){
+            int quantity = this.allBuyProduct.stream().findFirst ().get ().getQuantity ();
+            this.allBuyProduct.stream().findFirst ().get ().setQuantity (quantity + product.getQuantity ());
+        }else {
+            this.allBuyProduct.add (product);
+        }
     }
 
 }
