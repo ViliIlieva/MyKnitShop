@@ -6,6 +6,7 @@ import com.example.myknitshop.models.entity.*;
 import com.example.myknitshop.models.enums.OrderStatusEnum;
 import com.example.myknitshop.repository.ChoseProductsRepository;
 import com.example.myknitshop.repository.OrderRepository;
+import com.example.myknitshop.repository.PurchaseProductsRepository;
 import com.example.myknitshop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -24,18 +25,20 @@ public class UserService {
     private final OrderRepository orderRepository;
     private final ProductService productService;
     private final ChoseProductsRepository choseProductsRepository;
+    private final PurchaseProductsRepository purchaseProductsRepository;
 
     public UserService(ModelMapper modelMapper,
                        UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
-                       ProductService productService1, ChoseProductsRepository choseProductsRepository) {
+                       ChoseProductsRepository choseProductsRepository,
+                       PurchaseProductsRepository purchaseProductsRepository) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
-        this.productService = productService1;
         this.choseProductsRepository = choseProductsRepository;
-
+        this.productService = productService;
+        this.purchaseProductsRepository = purchaseProductsRepository;
     }
 
     public void addProductToChoseList(Long id, Principal principal) {
@@ -63,6 +66,34 @@ public class UserService {
         this.userRepository.save (user);
     }
 
+    public void orderProducts(MakeOrderDTO makeOrderDTO, Principal username) {
+        User client = getUserByPrincipal (username);
+        Order order = new Order ();
+//TODO        this.purchaseProductsRepository.save () да съхраня новите продукти но да проверя дали вече ги има със същото количество към тях
+        List<PurchasedProducts> products = client.getChoseProduct().stream()
+                        .map(p->{return modelMapper.map(p, PurchasedProducts.class);
+                        }).collect(Collectors.toList());
+        order.getOrderedProducts().addAll(products);
+        order.setDateOrdered (LocalDate.now ());
+        order.setClient (client);
+        order.setOrderStatus (OrderStatusEnum.OPEN);
+        order.setOrderSum (sumForAllPurchaseProduct (username));
+        this.orderRepository.save (order);
+
+        client.setAddress (makeOrderDTO.getAddress ());
+        client.setPhoneNumber (makeOrderDTO.getPhoneNumber ());
+
+        for (PurchasedProducts product : products) {
+            client.addProductToPurchaseList(product);
+        }
+        client.getChoseProduct().clear ();
+        client.getOrders ().add (order);
+
+//        this.purchaseProductsRepository.save ()
+        this.userRepository.save (client);
+        this.choseProductsRepository.deleteAll ();
+    }
+
     public Set<ProductViewInShoppingCard> getChoseListByUserToViewInShoppingCard(Principal principal) {
         User user = getUserByPrincipal (principal);
 
@@ -81,31 +112,6 @@ public class UserService {
         return getChoseListByUserToViewInShoppingCard(principal).stream ()
                 .map (ProductViewInShoppingCard::getSum)
                 .reduce (BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    public void orderProducts(MakeOrderDTO makeOrderDTO, Principal username) {
-        User client = getUserByPrincipal (username);
-        Order order = new Order ();
-
-        List<PurchasedProducts> products = client.getChoseProduct().stream()
-                        .map(p->{return modelMapper.map(p, PurchasedProducts.class);
-                        }).collect(Collectors.toList());
-        order.getOrderedProducts().addAll(products);
-        order.setDateOrdered (LocalDate.now ());
-        order.setClient (client);
-        order.setOrderStatus (OrderStatusEnum.OPEN);
-        order.setOrderSum (sumForAllPurchaseProduct (username));
-        this.orderRepository.save (order);
-
-        client.setAddress (makeOrderDTO.getAddress ());
-        client.setPhoneNumber (makeOrderDTO.getPhoneNumber ());
-
-        for (PurchasedProducts product : client.getPurchaseProduct ()) {
-            client.addProductToPurchaseList(product);
-        }
-        client.getChoseProduct().clear ();
-        client.getOrders ().add (order);
-        this.userRepository.save (client);
     }
     
     public User getUserByPrincipal(Principal principal) {
