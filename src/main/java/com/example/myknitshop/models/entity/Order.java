@@ -39,7 +39,7 @@ public class Order extends BaseEntity {
                     name = "order_id",
                     referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "product_id",
+                    name = "purchase_product_id",
                     referencedColumnName = "id"))
-    private List<Product> orderedProducts = new ArrayList<> ();
+    private List<PurchasedProducts> orderedProducts = new ArrayList<> ();
 }

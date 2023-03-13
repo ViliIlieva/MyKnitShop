@@ -1,10 +1,11 @@
 package com.example.myknitshop.models.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
 
@@ -12,8 +13,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product extends BaseEntity{
+@Table(name = "chose_products")
+public class ChoseProducts extends BaseEntity{
     @Column(nullable = false)
     private String name;
 
@@ -23,10 +24,9 @@ public class Product extends BaseEntity{
     @Column(updatable=true, nullable=false, unique = true, columnDefinition = "TEXT")
     private String img;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
+    @Column
+    private int quantity;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Category category;
+    @Column
+    private BigDecimal sum;
 }

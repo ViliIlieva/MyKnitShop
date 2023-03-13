@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -40,11 +39,11 @@ public class User extends BaseEntity {
                     referencedColumnName = "id"))
     private List<Role> userRoles = new ArrayList<> ();
 
-    @OneToMany
-    private Set<Product> purchaseProduct;
+    @ManyToMany
+    private List<PurchasedProducts> purchaseProduct;
 
     @ManyToMany
-    private List<Product> allBuyProduct;
+    private List<ChoseProducts> choseProduct;
 
     @OneToMany
     private List<Order> orders;
@@ -115,22 +114,21 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public Set<Product> getPurchaseProduct() {
+    public List<PurchasedProducts> getPurchaseProduct() {
         return purchaseProduct;
     }
 
-
-    public User setPurchaseProduct(Set<Product> purchaseProduct) {
+    public User setPurchaseProduct(List<PurchasedProducts> purchaseProduct) {
         this.purchaseProduct = purchaseProduct;
         return this;
     }
 
-    public List<Product> getAllBuyProduct() {
-        return allBuyProduct;
+    public List<ChoseProducts> getChoseProduct() {
+        return choseProduct;
     }
 
-    public User setAllBuyProduct(List<Product> allBuyProduct) {
-        this.allBuyProduct = allBuyProduct;
+    public User setChoseProduct(List<ChoseProducts> choseProduct) {
+        this.choseProduct = choseProduct;
         return this;
     }
 
@@ -152,17 +150,24 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public void removeProductFromPurchaseList(Long productId) {
-        this.purchaseProduct.removeIf(p-> p.getId().equals(productId));
+    public void removeProductFromChoseList(Long productId) {
+        this.choseProduct.removeIf(p-> p.getId().equals(productId));
     }
 
-    public void addProductToAllBuyProductsList(Product product){
-        if(this.allBuyProduct.contains (product)){
-            int quantity = this.allBuyProduct.stream().findFirst ().get ().getQuantity ();
-            this.allBuyProduct.stream().findFirst ().get ().setQuantity (quantity + product.getQuantity ());
+    public ChoseProducts findByImg(String img){
+       return this.choseProduct.stream().filter(p-> p.getImg().equals(img)).findFirst().get();
+    }
+    public PurchasedProducts findPurchaseProductByImg(String img){
+        return this.purchaseProduct.stream().filter(p-> p.getImg().equals(img)).findFirst().get();
+    }
+
+    public void addProductToPurchaseList(PurchasedProducts product){
+        if(this.purchaseProduct.contains (product)){
+            PurchasedProducts products = findPurchaseProductByImg(product.getImg());
+            int quantity = products.getQuantity();
+            products.setQuantity(product.getQuantity() + product.getQuantity());
         }else {
-            this.allBuyProduct.add (product);
+            this.purchaseProduct.add (product);
         }
     }
-
 }

@@ -1,7 +1,6 @@
 package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
-import com.example.myknitshop.service.OrderService;
 import com.example.myknitshop.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -33,7 +32,7 @@ public class OrderController {
 
     @GetMapping("/cart")
     public String cart(Principal username, Model model){
-        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
+        model.addAttribute("cartCashProduct", this.userService.getChoseListByUserToViewInShoppingCard(username));
         model.addAttribute ("count", this.userService.countOfItemInCart(username));
         model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
         return "cart";
@@ -53,7 +52,7 @@ public class OrderController {
             return "redirect:/cart";
         }
 
-        model.addAttribute("cartCashProduct", this.userService.getPurchaseListByUserToViewInShoppingCard (username));
+        model.addAttribute("cartCashProduct", this.userService.getChoseListByUserToViewInShoppingCard (username));
         model.addAttribute ("count", this.userService.countOfItemInCart(username));
         model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
 
@@ -65,12 +64,6 @@ public class OrderController {
 
     @GetMapping("/order/details")
     public String placeOrder(Principal principal, Model model) {
-
-
         return "order-details";
     }
-
-
-
-
 }

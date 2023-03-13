@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+
 @Controller
 public class ProductController {
 
@@ -60,8 +62,4 @@ public class ProductController {
         model.addAttribute ("productInfo", this.productService.getProductInfoById(id));
         return "product-info";
     }
-
-
-
-
 }
