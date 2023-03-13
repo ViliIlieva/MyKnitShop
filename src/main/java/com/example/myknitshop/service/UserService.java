@@ -25,18 +25,20 @@ public class UserService {
     private final OrderRepository orderRepository;
     private final ProductService productService;
     private final ChoseProductsService choseProductsService;
+    private final PurchasedProductsService purchasedProductsService;
 
     public UserService(ModelMapper modelMapper,
                        UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
-                       ChoseProductsRepository choseProductsRepository,
-                       PurchaseProductsRepository purchaseProductsRepository, ChoseProductsService choseProductsService) {
+                       ChoseProductsService choseProductsService,
+                       PurchasedProductsService purchasedProductsService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.productService = productService;
         this.choseProductsService = choseProductsService;
+        this.purchasedProductsService = purchasedProductsService;
     }
 
     public void addProductToChoseList(Long id, Principal principal) {
@@ -72,9 +74,8 @@ public class UserService {
                 .map (p -> {
                     return modelMapper.map (p, PurchasedProducts.class);
                 }).toList ();
-        //TODO  this.purchaseProductsRepository.save () да съхраня новите продукти но да проверя дали вече ги има със същото количество към тях
 
-
+        this.purchasedProductsService.addProducts(products);
 
         order.getOrderedProducts().addAll(products);
         order.setDateOrdered (LocalDate.now ());
