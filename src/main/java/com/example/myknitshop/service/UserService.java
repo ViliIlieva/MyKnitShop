@@ -71,11 +71,9 @@ public class UserService {
         Order order = new Order ();
 
         List<PurchasedProducts> products = client.getChoseProduct ().stream ()
-                .map (p -> {
-                    return modelMapper.map (p, PurchasedProducts.class);
-                }).toList ();
+                .map (this::mapProductToPurchaseProduct).toList ();
 
-        this.purchasedProductsService.addProducts(products);
+       List<PurchasedProducts> productsWithId =  this.purchasedProductsService.addProducts(products);
 
         order.getOrderedProducts().addAll(products);
         order.setDateOrdered (LocalDate.now ());
@@ -121,8 +119,17 @@ public class UserService {
         return this.userRepository.findByUsername (principal.getName ()).get ();
     }
 
+    public PurchasedProducts mapProductToPurchaseProduct(ChoseProducts choseProduct){
+        PurchasedProducts purchasedProduct = new PurchasedProducts ();
+        purchasedProduct.setName(choseProduct.getName());
+        purchasedProduct.setPrice(choseProduct.getPrice());
+        purchasedProduct.setImg(choseProduct.getImg());
+        purchasedProduct.setQuantity (choseProduct.getQuantity ());
+        return purchasedProduct;
+    }
+
     public ChoseProducts mapProductToChoseProduct(Product product){
-        ChoseProducts choseProducts = new ChoseProducts();
+        ChoseProducts choseProducts = new ChoseProducts ();
         choseProducts.setName(product.getName());
         choseProducts.setPrice(product.getPrice());
         choseProducts.setImg(product.getImg());
