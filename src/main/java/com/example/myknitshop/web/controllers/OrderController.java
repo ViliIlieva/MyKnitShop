@@ -26,7 +26,7 @@ public class OrderController {
 
     @GetMapping("/cart/remove-product-from-list/{id}")
     String removeProductFromPurchaseList(@PathVariable("id") Long productId, Principal username){
-        this.userService.removeProduct(productId, username);
+        this.userService.removeProductFromChoseList (productId, username);
         return "redirect:/cart";
     }
 

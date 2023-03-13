@@ -19,13 +19,12 @@ public class ProductService {
     private final ModelMapper modelMapper;
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
-    private final ChoseProductsRepository choseProductsRepository;
 
-    public ProductService(ModelMapper modelMapper, CategoryRepository categoryRepository, ProductRepository productRepository, ChoseProductsRepository choseProductsRepository) {
+    public ProductService(ModelMapper modelMapper, CategoryRepository categoryRepository,
+                          ProductRepository productRepository) {
         this.modelMapper = modelMapper;
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
-        this.choseProductsRepository = choseProductsRepository;
     }
 
     //продукт има право да добавя само админа
@@ -59,10 +58,6 @@ public class ProductService {
     }
     public Product getProductById(Long id){
         return this.productRepository.findById(id).get();
-    }
-
-    public ChoseProducts getByImg(String img){
-        return this.choseProductsRepository.findByImg(img);
     }
 
 }

@@ -24,21 +24,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final ProductService productService;
-    private final ChoseProductsRepository choseProductsRepository;
-    private final PurchaseProductsRepository purchaseProductsRepository;
+    private final ChoseProductsService choseProductsService;
 
     public UserService(ModelMapper modelMapper,
                        UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
                        ChoseProductsRepository choseProductsRepository,
-                       PurchaseProductsRepository purchaseProductsRepository) {
+                       PurchaseProductsRepository purchaseProductsRepository, ChoseProductsService choseProductsService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
-        this.choseProductsRepository = choseProductsRepository;
         this.productService = productService;
-        this.purchaseProductsRepository = purchaseProductsRepository;
+        this.choseProductsService = choseProductsService;
     }
 
     public void addProductToChoseList(Long id, Principal principal) {
@@ -54,25 +52,30 @@ public class UserService {
             choseProduct.setQuantity(1);
         }
         choseProduct.setSum(choseProduct.getPrice ().multiply(BigDecimal.valueOf (choseProduct.getQuantity ())));
-        this.choseProductsRepository.save(choseProduct);
+        this.choseProductsService.save(choseProduct);
         this.userRepository.save (user);
     }
 
 
-    public void removeProduct(Long productId, Principal username) {
+    public void removeProductFromChoseList(Long productId, Principal username) {
         User user = getUserByPrincipal (username);
         user.removeProductFromChoseList(productId);
-        this.choseProductsRepository.deleteById(productId);
+        this.choseProductsService.deleteById(productId);
         this.userRepository.save (user);
     }
 
     public void orderProducts(MakeOrderDTO makeOrderDTO, Principal username) {
         User client = getUserByPrincipal (username);
         Order order = new Order ();
-//TODO        this.purchaseProductsRepository.save () да съхраня новите продукти но да проверя дали вече ги има със същото количество към тях
-        List<PurchasedProducts> products = client.getChoseProduct().stream()
-                        .map(p->{return modelMapper.map(p, PurchasedProducts.class);
-                        }).collect(Collectors.toList());
+
+        List<PurchasedProducts> products = client.getChoseProduct ().stream ()
+                .map (p -> {
+                    return modelMapper.map (p, PurchasedProducts.class);
+                }).toList ();
+        //TODO  this.purchaseProductsRepository.save () да съхраня новите продукти но да проверя дали вече ги има със същото количество към тях
+
+
+
         order.getOrderedProducts().addAll(products);
         order.setDateOrdered (LocalDate.now ());
         order.setClient (client);
@@ -89,9 +92,8 @@ public class UserService {
         client.getChoseProduct().clear ();
         client.getOrders ().add (order);
 
-//        this.purchaseProductsRepository.save ()
         this.userRepository.save (client);
-        this.choseProductsRepository.deleteAll ();
+        this.choseProductsService.deleteAll ();
     }
 
     public Set<ProductViewInShoppingCard> getChoseListByUserToViewInShoppingCard(Principal principal) {
