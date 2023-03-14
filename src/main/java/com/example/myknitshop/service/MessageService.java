@@ -22,7 +22,7 @@ public class MessageService {
         this.modelMapper = modelMapper;
     }
 
-    public List<MessagesViewOnHomePageView> getAllMessages() {
+    public List<MessagesViewOnHomePageView> getAllMessagesViewOnHomePage() {
 
         return  this.messageRepository.findAll().stream()
                 .map(this::mapMessageDTO)
@@ -36,5 +36,9 @@ public class MessageService {
         messageDTO.setAuthor(message.getAuthor());
 
         return messageDTO;
+    }
+
+    public List<Message> getAllMessages() {
+        return this.messageRepository.findAll ();
     }
 }

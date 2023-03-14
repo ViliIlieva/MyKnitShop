@@ -4,10 +4,8 @@ import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductImgView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePage;
-import com.example.myknitshop.models.entity.ChoseProducts;
 import com.example.myknitshop.models.entity.Product;
 import com.example.myknitshop.repository.CategoryRepository;
-import com.example.myknitshop.repository.ChoseProductsRepository;
 import com.example.myknitshop.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -36,7 +34,7 @@ public class ProductService {
         return true;
     }
 
-    public List<ProductsViewOnHomePage> getAllProducts() {
+    public List<ProductsViewOnHomePage> getAllProductsToViewOnHomePage() {
         return this.productRepository.findAll()
                 .stream()
                 .map(product -> {
@@ -60,4 +58,7 @@ public class ProductService {
         return this.productRepository.findById(id).get();
     }
 
+    public List<Product> getAllProducts() {
+        return this.productRepository.findAll ();
+    }
 }

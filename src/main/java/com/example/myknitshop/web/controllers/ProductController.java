@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
-
 @Controller
 public class ProductController {
 
@@ -47,13 +45,12 @@ public class ProductController {
 
             return "redirect:/products/add";
         }
-
         return "redirect:/product";
     }
 
     @GetMapping("/product")
     public String allProductsPage (Model model){
-        model.addAttribute("allProducts",  this.productService.getAllProducts());
+        model.addAttribute("allProducts",  this.productService.getAllProductsToViewOnHomePage ());
         return "product";
     }
 

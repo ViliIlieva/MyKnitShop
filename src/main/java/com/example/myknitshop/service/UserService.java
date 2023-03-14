@@ -141,7 +141,6 @@ public class UserService {
         order.setClientFirstName(client.getFirstName());
         order.setClientFullName(client.getUserFullName(client.getId()));
         order.setClientAddress(client.getAddress());
-
         return order;
     }
 }
