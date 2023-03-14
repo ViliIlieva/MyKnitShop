@@ -51,7 +51,7 @@ public class OrderController {
 
             return "redirect:/cart";
         }
-        this.userService.orderProducts (makeOrderDTO, username);
+        Long orderId = this.userService.orderProducts (makeOrderDTO, username);
         return "order-details";
     }
 

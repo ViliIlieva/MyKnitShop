@@ -64,7 +64,7 @@ public class UserService {
         this.userRepository.save (user);
     }
 
-    public void orderProducts(MakeOrderDTO makeOrderDTO, Principal username) {
+    public Long orderProducts(MakeOrderDTO makeOrderDTO, Principal username) {
         User client = getUserByPrincipal (username);
         Order order = new Order ();
 
@@ -91,6 +91,7 @@ public class UserService {
 
         this.userRepository.save (client);
         this.choseProductsService.deleteAll ();
+        return order.getId();
     }
 
     public Set<ProductViewInShoppingCard> getChoseListByUserToViewInShoppingCard(Principal principal) {
