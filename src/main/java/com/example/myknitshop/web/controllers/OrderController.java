@@ -52,7 +52,7 @@ public class OrderController {
             return "redirect:/cart";
         }
         Long orderId = this.userService.orderProducts (makeOrderDTO, username);
-        return "order-details";
+        return "redirect:/order/details/" + orderId;
     }
 
     @GetMapping("/order/details/{id}")
