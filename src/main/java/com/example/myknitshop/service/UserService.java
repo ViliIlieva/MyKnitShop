@@ -1,12 +1,11 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
+import com.example.myknitshop.models.dto.viewModels.orders.OrderDetailView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductViewInShoppingCard;
 import com.example.myknitshop.models.entity.*;
 import com.example.myknitshop.models.enums.OrderStatusEnum;
-import com.example.myknitshop.repository.ChoseProductsRepository;
 import com.example.myknitshop.repository.OrderRepository;
-import com.example.myknitshop.repository.PurchaseProductsRepository;
 import com.example.myknitshop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -27,8 +26,7 @@ public class UserService {
     private final ChoseProductsService choseProductsService;
     private final PurchasedProductsService purchasedProductsService;
 
-    public UserService(ModelMapper modelMapper,
-                       UserRepository userRepository,
+    public UserService(ModelMapper modelMapper, UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
                        ChoseProductsService choseProductsService,
@@ -70,12 +68,12 @@ public class UserService {
         User client = getUserByPrincipal (username);
         Order order = new Order ();
 
-        List<PurchasedProducts> products = client.getChoseProduct ().stream ()
+        List<PurchasedProducts> productsToAddInDB = client.getChoseProduct ().stream ()
                 .map (this::mapProductToPurchaseProduct).toList ();
 
-       List<PurchasedProducts> productsWithId =  this.purchasedProductsService.addProducts(products);
+       List<PurchasedProducts> productsWithId =  this.purchasedProductsService.addProducts(productsToAddInDB);
 
-        order.getOrderedProducts().addAll(products);
+        order.getOrderedProducts().addAll(productsToAddInDB);
         order.setDateOrdered (LocalDate.now ());
         order.setClient (client);
         order.setOrderStatus (OrderStatusEnum.OPEN);
@@ -85,7 +83,7 @@ public class UserService {
         client.setAddress (makeOrderDTO.getAddress ());
         client.setPhoneNumber (makeOrderDTO.getPhoneNumber ());
 
-        for (PurchasedProducts product : products) {
+        for (PurchasedProducts product : productsToAddInDB) {
             client.addProductToPurchaseList(product);
         }
         client.getChoseProduct().clear ();
@@ -134,5 +132,15 @@ public class UserService {
         choseProducts.setPrice(product.getPrice());
         choseProducts.setImg(product.getImg());
         return choseProducts;
+    }
+
+    public OrderDetailView getOrderDetailsById(Principal principal, Long orderId) {
+        User client = getUserByPrincipal(principal);
+        OrderDetailView order = this.modelMapper.map(client.findOrderById(orderId), OrderDetailView.class);
+        order.setClientFirstName(client.getFirstName());
+        order.setClientFullName(client.getUserFullName(client.getId()));
+        order.setClientAddress(client.getAddress());
+
+        return order;
     }
 }

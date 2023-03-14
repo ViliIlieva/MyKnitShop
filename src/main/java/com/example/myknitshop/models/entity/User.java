@@ -164,10 +164,18 @@ public class User extends BaseEntity {
     public void addProductToPurchaseList(PurchasedProducts product){
         if(this.purchaseProduct.contains (product)){
             PurchasedProducts products = findPurchaseProductByImg(product.getImg());
-            int quantity = products.getQuantity();
             products.setQuantity(product.getQuantity() + product.getQuantity());
         }else {
             this.purchaseProduct.add (product);
         }
     }
+
+    public Order findOrderById(Long orderId){
+       return this.orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get();
+    }
+
+    public String getUserFullName(Long id){
+       return this.firstName.concat(this.lastName);
+    }
+
 }

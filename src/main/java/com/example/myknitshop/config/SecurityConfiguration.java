@@ -33,7 +33,7 @@ public class SecurityConfiguration {
                                 "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
                         requestMatchers ("/products/add", "/admin").hasRole(UserRoleEnum.ADMIN.name ()).
                         requestMatchers("/purchase/{id}", "/cart",
-                                "/cart/remove-product-from-list/{id}", "/order/details").hasRole(UserRoleEnum.CLIENT.name()).
+                                "/cart/remove-product-from-list/{id}", "/order/details/{id}").hasRole(UserRoleEnum.CLIENT.name()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().
                 and ().

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Бримчица - магазин за ръчно изработени плетива</title>
     <th:block th:replace="~{fragments/head}"></th:block>
@@ -10,13 +10,14 @@
 <div th:include="~{fragments/navbar}"></div>
 
 <main>
-    <div class="container mt-5 d-flex justify-content-center"
-    >
-        <div class="card p-4 mt-3" th:action="@{/products/order}">
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card p-4 mt-3"
+             th:action="@{/products/order/{id}}"
+             th:object="${orderDetails}">
             <div class="first d-flex justify-content-between align-items-center mb-3">
                 <div class="info">
-                    <span class="d-block name">Благодаря ти, Alex</span>
-                    <span class="order">Номер поръчка - 4554645</span>
+                    <span class="d-block name" th:text="|Благодаря ти, *{clientFirstName}|"></span>
+                    <span class="order" th:text="|Номер поръчка - *{id}|"></span>
                 </div>
                 <img src="https://i.imgur.com/NiAVkEw.png" width="40"/>
             </div>
@@ -26,20 +27,19 @@
             </div>
             <hr>
             <div class="text">
-                <span class="d-block new mb-1">Alex Dorlew</span>
+                <span class="d-block new mb-1" th:text="*{clientFullName}"></span>
             </div>
-            <span class="d-block address mb-3">672 Conaway Street Bryantiville Massachusetts 02327</span>
+            <span class="d-block address mb-3" th:text="*{clientAddress}"></span>
 
             <div class="  money d-flex flex-row mt-2 align-items-center">
                 <img src="https://i.imgur.com/ppwgjMU.png" width="20"/>
-                <span class="ml-2">Плащане при доставка</span>
+                <span class="ml-2" th:text="|Плащане при доставка - *{orderSum} лв.|"></span>
             </div>
         </div>
     </div>
 </main>
 
-<footer>
-    <div th:insert="~{fragments/footer}"></div>
-</footer>
+<div th:insert="~{fragments/footer}"></div>
+
 </body>
 </html>

@@ -15,24 +15,30 @@ public class PurchasedProductsService {
         this.purchaseProductsRepository = purchaseProductsRepository;
     }
 
-    public List<PurchasedProducts> addProducts(List<PurchasedProducts> products) {
-        List<PurchasedProducts> oldProducts = this.purchaseProductsRepository.findAll ();
+    public List<PurchasedProducts> addProducts(List<PurchasedProducts> productsToAddInDB) {
+        List<PurchasedProducts> productsInDB = this.purchaseProductsRepository.findAll();
 
-        for (PurchasedProducts product : products) {
-            product.setSum (product.getPrice ().multiply (BigDecimal.valueOf (product.getQuantity ())));
-            if(oldProducts.contains (product)){
-               if(oldProducts.stream().noneMatch (p-> p.getQuantity () == product.getQuantity ())){
-                   this.purchaseProductsRepository.save (product);
-               }
-                product.setId (oldProducts.stream ()
-                        .filter (p->p.getImg ().equals (product.getImg ()))
-                        .findFirst ().get ()
-                        .getId ());
-            }else {
-                this.purchaseProductsRepository.save (product);
+        for (PurchasedProducts productToAdd : productsToAddInDB) {
+            productToAdd.setSum(productToAdd.getPrice().multiply(BigDecimal.valueOf(productToAdd.getQuantity())));
+
+            List<PurchasedProducts> sameProducts = productsInDB.stream().filter(p -> p.getImg().equals(productToAdd.getImg())).toList();
+
+            if (!sameProducts.isEmpty()) {
+                if (sameProducts.stream().anyMatch(p -> p.getQuantity() == productToAdd.getQuantity())) {
+                    productToAdd.setId(sameProducts.stream()
+                            .filter(p -> p.getQuantity() == productToAdd.getQuantity())
+                            .findFirst().get()
+                            .getId());
+                } else {
+                    this.purchaseProductsRepository.save(productToAdd);
+                }
+            } else {
+                this.purchaseProductsRepository.save(productToAdd);
             }
-
         }
-        return products;
+        return productsToAddInDB;
     }
 }
+
+
+

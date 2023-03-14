@@ -25,7 +25,7 @@ public class OrderController {
     }
 
     @GetMapping("/cart/remove-product-from-list/{id}")
-    String removeProductFromPurchaseList(@PathVariable("id") Long productId, Principal username){
+    String removeProductFromChoseList(@PathVariable("id") Long productId, Principal username){
         this.userService.removeProductFromChoseList (productId, username);
         return "redirect:/cart";
     }
@@ -51,19 +51,14 @@ public class OrderController {
 
             return "redirect:/cart";
         }
-
-        model.addAttribute("cartCashProduct", this.userService.getChoseListByUserToViewInShoppingCard (username));
-        model.addAttribute ("count", this.userService.countOfItemInCart(username));
-        model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
-
-
         this.userService.orderProducts (makeOrderDTO, username);
         return "order-details";
     }
 
-
-    @GetMapping("/order/details")
-    public String placeOrder(Principal principal, Model model) {
+    @GetMapping("/order/details/{id}")
+    public String placeOrder(@PathVariable("id") Long orderId,
+                             Principal principal, Model model) {
+        model.addAttribute("orderDetails", this.userService.getOrderDetailsById(principal, orderId));
         return "order-details";
     }
 }
