@@ -39,7 +39,7 @@
                     <td>
                         <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
                                 class="material-icons">&#xE254;</i></a>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        <a th:href="@{/product/delete/{id}(id = *{id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                     </td>
                 </tr>
                 </tbody>
@@ -69,26 +69,30 @@
                 <th>Действие</th>
             </tr>
             </thead>
-            <tbody th:each="order : ${allOpenOrders}"
+            <tbody class="border-primary" th:each="order : ${allOpenOrders}"
                    th:object="${order}">
-            <tr>
+            <tr style="background-color: beige">
                 <th th:text="*{id}"></th>
                 <td th:text="|*{client.firstName} *{client.lastName}|"></td>
                 <td th:text="*{dateOrdered}"></td>
                 <td th:text="*{orderStatus}"></td>
                 <td th:text="|*{orderSum} лв.|"></td>
-                <td><a href="#" class="view" title="Close Order" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a>
+                <td><a th:href="@{/order/close/{id}(id = *{id})}" class="view" title="Close Order" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a>
                 </td>
             </tr>
             <tr>
                 <th></th>
-                <th colspan="3">Име на продукта</th>
-                <th colspan="2">Единична Цена</th>
+                <th colspan="2">Име на продукта</th>
+                <th>Количество</th>
+                <th >Единична Цена</th>
+                <th>Сума</th>
             </tr>
             <tr th:each="prod : *{orderedProducts}">
                 <td></td>
-                <td colspan="3" th:text="${prod.name}"></td>
-                <td colspan="2" th:text="${prod.price}"></td>
+                <td colspan="2" th:text="${prod.name}"></td>
+                <td th:text="${prod.quantity}"></td>
+                <td th:text="${prod.price}"></td>
+                <td th:text="${prod.sum}"></td>
             </tr>
             </tbody>
         </table>
@@ -120,7 +124,7 @@
                     <td th:text="|*{author.firstName} *{author.lastName}|">Автор</td>
 
                     <td>
-                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        <a th:href="@{/message/delete/{id}(id = *{id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                     </td>
                 </tr>
                 </tbody>

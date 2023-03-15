@@ -42,4 +42,8 @@ public class MessageService {
                 .map (m -> {return modelMapper.map (m, MessagesView.class);
                 }).toList ();
     }
+
+    public void deleteMessageById(Long messageId) {
+        this.messageRepository.deleteById (messageId);
+    }
 }

@@ -25,13 +25,15 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.
-                // define which requests are allowed and which not
                         authorizeHttpRequests ().
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                         requestMatchers ("/", "/login", "/register", "/about", "/product",
                                 "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
-                        requestMatchers ("/products/add", "/user/admin").hasRole(UserRoleEnum.ADMIN.name ()).
+
+                        requestMatchers ("/products/add", "/user/admin", "/product/delete/{id}",
+                                "/message/delete/{id}", "/order/close/{id}").hasRole(UserRoleEnum.ADMIN.name ()).
+
                         requestMatchers("/purchase/{id}", "/cart",
                                 "/cart/remove-product-from-list/{id}", "/order/details/{id}").hasRole(UserRoleEnum.CLIENT.name()).
                 // all other pages are available for logger in users
@@ -50,7 +52,7 @@ public class SecurityConfiguration {
                 // where to go in case that the login failed
                         failureForwardUrl ("/login-error").//в контролера в логин връща грешките
                 and ().
-                // configure logut
+                // configure logout
                         logout ().
                         logoutUrl ("/logout").//не е необходимо в контролера да правим POST заявка, това я генерира само
                 // which is the logout url

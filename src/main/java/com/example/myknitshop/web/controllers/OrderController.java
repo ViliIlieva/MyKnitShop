@@ -1,6 +1,7 @@
 package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
+import com.example.myknitshop.service.OrderService;
 import com.example.myknitshop.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ import java.security.Principal;
 @Controller
 public class OrderController {
     private final UserService userService;
+    private final OrderService orderService;
 
-    public OrderController(UserService userService) {
+    public OrderController(UserService userService, OrderService orderService) {
         this.userService = userService;
+        this.orderService = orderService;
     }
 
     @ModelAttribute("makeOrderDTO")
@@ -60,5 +63,11 @@ public class OrderController {
                              Principal principal, Model model) {
         model.addAttribute("orderDetails", this.userService.getOrderDetailsById(principal, orderId));
         return "order-details";
+    }
+
+    @GetMapping("/order/close/{id}")
+    public String closeOrder(@PathVariable("id") Long orderId){
+        this.orderService.closeOrder(orderId);
+        return "redirect:/user/admin";
     }
 }

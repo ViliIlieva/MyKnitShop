@@ -66,4 +66,8 @@ public class ProductService {
                 }).toList ();
 
     }
+
+    public void deleteProductById(Long productId) {
+        this.productRepository.deleteById (productId);
+    }
 }
