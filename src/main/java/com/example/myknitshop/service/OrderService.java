@@ -1,6 +1,7 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.entity.Order;
+import com.example.myknitshop.models.enums.OrderStatusEnum;
 import com.example.myknitshop.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,6 @@ public class OrderService {
     }
 
     public List<Order> getAllOrders() {
-        return this.orderRepository.findAll ();
+        return this.orderRepository.findOrderByOrderStatus (OrderStatusEnum.OPEN);
     }
-
-
-
 }
