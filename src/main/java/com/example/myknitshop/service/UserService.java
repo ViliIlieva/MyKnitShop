@@ -2,7 +2,7 @@ package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
 import com.example.myknitshop.models.dto.viewModels.orders.OrderDetailView;
-import com.example.myknitshop.models.dto.viewModels.products.ProductViewInShoppingCard;
+import com.example.myknitshop.models.dto.viewModels.products.ProductViewInCart;
 import com.example.myknitshop.models.entity.*;
 import com.example.myknitshop.models.enums.OrderStatusEnum;
 import com.example.myknitshop.repository.OrderRepository;
@@ -94,23 +94,23 @@ public class UserService {
         return order.getId();
     }
 
-    public Set<ProductViewInShoppingCard> getChoseListByUserToViewInShoppingCard(Principal principal) {
+    public Set<ProductViewInCart> getChoseListByUserToViewInShoppingCard(Principal principal) {
         User user = getUserByPrincipal (principal);
 
         return user.getChoseProduct().stream ()
                 .map (product -> {
-                    return modelMapper.map (product, ProductViewInShoppingCard.class);
+                    return modelMapper.map (product, ProductViewInCart.class);
                 }).collect (Collectors.toSet ());
     }
 
     public Integer countOfItemInCart(Principal principal) {
         return getChoseListByUserToViewInShoppingCard(principal).stream ()
-                .mapToInt (ProductViewInShoppingCard::getQuantity).sum ();
+                .mapToInt (ProductViewInCart::getQuantity).sum ();
     }
 
     public BigDecimal sumForAllPurchaseProduct(Principal principal) {
         return getChoseListByUserToViewInShoppingCard(principal).stream ()
-                .map (ProductViewInShoppingCard::getSum)
+                .map (ProductViewInCart::getSum)
                 .reduce (BigDecimal.ZERO, BigDecimal::add);
     }
     

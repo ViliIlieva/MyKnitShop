@@ -1,6 +1,6 @@
 package com.example.myknitshop.service;
 
-import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageView;
+import com.example.myknitshop.models.dto.viewModels.messages.MessagesView;
 import com.example.myknitshop.models.entity.Message;
 import com.example.myknitshop.repository.MessageRepository;
 import com.example.myknitshop.repository.UserRepository;
@@ -13,24 +13,22 @@ import java.util.stream.Collectors;
 @Service
 public class MessageService {
     private final MessageRepository messageRepository;
-    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public MessageService(MessageRepository messageRepository, UserRepository userRepository, ModelMapper modelMapper) {
+    public MessageService(MessageRepository messageRepository, ModelMapper modelMapper) {
         this.messageRepository = messageRepository;
-        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
-    public List<MessagesViewOnHomePageView> getAllMessagesViewOnHomePage() {
+    public List<MessagesView> getAllMessagesViewOnHomePage() {
 
         return  this.messageRepository.findAll().stream()
                 .map(this::mapMessageDTO)
                 .collect(Collectors.toList());
     }
 
-    private MessagesViewOnHomePageView mapMessageDTO(Message message) {
-        MessagesViewOnHomePageView messageDTO = new MessagesViewOnHomePageView();
+    private MessagesView mapMessageDTO(Message message) {
+        MessagesView messageDTO = new MessagesView ();
 
         messageDTO.setDescription(message.getDescription());
         messageDTO.setAuthor(message.getAuthor());
@@ -38,7 +36,10 @@ public class MessageService {
         return messageDTO;
     }
 
-    public List<Message> getAllMessages() {
-        return this.messageRepository.findAll ();
+    public List<MessagesView> getAllMessages() {
+        return this.messageRepository.findAll ()
+                .stream ()
+                .map (m -> {return modelMapper.map (m, MessagesView.class);
+                }).toList ();
     }
 }

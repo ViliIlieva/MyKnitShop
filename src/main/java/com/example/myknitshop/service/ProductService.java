@@ -2,6 +2,7 @@ package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductImgView;
+import com.example.myknitshop.models.dto.viewModels.products.ProductToAdminPanelView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePage;
 import com.example.myknitshop.models.entity.Product;
@@ -58,7 +59,11 @@ public class ProductService {
         return this.productRepository.findById(id).get();
     }
 
-    public List<Product> getAllProducts() {
-        return this.productRepository.findAll ();
+    public List<ProductToAdminPanelView> getAllProducts() {
+        return this.productRepository.findAll ()
+                .stream ()
+                .map (p -> {return modelMapper.map (p, ProductToAdminPanelView.class);
+                }).toList ();
+
     }
 }

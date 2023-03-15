@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class MessagesViewOnHomePageView {
+public class MessagesView {
+    private Long id;
     private String description;
     private User author;
 
@@ -14,7 +15,7 @@ public class MessagesViewOnHomePageView {
         return description;
     }
 
-    public MessagesViewOnHomePageView setDescription(String description) {
+    public MessagesView setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -23,7 +24,7 @@ public class MessagesViewOnHomePageView {
         return author;
     }
 
-    public MessagesViewOnHomePageView setAuthor(User author) {
+    public MessagesView setAuthor(User author) {
         this.author = author;
         return this;
     }

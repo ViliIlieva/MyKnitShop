@@ -20,9 +20,9 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Име</i></th>
+                    <th>Име</th>
                     <th>Описание</th>
-                    <th>Цена</i></th>
+                    <th>Цена</th>
                     <th>Категория</th>
                     <th>Действие</th>
                 </tr>
@@ -65,14 +65,14 @@
                 <th>Клиент</th>
                 <th>Дата на поръчка</th>
                 <th>Статус</th>
-                <th>Сума</th>
+                <th>Обща Сума</th>
                 <th>Действие</th>
             </tr>
             </thead>
             <tbody th:each="order : ${allOpenOrders}"
                    th:object="${order}">
             <tr>
-                <td th:text="*{id}"></td>
+                <th th:text="*{id}"></th>
                 <td th:text="|*{client.firstName} *{client.lastName}|"></td>
                 <td th:text="*{dateOrdered}"></td>
                 <td th:text="*{orderStatus}"></td>
@@ -80,9 +80,15 @@
                 <td><a href="#" class="view" title="Close Order" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a>
                 </td>
             </tr>
+            <tr>
+                <th></th>
+                <th colspan="3">Име на продукта</th>
+                <th colspan="2">Единична Цена</th>
+            </tr>
             <tr th:each="prod : *{orderedProducts}">
                 <td></td>
-                <td></td>
+                <td colspan="3" th:text="${prod.name}"></td>
+                <td colspan="2" th:text="${prod.price}"></td>
             </tr>
             </tbody>
         </table>
@@ -122,5 +128,8 @@
         </div>
     </div>
 </div>
+
+
+
 </body>
 </html>

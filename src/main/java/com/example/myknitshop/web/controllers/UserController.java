@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping("/user/admin")
     public String adminPanel(Model model){
         model.addAttribute ("allProducts", this.productService.getAllProducts ());
-        model.addAttribute ("allOpenOrders", this.orderService.getAllOrders());
+        model.addAttribute ("allOpenOrders", this.orderService.GetAllOpenOrders ());
         model.addAttribute ("allMessages", this.messageService.getAllMessages());
         return "admin";
     }

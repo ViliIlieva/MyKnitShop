@@ -1,6 +1,6 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.models.dto.viewModels.messages.MessagesViewOnHomePageView;
+import com.example.myknitshop.models.dto.viewModels.messages.MessagesView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductsViewOnHomePage;
 import com.example.myknitshop.service.MessageService;
 import com.example.myknitshop.service.ProductService;
@@ -26,8 +26,8 @@ public class HomeController {
     }
 
     @ModelAttribute("messagesDTO")
-    public MessagesViewOnHomePageView initMessagesDTO(){
-        return new MessagesViewOnHomePageView();
+    public MessagesView initMessagesDTO(){
+        return new MessagesView ();
     }
 
     @GetMapping("/")
