@@ -1,5 +1,6 @@
 package com.example.myknitshop.models.dto.bindingModels;
 
+import com.example.myknitshop.models.entity.Category;
 import com.example.myknitshop.models.enums.CategoryEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,6 @@ public class AddProductDTO {
     private String img;
 
     @NotNull
-    private CategoryEnum category;
+    private String category;
 
 }

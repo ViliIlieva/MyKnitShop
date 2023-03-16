@@ -31,7 +31,7 @@ public class ProductService {
     public boolean addProduct(AddProductDTO addProductDTO) {
         Product product = modelMapper.map(addProductDTO, Product.class);
 
-        product.setCategory(categoryRepository.findByName(addProductDTO.getCategory()));
+        product.setCategory(categoryRepository.findById (Long.parseLong (addProductDTO.getCategory())).get ());
         this.productRepository.save(product);
         return true;
     }

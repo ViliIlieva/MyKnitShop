@@ -23,6 +23,7 @@ public class ProductController {
     public AddProductDTO initAddProductDTO(){
         return new AddProductDTO();
     }
+
     @ModelAttribute("editProductDTO")
     public EditProductDTO initEditProductDTO(){
         return new EditProductDTO();
@@ -38,13 +39,14 @@ public class ProductController {
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes){
 
-        if(bindingResult.hasErrors() || this.productService.addProduct(addProductDTO)){
+        if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("addProductDTO", addProductDTO);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.addProductDTO", bindingResult);
 
             return "redirect:/products/add";
         }
+        this.productService.addProduct(addProductDTO);
         return "redirect:/product";
     }
 
