@@ -12,24 +12,13 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class AddProductDTO {
-
-    @NotBlank
-    @Size(min = 5)
-    private String name;
-
-    @NotBlank
+public class EditProductDTO {
+    private Long id;
     @Size(min = 20)
     private String description;
 
-    @NotNull
     @Positive
     private BigDecimal price;
 
-    @NotNull
     private String img;
-
-    @NotNull
-    private CategoryEnum category;
-
 }

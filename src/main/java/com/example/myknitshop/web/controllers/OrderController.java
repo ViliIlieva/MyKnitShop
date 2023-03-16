@@ -42,7 +42,7 @@ public class OrderController {
     }
 
     @PatchMapping("/cart")
-    public String cart(Principal username, Model model,
+    public String cart(Principal username,
                        @Valid MakeOrderDTO makeOrderDTO,
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes) {

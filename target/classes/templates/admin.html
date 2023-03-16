@@ -37,9 +37,10 @@
                     <td th:text="*{category.name}"></td>
 
                     <td>
-                        <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                class="material-icons">&#xE254;</i></a>
-                        <a th:href="@{/product/delete/{id}(id = *{id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        <a th:href="@{/product/edit/{id}(id = *{id})}" class="edit" title="Edit" data-toggle="tooltip">
+                            <i class="material-icons">&#xE254;</i></a>
+                        <a th:href="@{/product/delete/{id}(id = *{id})}" class="delete" title="Delete" data-toggle="tooltip">
+                            <i class="material-icons">&#xE872;</i></a>
                     </td>
                 </tr>
                 </tbody>

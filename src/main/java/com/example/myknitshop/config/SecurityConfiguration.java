@@ -32,7 +32,7 @@ public class SecurityConfiguration {
                                 "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
 
                         requestMatchers ("/products/add", "/user/admin", "/product/delete/{id}",
-                                "/message/delete/{id}", "/order/close/{id}").hasRole(UserRoleEnum.ADMIN.name ()).
+                                "/message/delete/{id}", "/order/close/{id}", "/product/edit/{id}").hasRole(UserRoleEnum.ADMIN.name ()).
 
                         requestMatchers("/purchase/{id}", "/cart",
                                 "/cart/remove-product-from-list/{id}", "/order/details/{id}").hasRole(UserRoleEnum.CLIENT.name()).

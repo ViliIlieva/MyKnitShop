@@ -1,6 +1,7 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
+import com.example.myknitshop.models.dto.bindingModels.EditProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductImgView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductToAdminPanelView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
@@ -44,30 +45,40 @@ public class ProductService {
     }
 
     public ProductWithInfoView getProductInfoById(Long id) {
-        Product product = this.productRepository.findById (id).get ();
-        return this.modelMapper.map (product, ProductWithInfoView.class);
+        Product product = this.productRepository.findById(id).get();
+        return this.modelMapper.map(product, ProductWithInfoView.class);
     }
 
     public List<ProductImgView> getAllProductImage() {
-        return this.productRepository.findAll ()
-                .stream ()
-                .map (product -> {
-                    return modelMapper.map (product, ProductImgView.class);
-                }).toList ();
+        return this.productRepository.findAll()
+                .stream()
+                .map(product -> {
+                    return modelMapper.map(product, ProductImgView.class);
+                }).toList();
     }
-    public Product getProductById(Long id){
+
+    public Product getProductById(Long id) {
         return this.productRepository.findById(id).get();
     }
 
     public List<ProductToAdminPanelView> getAllProducts() {
-        return this.productRepository.findAll ()
-                .stream ()
-                .map (p -> {return modelMapper.map (p, ProductToAdminPanelView.class);
-                }).toList ();
+        return this.productRepository.findAll()
+                .stream()
+                .map(p -> {
+                    return modelMapper.map(p, ProductToAdminPanelView.class);
+                }).toList();
 
     }
 
     public void deleteProductById(Long productId) {
-        this.productRepository.deleteById (productId);
+        this.productRepository.deleteById(productId);
+    }
+
+    public void editProduct(Long productId, EditProductDTO editProductDTO) {
+        Product productToEdit = this.productRepository.findById(productId).get();
+        productToEdit.setDescription(editProductDTO.getDescription());
+        productToEdit.setPrice(editProductDTO.getPrice());
+        productToEdit.setImg(editProductDTO.getImg());
+        this.productRepository.save(productToEdit);
     }
 }
