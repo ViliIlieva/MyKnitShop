@@ -1,7 +1,6 @@
 package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
-import com.example.myknitshop.models.dto.bindingModels.EditProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
 import com.example.myknitshop.service.ProductService;
 import jakarta.validation.Valid;
@@ -25,10 +24,6 @@ public class ProductController {
         return new AddProductDTO();
     }
 
-    @ModelAttribute("editProductDTO")
-    public EditProductDTO initEditProductDTO(){
-        return new EditProductDTO();
-    }
 
     @GetMapping("/products/add")
     public String productsAdd(){

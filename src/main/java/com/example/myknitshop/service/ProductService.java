@@ -1,7 +1,6 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
-import com.example.myknitshop.models.dto.bindingModels.EditProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductImgView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductToAdminPanelView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
