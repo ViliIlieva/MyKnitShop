@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class EditProductDTO {
     private Long id;
+
     @Size(min = 20)
     private String description;
 

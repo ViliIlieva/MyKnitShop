@@ -27,7 +27,6 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    //продукт има право да добавя само админа
     public boolean addProduct(AddProductDTO addProductDTO) {
         Product product = modelMapper.map(addProductDTO, Product.class);
 
@@ -74,7 +73,7 @@ public class ProductService {
         this.productRepository.deleteById(productId);
     }
 
-    public void editProduct(Long productId, EditProductDTO editProductDTO) {
+    public void editProduct(Long productId, ProductWithInfoView editProductDTO) {
         Product productToEdit = this.productRepository.findById(productId).get();
         productToEdit.setDescription(editProductDTO.getDescription());
         productToEdit.setPrice(editProductDTO.getPrice());

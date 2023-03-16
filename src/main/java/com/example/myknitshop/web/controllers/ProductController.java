@@ -2,6 +2,7 @@ package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
 import com.example.myknitshop.models.dto.bindingModels.EditProductDTO;
+import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
 import com.example.myknitshop.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class ProductController {
 
     @PatchMapping("/product/edit/{id}")
     public String editProduct(@PathVariable("id") Long productId,
-                              @Valid EditProductDTO editProductDTO,
+                              @Valid ProductWithInfoView editProductDTO,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes){
 
