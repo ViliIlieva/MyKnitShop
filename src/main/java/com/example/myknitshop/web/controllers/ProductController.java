@@ -64,6 +64,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("editProductDTO", editProductDTO);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.editProductDTO", bindingResult);
+
             return "redirect:/product/edit/" + productId;
         }
 
