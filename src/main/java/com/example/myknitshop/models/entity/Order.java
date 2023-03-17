@@ -42,4 +42,7 @@ public class Order extends BaseEntity {
                     name = "purchase_product_id",
                     referencedColumnName = "id"))
     private List<PurchasedProducts> orderedProducts = new ArrayList<> ();
+
+    @OneToOne
+    private Message message;
 }

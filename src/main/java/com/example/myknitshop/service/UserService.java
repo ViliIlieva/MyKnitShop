@@ -1,10 +1,14 @@
 package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
+import com.example.myknitshop.models.dto.bindingModels.MessageDTO;
+import com.example.myknitshop.models.dto.viewModels.orders.CompleteOrdersIdView;
 import com.example.myknitshop.models.dto.viewModels.orders.OrderDetailView;
+import com.example.myknitshop.models.dto.viewModels.orders.UserOrdersView;
 import com.example.myknitshop.models.dto.viewModels.products.ProductViewInCart;
 import com.example.myknitshop.models.entity.*;
 import com.example.myknitshop.models.enums.OrderStatusEnum;
+import com.example.myknitshop.repository.MessageRepository;
 import com.example.myknitshop.repository.OrderRepository;
 import com.example.myknitshop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -22,6 +26,8 @@ public class UserService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
+    private final MessageRepository messageRepository;
+    private final OrderService orderService;
     private final ProductService productService;
     private final ChoseProductsService choseProductsService;
     private final PurchasedProductsService purchasedProductsService;
@@ -29,12 +35,14 @@ public class UserService {
     public UserService(ModelMapper modelMapper, UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
-                       ChoseProductsService choseProductsService,
+                       MessageRepository messageRepository, OrderService orderService, ChoseProductsService choseProductsService,
                        PurchasedProductsService purchasedProductsService) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.productService = productService;
+        this.messageRepository = messageRepository;
+        this.orderService = orderService;
         this.choseProductsService = choseProductsService;
         this.purchasedProductsService = purchasedProductsService;
     }
@@ -142,5 +150,40 @@ public class UserService {
         order.setClientFullName(client.getUserFullName(client.getId()));
         order.setClientAddress(client.getAddress());
         return order;
+    }
+
+    public List<UserOrdersView> getAllOrders(Principal principal) {
+        User client = getUserByPrincipal(principal);
+        List<UserOrdersView> orders = client.getOrders().stream().map(o ->{
+            return modelMapper.map(o, UserOrdersView.class);
+        }).toList()
+                .stream().sorted((o2, o1) -> o1.getOrderStatus().compareTo(o2.getOrderStatus()))
+                .collect(Collectors.toList());
+        return orders;
+    }
+
+    public List<CompleteOrdersIdView> getCompletedOrders(Principal principal) {
+        return getAllOrders(principal)
+                .stream()
+                .filter(o -> o.getOrderStatus().equals(OrderStatusEnum.COMPLETED))
+
+                .map(ord ->{return modelMapper.map(ord, CompleteOrdersIdView.class);
+                }).toList();
+    }
+
+    public void addMessage(MessageDTO messageDTO, Long orderId, Principal principal) {
+        User client = getUserByPrincipal(principal);
+        Order order = this.orderService.findById(orderId);
+
+        Message message = this.modelMapper.map(messageDTO, Message.class);
+        message.setAuthor(client);
+
+        client.getMessages().add(message);
+        this.userRepository.save(client);
+
+        order.setMessage(message);
+        this.orderRepository.save(order);
+
+        this.messageRepository.save(message);
     }
 }

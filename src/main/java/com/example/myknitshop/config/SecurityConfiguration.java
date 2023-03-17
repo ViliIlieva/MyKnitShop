@@ -34,7 +34,7 @@ public class SecurityConfiguration {
                         requestMatchers ("/products/add", "/user/admin", "/product/delete/{id}",
                                 "/message/delete/{id}", "/order/close/{id}", "/product/edit/{id}").hasRole(UserRoleEnum.ADMIN.name ()).
 
-                        requestMatchers("/purchase/{id}", "/cart",
+                        requestMatchers("/purchase/{id}", "/cart", "/orders", "/message/add/{id}",
                                 "/cart/remove-product-from-list/{id}", "/order/details/{id}").hasRole(UserRoleEnum.CLIENT.name()).
                 // all other pages are available for logger in users
                         anyRequest ().authenticated ().

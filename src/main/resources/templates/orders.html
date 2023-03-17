@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Бримчица - магазин за ръчно изработени плетива</title>
+  <th:block th:replace="~{fragments/head}"></th:block>
+</head>
+
+<body class="orders">
+<div th:include="~{fragments/topbar}"></div>
+<div th:include="~{fragments/navbar}"></div>
+
+<main>
+   <div class="container">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row h2">
+          <div class="col-sm-8">
+            <h2>Детайли за Вашите Поръчки</h2>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th >№</th>
+          <th colspan="3">Дата на поръчка</th>
+          <th>Статус</th>
+          <th>Обща Сума</th>
+        </tr>
+        </thead>
+        <tbody class="border-primary" th:each="order : ${clientOrders}"
+               th:object="${order}">
+        <tr style="background-color: beige">
+          <th th:text="*{id}"></th>
+          <td th:text="*{dateOrdered}" colspan="3"></td>
+          <td th:text="*{orderStatus}"></td>
+          <td th:text="|*{orderSum} лв.|"></td>
+        </tr>
+
+        <tr>
+          <th></th>
+          <th colspan="2">Име на продукта</th>
+          <th>Количество</th>
+          <th >Единична Цена</th>
+          <th>Сума</th>
+        </tr>
+        <tr th:each="prod : *{orderedProducts}">
+          <td></td>
+          <td colspan="2" th:text="${prod.name}"></td>
+          <td th:text="${prod.quantity}"></td>
+          <td th:text="${prod.price}"></td>
+          <td th:text="${prod.sum}"></td>
+        </tr>
+
+        <tr>
+          <th></th>
+          <th>Отзив за тази Поръчка</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="5" th:text="${order.message?.description}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <h1>ОТЗИВ ЗА ПОРЪЧКА</h1>
+      <p>Тук може да оставите отзив за вече получена от Вас поръчка</p>
+
+      <div id='form'>
+        <div class="row">
+          <div class="col-md-12">
+
+            <form action="" method="POST" id="commentform"
+                  th:method="post"
+                  th:object="${messageAddDTO}">
+
+              <form role="form" class="form-horizontal" >
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Номер поръчка:</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" >
+                        <option th:each="complOrd : ${completedOrders}" th:text="${complOrd.id}"></option>
+                      </select>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+
+              <div id="comment-message" class="form-row">
+                <textarea name = "comment" placeholder = "Вашият отзив, минимум 10 символа" id = "comment" ></textarea>
+              </div>
+              <a th:href="@{/message/add/{id}}"><input type="submit" name="dsubmit" id="commentSubmit" value="Остави Отзив"></a>
+              th:href="@{/cart/remove-product-from-list/{id}(id = *{id})}"
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+<div th:insert="~{fragments/footer}"></div>
+
+</body>
+</html>

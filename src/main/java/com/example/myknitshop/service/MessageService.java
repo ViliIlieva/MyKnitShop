@@ -1,12 +1,15 @@
 package com.example.myknitshop.service;
 
+import com.example.myknitshop.models.dto.bindingModels.MessageDTO;
 import com.example.myknitshop.models.dto.viewModels.messages.MessagesView;
 import com.example.myknitshop.models.entity.Message;
+import com.example.myknitshop.models.entity.Order;
+import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.repository.MessageRepository;
-import com.example.myknitshop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,10 +17,16 @@ import java.util.stream.Collectors;
 public class MessageService {
     private final MessageRepository messageRepository;
     private final ModelMapper modelMapper;
+    private final UserService userService;
+    private final OrderService orderService;
 
-    public MessageService(MessageRepository messageRepository, ModelMapper modelMapper) {
+    public MessageService(MessageRepository messageRepository,
+                          ModelMapper modelMapper,
+                          UserService userService, OrderService orderService) {
         this.messageRepository = messageRepository;
         this.modelMapper = modelMapper;
+        this.userService = userService;
+        this.orderService = orderService;
     }
 
     public List<MessagesView> getAllMessagesViewOnHomePage() {
@@ -46,4 +55,5 @@ public class MessageService {
     public void deleteMessageById(Long messageId) {
         this.messageRepository.deleteById (messageId);
     }
+
 }

@@ -19,11 +19,19 @@ VALUES (5, 2);
 
 -- messages
 INSERT INTO messages (`description`, author_id)
-VALUES ('Много ни хареса шапката Мече, изключително мека и топла прежда', 3);
+VALUES ('Много ни хареса шапката Мече, изключително мека и топла прежда.', 3);
 INSERT INTO messages (`description`, author_id)
-VALUES ('Терличките са точния размер, преждата е много мека въпреки вълната в нея', 2);
+VALUES ('Терличките са точния размер, преждата е много мека въпреки вълната в нея.', 2);
 INSERT INTO messages (`description`, author_id)
-VALUES ('Благодарим за страхотното одеало, пасва перфектно на количката', 4);
+VALUES ('Благодарим за страхотното одеало, пасва перфектно на количката.', 4);
+
+-- users_messages
+INSERT INTO users_messages(`user_id`, `messages_id`)
+VALUES (3, 1);
+INSERT INTO users_messages(`user_id`, `messages_id`)
+VALUES (2, 2);
+INSERT INTO users_messages(`user_id`, `messages_id`)
+VALUES (4, 3);
 
 -- products
 INSERT INTO products (name, description, img, price, category_id)
@@ -171,12 +179,12 @@ INSERT INTO users_purchase_product(user_id, purchase_product_id)
 VALUES (5,7);
 
 -- orders
-INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-05-01', 2, 'COMPLETED', 56);
-INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-06-01', 3, 'COMPLETED', 78);
-INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-07-01', 4, 'COMPLETED', 25);
+INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
+VALUES ('2023-05-01', 2, 'COMPLETED', 56, 2);
+INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
+VALUES ('2023-06-01', 3, 'COMPLETED', 78, 1);
+INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
+VALUES ('2023-07-01', 4, 'COMPLETED', 25, 3);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
 VALUES ('2023-08-01', 5, 'COMPLETED', 64);
 

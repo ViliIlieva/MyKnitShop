@@ -70,4 +70,11 @@ public class OrderController {
         this.orderService.closeOrder(orderId);
         return "redirect:/user/admin";
     }
+
+    @GetMapping("/orders")
+    public String orderByClientId(Principal principal, Model model){
+        model.addAttribute("clientOrders", this.userService.getAllOrders(principal));
+        model.addAttribute("completedOrders", this.userService.getCompletedOrders(principal));
+        return "orders";
+    }
 }

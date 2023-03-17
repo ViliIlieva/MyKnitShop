@@ -24,7 +24,6 @@ public class ProductController {
         return new AddProductDTO();
     }
 
-
     @GetMapping("/products/add")
     public String productsAdd(){
         return "product-add";

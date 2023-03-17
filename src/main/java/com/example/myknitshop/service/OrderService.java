@@ -31,4 +31,8 @@ public class OrderService {
         order.setOrderStatus (OrderStatusEnum.COMPLETED);
         this.orderRepository.save (order);
     }
+
+    public Order findById(Long orderId) {
+       return this.orderRepository.findById(orderId).get();
+    }
 }
