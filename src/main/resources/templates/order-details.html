@@ -17,7 +17,7 @@
             <div class="first d-flex justify-content-between align-items-center mb-3">
                 <div class="info">
                     <span class="d-block name" th:text="|Благодаря ти, *{clientFirstName}|"></span>
-                    <span class="order" th:text="|Номер поръчка - *{id}|"></span>
+                    <span class="order" th:text="|Вашата поръчка е с номер - *{id}|"></span>
                 </div>
                 <img src="https://i.imgur.com/NiAVkEw.png" width="40"/>
             </div>
@@ -33,7 +33,7 @@
 
             <div class="  money d-flex flex-row mt-2 align-items-center">
                 <img src="https://i.imgur.com/ppwgjMU.png" width="20"/>
-                <span class="ml-2" th:text="|Плащане при доставка - *{orderSum} лв.|"></span>
+                <span class="ml-2" th:text="|Плащане при доставка : *{orderSum} лв.|"></span>
             </div>
         </div>
     </div>

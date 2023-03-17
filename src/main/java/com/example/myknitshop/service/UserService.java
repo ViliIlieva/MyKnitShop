@@ -162,28 +162,28 @@ public class UserService {
         return orders;
     }
 
-    public List<CompleteOrdersIdView> getCompletedOrders(Principal principal) {
+    public List<CompleteOrdersIdView> getCompletedOrdersWithoutMessage(Principal principal) {
         return getAllOrders(principal)
                 .stream()
                 .filter(o -> o.getOrderStatus().equals(OrderStatusEnum.COMPLETED))
-
+                .filter(o -> o.getMessage () == null)
                 .map(ord ->{return modelMapper.map(ord, CompleteOrdersIdView.class);
                 }).toList();
     }
 
-    public void addMessage(MessageDTO messageDTO, Long orderId, Principal principal) {
+    public void addMessage(MessageDTO messageDTO, Principal principal) {
         User client = getUserByPrincipal(principal);
-        Order order = this.orderService.findById(orderId);
+        Order order = this.orderService.findById(messageDTO.getOrderId ());
 
-        Message message = this.modelMapper.map(messageDTO, Message.class);
-        message.setAuthor(client);
+        Message message = new Message ();
+                message.setAuthor(client);
+                message.setDescription (messageDTO.getDescription ());
+        this.messageRepository.save(message);
 
         client.getMessages().add(message);
         this.userRepository.save(client);
 
         order.setMessage(message);
         this.orderRepository.save(order);
-
-        this.messageRepository.save(message);
     }
 }

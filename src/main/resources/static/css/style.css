@@ -607,26 +607,35 @@ pre code {
   margin-left: auto;
 }
 
+.container-message{
+  border: 2px solid #a0a5b1;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media (min-width: 576px) {
-  .container, .container-sm {
+  .container, .container-sm, .container-message {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  .container, .container-sm, .container-md {
+  .container, .container-sm, .container-md, .container-message {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  .container, .container-sm, .container-md, .container-lg {
+  .container, .container-sm, .container-md, .container-lg, .container-message {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  .container, .container-sm, .container-md, .container-lg, .container-xl {
+  .container, .container-sm, .container-md, .container-lg, .container-xl, .container-message {
     max-width: 1140px;
   }
 }
@@ -10389,14 +10398,13 @@ p{
   height: 55px;
   color: white;
   font-size: 20px;
-  background-color: #2c95dc;
-  box-shadow: 0 3px 0 steelblue;
+  background-color: #F195B2;
   margin-bottom: 30px;
   padding-left: 20px;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 #commentSubmit:hover {
-  background-color: #09466f;
+  background-color: #F195B9;
 
 }
 

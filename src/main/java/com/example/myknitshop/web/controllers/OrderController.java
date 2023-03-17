@@ -1,6 +1,7 @@
 package com.example.myknitshop.web.controllers;
 
 import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
+import com.example.myknitshop.models.dto.bindingModels.MessageDTO;
 import com.example.myknitshop.service.OrderService;
 import com.example.myknitshop.service.UserService;
 import jakarta.validation.Valid;
@@ -25,6 +26,10 @@ public class OrderController {
     @ModelAttribute("makeOrderDTO")
     public MakeOrderDTO initMakeOrderDTO(){
         return new MakeOrderDTO ();
+    }
+    @ModelAttribute("messageAddDTO")
+    public MessageDTO initAddProductDTO(){
+        return new MessageDTO();
     }
 
     @GetMapping("/cart/remove-product-from-list/{id}")
@@ -74,7 +79,24 @@ public class OrderController {
     @GetMapping("/orders")
     public String orderByClientId(Principal principal, Model model){
         model.addAttribute("clientOrders", this.userService.getAllOrders(principal));
-        model.addAttribute("completedOrders", this.userService.getCompletedOrders(principal));
+        model.addAttribute("completedOrders", this.userService.getCompletedOrdersWithoutMessage (principal));
         return "orders";
+    }
+
+    @PostMapping("/orders")
+    public String addMessage( Principal principal,
+                              @Valid MessageDTO messageDTO,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirectAttributes){
+//TODO да оправя да ми хваща грешките
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("messageDTO", messageDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.messageDTO", bindingResult);
+
+            return "redirect:/orders";
+        }
+        this.userService.addMessage(messageDTO, principal);
+        return "redirect:/orders";
     }
 }
