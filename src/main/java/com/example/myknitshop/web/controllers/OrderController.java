@@ -84,8 +84,7 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public String addMessage( Principal principal,
-                              @Valid MessageDTO messageDTO,
+    public String addMessage( Principal principal,@Valid MessageDTO messageDTO,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes){
 //TODO да оправя да ми хваща грешките

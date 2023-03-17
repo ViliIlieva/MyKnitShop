@@ -67,8 +67,8 @@
 
 
     <div class="container-message">
-        <h1>ОТЗИВ ЗА ПОРЪЧКА</h1>
-        <p>Тук може да оставите отзив за вече получена от Вас поръчка</p>
+        <h1 class="h2">ОТЗИВ ЗА ПОРЪЧКА</h1>
+        <h5>Тук може да оставите отзив за вече получена от Вас поръчка</h5>
 
         <div id='form'>
             <div class="row">
@@ -87,6 +87,7 @@
                                             th:field="*{orderId}"
                                             th:errorclass="is-invalid"
                                             aria-describedby="numberHelpInline">
+
                                         <option value="-1" selected>Избери</option>
                                         <option th:each="complOrd : ${completedOrders}"
                                                 th:text="${complOrd.id}"
