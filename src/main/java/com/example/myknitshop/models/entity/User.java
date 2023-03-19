@@ -45,7 +45,7 @@ public class User extends BaseEntity {
     @ManyToMany
     private List<ChoseProducts> choseProduct;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Order> orders;
 
     @OneToMany

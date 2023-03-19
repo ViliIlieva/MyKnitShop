@@ -1,7 +1,7 @@
 package com.example.myknitshop.service;
 
 
-import com.example.myknitshop.models.dto.bindingModels.UserRegistrationDTO;
+import com.example.myknitshop.models.dto.bindingModels.user.UserRegistrationDTO;
 import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.models.enums.UserRoleEnum;
 import com.example.myknitshop.repository.UserRepository;
@@ -10,8 +10,6 @@ import com.example.myknitshop.util.UserNamePasswordLoginProcessor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class AuthService {

@@ -16,7 +16,7 @@ public class Message extends BaseEntity{
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User author;
 
 }

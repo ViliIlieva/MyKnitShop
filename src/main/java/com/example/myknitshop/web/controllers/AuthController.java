@@ -1,21 +1,18 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.models.dto.bindingModels.LoginDTO;
-import com.example.myknitshop.models.dto.bindingModels.UserRegistrationDTO;
+import com.example.myknitshop.models.dto.bindingModels.user.LoginDTO;
+import com.example.myknitshop.models.dto.bindingModels.user.UserRegistrationDTO;
 import com.example.myknitshop.service.AuthService;
 import com.example.myknitshop.util.UserNamePasswordLoginProcessor;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import java.util.function.BiConsumer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller

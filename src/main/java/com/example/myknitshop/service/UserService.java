@@ -1,7 +1,7 @@
 package com.example.myknitshop.service;
 
-import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
-import com.example.myknitshop.models.dto.bindingModels.MessageDTO;
+import com.example.myknitshop.models.dto.bindingModels.orders.MakeOrderDTO;
+import com.example.myknitshop.models.dto.bindingModels.messages.MessageDTO;
 import com.example.myknitshop.models.dto.viewModels.orders.CompleteOrdersIdView;
 import com.example.myknitshop.models.dto.viewModels.orders.OrderDetailView;
 import com.example.myknitshop.models.dto.viewModels.orders.UserOrdersView;
@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -212,6 +213,14 @@ public class UserService {
             user.getUserRoles ().clear ();
             user.setUserRoles (userRoleRepository.findByUserRole (UserRoleEnum.ADMIN));
         }
+        this.userRepository.save (user);
+    }
+
+    public User findByUsername(String username) {
+       return this.userRepository.findByUsername (username).get ();
+    }
+
+    public void save(User user) {
         this.userRepository.save (user);
     }
 }

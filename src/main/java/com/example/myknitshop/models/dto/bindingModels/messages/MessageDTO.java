@@ -1,4 +1,4 @@
-package com.example.myknitshop.models.dto.bindingModels;
+package com.example.myknitshop.models.dto.bindingModels.messages;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;

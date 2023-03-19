@@ -16,12 +16,12 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" alt="Image" th:src="@{/images/carousel-3.jpg}">
+                    <img class="w-100 change-image" alt="Image" th:src="@{/images/carousel-3.jpg}">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">Добре Дошли В Бримчица</h4>
-                            <h1 class="display-3 text-white mb-md-4">Сайт За Ръчно Плетиво</h1>
-                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 mt-2">Научете повече</a>
+                            <h4 class="text-white text-uppercase mb-md-3" th:text="#{home_carosel_1_1}">Добре Дошли В Бримчица</h4>
+                            <h1 class="display-3 text-white mb-md-4" th:text="#{home_carosel_1_2}">Сайт За Ръчно Плетиво</h1>
+                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 mt-2" th:text="#{home_carosel_1_3}">Научете повече</a>
                         </div>
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                     <img class="w-100" th:src="@{/images/carousel-2.jpg}" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">В Бримчица Ние Не Работим</h4>
-                            <h1 class="display-3 text-white mb-md-4">Ние Творим С Любов</h1>
-                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 mt-2">Научете повече</a>
+                            <h4 class="text-white text-uppercase mb-md-3" th:text="#{home_carosel_2_1}">В Бримчица Ние Не Работим</h4>
+                            <h1 class="display-3 text-white mb-md-4" th:text="#{home_carosel_2_2}">Ние Творим С Любов</h1>
+                            <a th:href="@{/about}" class="btn btn-primary py-md-3 px-md-5 mt-2" th:text="#{home_carosel_1_3}">Научете повече</a>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Нашите Продукти</h1>
+                    <h1 class="section-title position-relative mb-5" th:text="#{home_products}">Нашите Продукти</h1>
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
             </div>
@@ -94,7 +94,7 @@
                             </div>
                             <h5 class="font-weight-bold mb-4"
                                 th:text="*{name}"></h5>
-                            <a th:href="@{/product/info/{id} (id = *{id})}" class="btn btn-sm btn-secondary">Детайли и Поръчка</a>
+                            <a th:href="@{/product/info/{id} (id = *{id})}" class="btn btn-sm btn-secondary" th:text="#{home_details}">Детайли и Поръчка</a>
                         </div>
 
                     </div>
@@ -109,7 +109,7 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <h1 class="section-title position-relative text-center mb-5">Ето Какво Споделят Нашите Клиенти</h1>
+                    <h1 class="section-title position-relative text-center mb-5" th:text="#{home_message}">Ето Какво Споделят Нашите Клиенти</h1>
                 </div>
             </div>
             <div class="row justify-content-center">

@@ -180,9 +180,9 @@ VALUES (5,7);
 
 -- orders
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
-VALUES ('2023-05-01', 2, 'COMPLETED', 56, 2);
+VALUES ('2020-05-01', 2, 'COMPLETED', 56, 2);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
-VALUES ('2023-06-01', 3, 'COMPLETED', 78, 1);
+VALUES ('2020-06-01', 3, 'COMPLETED', 78, 1);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
 VALUES ('2023-07-01', 4, 'COMPLETED', 25, 3);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)

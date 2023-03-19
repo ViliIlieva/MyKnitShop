@@ -1,4 +1,4 @@
-package com.example.myknitshop.models.dto.bindingModels;
+package com.example.myknitshop.models.dto.bindingModels.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

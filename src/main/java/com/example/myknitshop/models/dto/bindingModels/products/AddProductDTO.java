@@ -1,4 +1,4 @@
-package com.example.myknitshop.models.dto.bindingModels;
+package com.example.myknitshop.models.dto.bindingModels.products;
 
 import com.example.myknitshop.models.entity.Category;
 import com.example.myknitshop.models.enums.CategoryEnum;

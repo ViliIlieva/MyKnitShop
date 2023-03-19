@@ -1,4 +1,4 @@
-package com.example.myknitshop.models.dto.bindingModels;
+package com.example.myknitshop.models.dto.bindingModels.orders;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

@@ -1,6 +1,6 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.models.dto.bindingModels.AddProductDTO;
+import com.example.myknitshop.models.dto.bindingModels.products.AddProductDTO;
 import com.example.myknitshop.models.dto.viewModels.products.ProductWithInfoView;
 import com.example.myknitshop.service.ProductService;
 import jakarta.validation.Valid;

@@ -1,7 +1,7 @@
 package com.example.myknitshop.web.controllers;
 
-import com.example.myknitshop.models.dto.bindingModels.MakeOrderDTO;
-import com.example.myknitshop.models.dto.bindingModels.MessageDTO;
+import com.example.myknitshop.models.dto.bindingModels.orders.MakeOrderDTO;
+import com.example.myknitshop.models.dto.bindingModels.messages.MessageDTO;
 import com.example.myknitshop.service.OrderService;
 import com.example.myknitshop.service.UserService;
 import jakarta.validation.Valid;
