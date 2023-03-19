@@ -33,10 +33,18 @@ public class UserController {
 
     @GetMapping("/user/admin")
     public String adminPanel(Model model){
+        model.addAttribute ("allUsers", this.userService.getAllUsers());
         model.addAttribute ("allProducts", this.productService.getAllProducts ());
         model.addAttribute ("allOpenOrders", this.orderService.GetAllOpenOrders ());
+        model.addAttribute ("allCloseOrders", this.orderService.GetAllCloseOrders ());
         model.addAttribute ("allMessages", this.messageService.getAllMessages());
         return "admin";
+    }
+
+    @GetMapping("/user/change-role/{id}")
+    public String changeRole(@PathVariable("id") Long userId){
+        this.userService.changeUserRole(userId);
+        return "redirect:/user/admin";
     }
 
 }

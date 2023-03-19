@@ -22,9 +22,9 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @GetMapping("/message/delete/{id}")
-    public String deleteMessage(@PathVariable("id") Long messageId){
-        this.messageService.deleteMessageById(messageId);
-        return "redirect:/user/admin";
-    }
+//    @GetMapping("/message/delete/{id}")
+//    public String deleteMessage(@PathVariable("id") Long messageId){
+//        this.messageService.deleteMessageById(messageId);
+//        return "redirect:/user/admin";
+//    }
 }

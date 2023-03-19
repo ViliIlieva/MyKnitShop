@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    List<Order> findOrderByOrderStatus(OrderStatusEnum OPEN);
+    List<Order> findOrderByOrderStatus(OrderStatusEnum orderStatusEnum);
 }

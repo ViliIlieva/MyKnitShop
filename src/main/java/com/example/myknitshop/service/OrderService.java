@@ -1,6 +1,7 @@
 package com.example.myknitshop.service;
 
-import com.example.myknitshop.models.dto.viewModels.orders.OrderToAdminPanelView;
+import com.example.myknitshop.models.dto.viewModels.orders.CloseOrderToAdminPanelView;
+import com.example.myknitshop.models.dto.viewModels.orders.OpenOrderToAdminPanelView;
 import com.example.myknitshop.models.entity.Order;
 import com.example.myknitshop.models.enums.OrderStatusEnum;
 import com.example.myknitshop.repository.OrderRepository;
@@ -19,10 +20,17 @@ public class OrderService {
         this.modelMapper = modelMapper;
     }
 
-    public List<OrderToAdminPanelView> GetAllOpenOrders() {
+    public List<OpenOrderToAdminPanelView> GetAllOpenOrders() {
         return this.orderRepository.findOrderByOrderStatus (OrderStatusEnum.OPEN)
                 .stream ()
-                .map (o -> {return modelMapper.map (o, OrderToAdminPanelView.class);
+                .map (o -> {return modelMapper.map (o, OpenOrderToAdminPanelView.class);
+                }).toList ();
+    }
+
+    public List<CloseOrderToAdminPanelView> GetAllCloseOrders() {
+        return this.orderRepository.findOrderByOrderStatus (OrderStatusEnum.COMPLETED)
+                .stream ()
+                .map (o -> {return modelMapper.map (o, CloseOrderToAdminPanelView.class);
                 }).toList ();
     }
 

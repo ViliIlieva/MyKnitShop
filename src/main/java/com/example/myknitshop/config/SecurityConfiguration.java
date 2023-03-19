@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                         requestMatchers ("/", "/login", "/register", "/about", "/product",
                                 "/login-error", "/product/info/{id}", "/gallery", "/service").permitAll ().
 
-                        requestMatchers ("/products/add", "/user/admin", "/product/delete/{id}",
+                        requestMatchers ("/products/add", "/user/admin", "/product/delete/{id}","/user/change-role/{id}",
                                 "/message/delete/{id}", "/order/close/{id}", "/product/edit/{id}").hasRole(UserRoleEnum.ADMIN.name ()).
 
                         requestMatchers("/purchase/{id}", "/cart", "/orders", "/message/add",

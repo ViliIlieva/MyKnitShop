@@ -187,6 +187,12 @@ INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `m
 VALUES ('2023-07-01', 4, 'COMPLETED', 25, 3);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
 VALUES ('2023-08-01', 5, 'COMPLETED', 64);
+INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-05-01', 2, 'COMPLETED', 56);
+INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-05-01', 2, 'OPEN', 56);
+INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
+VALUES ('2023-06-01', 3, 'OPEN', 78);
 
 
 
@@ -204,6 +210,21 @@ INSERT INTO products_orders(`order_id`,`purchase_product_id`)
 VALUES (3, 6);
 INSERT INTO products_orders(`order_id`,`purchase_product_id`)
 VALUES (4, 7);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (5, 1);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (5, 2);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (5, 3);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (6, 1);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (6, 2);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (6, 3);
+INSERT INTO products_orders(`order_id`,`purchase_product_id`)
+VALUES (7, 4);
+
 
 INSERT INTO users_orders(`user_id`,`orders_id`)
 VALUES (2, 1);
@@ -213,3 +234,9 @@ INSERT INTO users_orders(`user_id`,`orders_id`)
 VALUES (4, 3);
 INSERT INTO users_orders(`user_id`,`orders_id`)
 VALUES (5, 4);
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (2, 5);
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (2, 6);
+INSERT INTO users_orders(`user_id`,`orders_id`)
+VALUES (3, 7);

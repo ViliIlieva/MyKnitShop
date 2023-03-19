@@ -24,24 +24,25 @@ public class OrderController {
     }
 
     @ModelAttribute("makeOrderDTO")
-    public MakeOrderDTO initMakeOrderDTO(){
+    public MakeOrderDTO initMakeOrderDTO() {
         return new MakeOrderDTO ();
     }
-    @ModelAttribute("messageAddDTO")
-    public MessageDTO initAddProductDTO(){
-        return new MessageDTO();
+
+    @ModelAttribute("messageDTO")
+    public MessageDTO initAddProductDTO() {
+        return new MessageDTO ();
     }
 
     @GetMapping("/cart/remove-product-from-list/{id}")
-    String removeProductFromChoseList(@PathVariable("id") Long productId, Principal username){
+    String removeProductFromChoseList(@PathVariable("id") Long productId, Principal username) {
         this.userService.removeProductFromChoseList (productId, username);
         return "redirect:/cart";
     }
 
     @GetMapping("/cart")
-    public String cart(Principal username, Model model){
-        model.addAttribute("cartCashProduct", this.userService.getChoseListByUserToViewInShoppingCard(username));
-        model.addAttribute ("count", this.userService.countOfItemInCart(username));
+    public String cart(Principal username, Model model) {
+        model.addAttribute ("cartCashProduct", this.userService.getChoseListByUserToViewInShoppingCard (username));
+        model.addAttribute ("count", this.userService.countOfItemInCart (username));
         model.addAttribute ("sumForAllProducts", this.userService.sumForAllPurchaseProduct (username));
         return "cart";
     }
@@ -52,9 +53,9 @@ public class OrderController {
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("makeOrderDTO", makeOrderDTO);
-            redirectAttributes.addFlashAttribute(
+        if (bindingResult.hasErrors ()) {
+            redirectAttributes.addFlashAttribute ("makeOrderDTO", makeOrderDTO);
+            redirectAttributes.addFlashAttribute (
                     "org.springframework.validation.BindingResult.makeOrderDTO", bindingResult);
 
             return "redirect:/cart";
@@ -66,36 +67,35 @@ public class OrderController {
     @GetMapping("/order/details/{id}")
     public String placeOrder(@PathVariable("id") Long orderId,
                              Principal principal, Model model) {
-        model.addAttribute("orderDetails", this.userService.getOrderDetailsById(principal, orderId));
+        model.addAttribute ("orderDetails", this.userService.getOrderDetailsById (principal, orderId));
         return "order-details";
     }
 
     @GetMapping("/order/close/{id}")
-    public String closeOrder(@PathVariable("id") Long orderId){
-        this.orderService.closeOrder(orderId);
+    public String closeOrder(@PathVariable("id") Long orderId) {
+        this.orderService.closeOrder (orderId);
         return "redirect:/user/admin";
     }
 
     @GetMapping("/orders")
-    public String orderByClientId(Principal principal, Model model){
-        model.addAttribute("clientOrders", this.userService.getAllOrders(principal));
-        model.addAttribute("completedOrders", this.userService.getCompletedOrdersWithoutMessage (principal));
+    public String orderByClientId(Principal principal, Model model) {
+        model.addAttribute ("clientOrders", this.userService.getAllOrders (principal));
+        model.addAttribute ("completedOrders", this.userService.getCompletedOrdersWithoutMessage (principal));
         return "orders";
     }
 
     @PostMapping("/orders")
-    public String addMessage( Principal principal,@Valid MessageDTO messageDTO,
-                              BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes){
-//TODO да оправя да ми хваща грешките
-        if(bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("messageDTO", messageDTO);
-            redirectAttributes.addFlashAttribute(
+    public String addMessage(Principal principal, @Valid MessageDTO messageDTO,
+                             BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors ()) {
+            redirectAttributes.addFlashAttribute ("messageDTO", messageDTO);
+            redirectAttributes.addFlashAttribute (
                     "org.springframework.validation.BindingResult.messageDTO", bindingResult);
 
             return "redirect:/orders";
         }
-        this.userService.addMessage(messageDTO, principal);
+        this.userService.addMessage (messageDTO, principal);
         return "redirect:/orders";
     }
 }
