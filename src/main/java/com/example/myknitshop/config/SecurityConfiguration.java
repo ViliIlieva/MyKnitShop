@@ -21,8 +21,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 @Configuration
 public class SecurityConfiguration {
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http,
-                                           SecurityContextRepository securityContextRepository) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.
                         authorizeHttpRequests ().
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
@@ -58,10 +57,7 @@ public class SecurityConfiguration {
                         logoutSuccessUrl ("/").
                 // invalidate the session and delete the cookies
                         invalidateHttpSession (true).
-                deleteCookies ("JSESSIONID").
-                and().
-                securityContext().
-                securityContextRepository(securityContextRepository);
+                deleteCookies ("JSESSIONID");
 
         return http.build ();
     }
@@ -74,13 +70,5 @@ public class SecurityConfiguration {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new AppUserDetailsService (userRepository);
-    }
-
-    @Bean
-    public SecurityContextRepository securityContextRepository() {
-        return new DelegatingSecurityContextRepository(
-                new RequestAttributeSecurityContextRepository(),
-                new HttpSessionSecurityContextRepository()
-        );
     }
 }

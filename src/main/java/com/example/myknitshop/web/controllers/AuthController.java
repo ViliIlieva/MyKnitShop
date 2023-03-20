@@ -43,8 +43,7 @@ public class AuthController {
     public String register(@Valid UserRegistrationDTO registrationDTO,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
-                            HttpServletRequest req) {
-
+                           HttpServletRequest req)  {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
@@ -66,7 +65,6 @@ public class AuthController {
             }
         };
     }
-
 
     @GetMapping("/login")
     public String login() {

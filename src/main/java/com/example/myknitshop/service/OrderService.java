@@ -45,13 +45,15 @@ public class OrderService {
     }
 
     public void closeOrder(Long orderId) {
-        Order order = this.orderRepository.findById (orderId).get ();
+        Order order = this.orderRepository.findById (orderId)
+                .orElseThrow(() -> new Error("Order not found!"));
         order.setOrderStatus (OrderStatusEnum.COMPLETED);
         this.orderRepository.save (order);
     }
 
     public Order findById(Long orderId) {
-        return this.orderRepository.findById (orderId).get ();
+        return this.orderRepository.findById (orderId)
+                .orElseThrow(() -> new Error("Order not found!"));
     }
 
     @Transactional
@@ -61,7 +63,8 @@ public class OrderService {
         List<Order> orderToDelete = this.orderRepository.findOrderByDateOrderedBefore (oldDate);
 
         orderToDelete.forEach (order -> {
-            User user = this.userRepository.findByUsername (order.getClient ().getUsername ()).get ();
+            User user = this.userRepository.findByUsername (order.getClient ().getUsername ())
+                    .orElseThrow(() -> new Error("User not found!"));
             user.getOrders ().remove (order);
 
             this.orderRepository.deleteById (order.getId ());

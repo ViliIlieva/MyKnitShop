@@ -24,7 +24,7 @@ public class AppUserDetailsService implements UserDetailsService {
         return userRepository.
                 findByUsername (username).
                 map (this::map).
-                orElseThrow (() -> new UsernameNotFoundException ("User with email " + username + " not found!"));
+                orElseThrow (() -> new UsernameNotFoundException ("User with username " + username + " not found!"));
     }
 
     private UserDetails map(User userEntity) {

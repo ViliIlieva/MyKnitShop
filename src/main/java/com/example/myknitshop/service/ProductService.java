@@ -29,7 +29,8 @@ public class ProductService {
     public boolean addProduct(AddProductDTO addProductDTO) {
         Product product = modelMapper.map(addProductDTO, Product.class);
 
-        product.setCategory(categoryRepository.findById (Long.parseLong (addProductDTO.getCategory())).get ());
+        product.setCategory(categoryRepository.findById (Long.parseLong (addProductDTO.getCategory()))
+                .orElseThrow(() -> new Error("Category not found!")));
         this.productRepository.save(product);
         return true;
     }
@@ -43,7 +44,8 @@ public class ProductService {
     }
 
     public ProductWithInfoView getProductInfoById(Long id) {
-        Product product = this.productRepository.findById(id).get();
+        Product product = this.productRepository.findById(id)
+                .orElseThrow(() -> new Error("Product not found!"));
         return this.modelMapper.map(product, ProductWithInfoView.class);
     }
 
@@ -56,7 +58,8 @@ public class ProductService {
     }
 
     public Product getProductById(Long id) {
-        return this.productRepository.findById(id).get();
+        return this.productRepository.findById(id)
+                .orElseThrow(() -> new Error("Product not found!"));
     }
 
     public List<ProductToAdminPanelView> getAllProducts() {
@@ -73,7 +76,8 @@ public class ProductService {
     }
 
     public void editProduct(Long productId, ProductWithInfoView editProductDTO) {
-        Product productToEdit = this.productRepository.findById(productId).get();
+        Product productToEdit = this.productRepository.findById(productId)
+                .orElseThrow(() -> new Error("Product not found!"));
         productToEdit.setDescription(editProductDTO.getDescription());
         productToEdit.setPrice(editProductDTO.getPrice());
         productToEdit.setImg(editProductDTO.getImg());

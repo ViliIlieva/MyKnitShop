@@ -13,16 +13,11 @@ import java.util.stream.Collectors;
 public class MessageService {
     private final MessageRepository messageRepository;
     private final ModelMapper modelMapper;
-    private final UserService userService;
-    private final OrderService orderService;
 
     public MessageService(MessageRepository messageRepository,
-                          ModelMapper modelMapper,
-                          UserService userService, OrderService orderService) {
+                          ModelMapper modelMapper) {
         this.messageRepository = messageRepository;
         this.modelMapper = modelMapper;
-        this.userService = userService;
-        this.orderService = orderService;
     }
 
     public List<MessagesView> getAllMessagesViewOnHomePage() {

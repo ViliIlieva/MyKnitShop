@@ -27,7 +27,8 @@ public class PurchasedProductsService {
                 if (sameProducts.stream().anyMatch(p -> p.getQuantity() == productToAdd.getQuantity())) {
                     productToAdd.setId(sameProducts.stream()
                             .filter(p -> p.getQuantity() == productToAdd.getQuantity())
-                            .findFirst().get()
+                            .findFirst()
+                            .orElseThrow(() -> new Error("Product not found!"))
                             .getId());
                 } else {
                     this.purchaseProductsRepository.save(productToAdd);

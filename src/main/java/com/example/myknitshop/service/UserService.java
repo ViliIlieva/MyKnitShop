@@ -129,7 +129,8 @@ public class UserService {
     }
 
     public User getUserByPrincipal(Principal principal) {
-        return this.userRepository.findByUsername (principal.getName ()).get ();
+        return this.userRepository.findByUsername (principal.getName ())
+                .orElseThrow(() -> new Error("User not found!"));
     }
 
     public PurchasedProducts mapProductToPurchaseProduct(ChoseProducts choseProduct) {
@@ -204,7 +205,7 @@ public class UserService {
     }
 
     public void changeUserRole(Long userId) {
-        User user = this.userRepository.findById (userId).get ();
+        User user = this.userRepository.findById (userId).orElseThrow(() -> new Error("User not found!"));
         UserRoleEnum userRole = user.getUserRoles ().stream ().findFirst ().get ().getUserRole ();
         if (userRole.equals (UserRoleEnum.ADMIN)) {
             user.getUserRoles ().clear ();

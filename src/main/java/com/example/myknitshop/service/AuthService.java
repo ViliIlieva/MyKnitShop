@@ -38,7 +38,6 @@ public class AuthService {
         newUser.setUserRoles (roleRepository.findByUserRole (UserRoleEnum.CLIENT));
         userRepository.save (newUser);
 
-
         userNamePasswordLoginProcessor.doLogin(userRegistrationDTO.getUsername(),
             userRegistrationDTO.getPassword());
     }
