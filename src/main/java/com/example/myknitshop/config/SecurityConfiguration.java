@@ -8,22 +8,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 public class SecurityConfiguration {
-
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new Pbkdf2PasswordEncoder ();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           SecurityContextRepository securityContextRepository) throws Exception {
         http.
                         authorizeHttpRequests ().
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
@@ -59,13 +58,29 @@ public class SecurityConfiguration {
                         logoutSuccessUrl ("/").
                 // invalidate the session and delete the cookies
                         invalidateHttpSession (true).
-                deleteCookies ("JSESSIONID");
+                deleteCookies ("JSESSIONID").
+                and().
+                securityContext().
+                securityContextRepository(securityContextRepository);
 
         return http.build ();
     }
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Pbkdf2PasswordEncoder ();
+    }
+
+    @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new AppUserDetailsService (userRepository);
+    }
+
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new DelegatingSecurityContextRepository(
+                new RequestAttributeSecurityContextRepository(),
+                new HttpSessionSecurityContextRepository()
+        );
     }
 }

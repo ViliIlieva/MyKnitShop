@@ -1,22 +1,4 @@
 -- https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
--- some test users
-INSERT INTO users (username, first_name, last_name, password, email)
-VALUES ('petar', 'Branimira', 'Ruseva', '12345', 'user@user');
-
-INSERT INTO users (username, first_name, last_name, password, email)
-VALUES ('ivan', 'Ivan', 'Ivanov', '12345', 'ivan@user');
-
-INSERT INTO users (username, first_name, last_name, password, email)
-VALUES ('bogomil', 'Bogomil', 'Bogomolov', '12345', 'bogomil@user');
-
--- user roles
-INSERT INTO users_roles (`user_id`, `role_id`)
-VALUES (3, 2);
-INSERT INTO users_roles (`user_id`, `role_id`)
-VALUES (4, 2);
-INSERT INTO users_roles (`user_id`, `role_id`)
-VALUES (5, 2);
-
 -- messages
 INSERT INTO messages (`description`, author_id)
 VALUES ('Много ни хареса шапката Мече, изключително мека и топла прежда.', 3);
