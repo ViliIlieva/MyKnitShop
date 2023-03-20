@@ -68,14 +68,17 @@ public class InitService {
     private void initUsers() {
         if (userRepository.count() == 0) {
             initAdmin();
-            initClient();
+            initClient1();
+            initClient2();
+            initClient3();
+            initClient4();
         }
     }
 
     private void initAdmin() {
         var adminUser = new User().
-                setUsername("owner").
-                setEmail("owner@example.com").
+                setUsername("admin").
+                setEmail("admin@example.com").
                 setFirstName("Velislava").
                 setLastName("Ilieva").
                 setPassword(passwordEncoder.encode (adminPass)).
@@ -84,12 +87,45 @@ public class InitService {
         userRepository.save(adminUser);
     }
 
-    private void initClient() {
+    private void initClient1() {
         var clientUser = new User().
                 setUsername("client").
                 setEmail("client@example.com").
+                setFirstName("Branimira").
+                setLastName("Ruseva").
+                setPassword(passwordEncoder.encode("client")).
+                setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.CLIENT));
+
+        userRepository.save(clientUser);
+    }
+    private void initClient2() {
+        var clientUser = new User().
+                setUsername("petar").
+                setEmail("petar@example.com").
                 setFirstName("Petar").
                 setLastName("Petrov").
+                setPassword(passwordEncoder.encode("client")).
+                setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.CLIENT));
+
+        userRepository.save(clientUser);
+    }
+    private void initClient3() {
+        var clientUser = new User().
+                setUsername("ivan").
+                setEmail("ivan@example.com").
+                setFirstName("Ivan").
+                setLastName("Ivanov").
+                setPassword(passwordEncoder.encode("client")).
+                setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.CLIENT));
+
+        userRepository.save(clientUser);
+    }
+    private void initClient4() {
+        var clientUser = new User().
+                setUsername("georgi").
+                setEmail("georgi@example.com").
+                setFirstName("Georgi").
+                setLastName("Georgiev").
                 setPassword(passwordEncoder.encode("client")).
                 setUserRoles(userRoleRepository.findByUserRole(UserRoleEnum.CLIENT));
 

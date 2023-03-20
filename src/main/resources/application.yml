@@ -29,5 +29,5 @@ spring:
 app:
   default:
     admin:
-      password: owner
+      password: admin
 

@@ -38,9 +38,8 @@
                     <form class="text-white"
                             th:method="POST"
                             th:action="@{/logout}"
-                            sec:authorize="isAuthenticated()"
-                            th:text="#{navbar_logout}">
-                        <h5><input class="btn btn-link nav-link text-white px-3" type="submit" value="Изход"></input>
+                            sec:authorize="isAuthenticated()">
+                        <h5><input class="btn btn-link nav-link text-white px-3" type="submit" value="Изход" ></input>
                         </h5>
                     </form>
                     <span class="nav-item">
