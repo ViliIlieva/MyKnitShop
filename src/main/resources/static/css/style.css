@@ -10364,13 +10364,7 @@ p{
   padding: 8px;
   padding-left: 20px;
 }
-#name{
-  margin-left: 20px;
-  box-shadow: 0 2px 0 #e6e6e6;
-  height: 40px;
-  padding-left: 10px;
-  width: 500px;
-}
+
 #email{
   margin-left: 20px;
   box-shadow: 0 2px 0 #e6e6e6;

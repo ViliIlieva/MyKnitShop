@@ -47,7 +47,7 @@ VALUES ('Плетена диадема "Елза"',
         30,
         1);
 INSERT INTO products (name, description, img, price, category_id)
-VALUES ('Плетен зимен комплект "Снежковци"',
+VALUES ('Плетен комплект "Снежковци"',
         'Изработен от прежда 70% вълна и 30% памук, бебешка прежда, изключително мека. Ако желаете да бъдат изработени в цветове по ваш избор, не се колебайте да се свържете с мен!',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-6_k6sh9s.jpg',
         55,
