@@ -109,28 +109,14 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <h1 class="section-title position-relative text-center mb-5" th:text="#{home_message}">Ето Какво Споделят Нашите Клиенти</h1>
+                    <h2 class="section-title position-relative text-center mb-5" th:text="#{home_message}">Ето Какво Споделят Нашите Клиенти</h2>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" >
                 <div class="col-lg-8">
-                    <div class="owl-carousel testimonial-carousel" id="comment" >
-
-<!--                        <div class="text-center" th:each="message : ${messages}"-->
-<!--                              th:object="${message}">-->
-<!--                            <div>-->
-<!--                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>-->
-<!--                            <h4 th:text="*{description}" class="font-weight-light mb-4"></h4>-->
-<!--                            </div>-->
-<!--                            <div>-->
-<!--                            <h5 class="font-weight-bold m-0"-->
-<!--                                th:text="|*{author.firstName} *{author.lastName}|"></h5>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
+                    <div class="owl-carousel testimonial-carousel" id="comment">
                         <script th:src="@{/js/comments.js}"></script>
-
                     </div>
                 </div>
             </div>
