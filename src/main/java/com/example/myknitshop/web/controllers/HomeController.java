@@ -33,7 +33,7 @@ public class HomeController {
     @GetMapping("/")
     public String loggedOutIndex (Model model){
         model.addAttribute("products",  this.productService.getAllProductsToViewOnHomePage ());
-        model.addAttribute("messages", this.messageService.getAllMessagesViewOnHomePage ());
+//        model.addAttribute("messages", this.messageService.getAllMessagesViewOnHomePage ());
         return "index";
     }
 
