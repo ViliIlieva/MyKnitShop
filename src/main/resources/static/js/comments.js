@@ -6,7 +6,7 @@ fetch(`http://localhost:8080/api/comments`)
     .then(json => json.forEach(message => {
         let commentHtml = '<div class="comment">\n'
         commentHtml += `<p>${message.description}</p>\n`
-        commentHtml += `<h4>${message.author.firstNamame}</h4>\n`
+        commentHtml += `<h4>${message.author.firstName}</h4>\n`
         commentHtml += '</div>\n'
 
         commentSection.innerHTML += commentHtml
