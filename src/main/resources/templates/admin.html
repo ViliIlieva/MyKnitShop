@@ -7,102 +7,15 @@
 <body>
 
 <a th:href="@{/}" class="btn btn-primary"><i class="material-icons"></i> <span>Начална страница</span></a>
-
-
-<div id="wrapper">
-
-    <table border=1 id="table_detail"
-           align=center cellpadding=10>
-
-        <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Salary</th>
-            <th>Job</th>
-        </tr>
-
-        <tr onclick="showHideRow('hidden_row1');">
-            <td>Person-1</td>
-            <td>24</td>
-            <td>60000</td>
-            <td>Computer Programmer</td>
-        </tr>
-        <tr id="hidden_row1" class="hidden_row">
-            <td colspan=4>
-                Person-1 is 24 years old and
-                he is a computer programmer
-                he earns 60000 per month
-            </td>
-        </tr>
-
-        <tr onclick="showHideRow('hidden_row2');">
-            <td>Person-2</td>
-            <td>25</td>
-            <td>100000</td>
-            <td>Web Designer</td>
-        </tr>
-        <tr id="hidden_row2" class="hidden_row">
-            <td colspan=4>
-                Person-2 is 25 years old and
-                she is a web designer she earns
-                100000 per month
-            </td>
-        </tr>
-
-        <tr onclick="showHideRow('hidden_row3');">
-            <td>Person-3</td>
-            <td>35</td>
-            <td>90000</td>
-            <td>Cyber Security Expert</td>
-        </tr>
-        <tr id="hidden_row3" class="hidden_row">
-            <td colspan=4>
-                Person is 35 years old and he
-                is a cyber security expert he
-                earns 90000 per month
-            </td>
-        </tr>
-
-        <tr onclick="showHideRow('hidden_row4');">
-            <td>Person-4</td>
-            <td>52</td>
-            <td>200000</td>
-            <td>Content Writer</td>
-        </tr>
-        <tr id="hidden_row4" class="hidden_row">
-            <td colspan=4>
-                Person-4 is 52 years old and he
-                is a content writer he earns
-                200000 per month
-            </td>
-        </tr>
-
-        <tr onclick="showHideRow('hidden_row5');">
-            <td>Person-5</td>
-            <td>38</td>
-            <td>400000</td>
-            <td>Chief Executive</td>
-        </tr>
-        <tr id="hidden_row5" class="hidden_row">
-            <td colspan=4>
-                Person-5 is 38 years old and he
-                is chief executive he earns
-                400000 per month
-            </td>
-        </tr>
-    </table>
-</div>
-
-
 <div class="container">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2><b>Потребители</b></h2></div>
+                    <div class="col-sm-8" onclick="showHideRow('hidden_row1');"><h2><i class="material-icons">&#xe409;</i> <b>Потребители</b></h2></div>
                 </div>
             </div>
-            <table class="table table-striped table-hover table-bordered">
+            <table id="hidden_row1"  class="hidden_row table table-striped table-hover table-bordered">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -127,8 +40,7 @@
                             <i class="material-icons"><span class="material-icons-outlined">person_add_alt_1</span></i></a>
                         <a th:href="@{/user/change-role/{id} (id = *{id})}" class="edit" title="Направи Администратор"
                            data-toggle="tooltip">
-                            <i class="material-icons"><span
-                                    class="material-icons-outlined">manage_accounts</span></i></a>
+                            <i class="material-icons"><span class="material-icons-outlined">manage_accounts</span></i></a>
 
                     </td>
                 </tr>
@@ -143,10 +55,10 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Детайли за всички предлагани <b>Продукти</b></h2></div>
+                    <div class="col-sm-8" onclick="showHideRow('hidden_row2');"><h2><i class="material-icons">&#xe409;</i> Детайли за всички предлагани <b>Продукти</b></h2></div>
                 </div>
             </div>
-            <table class="table table-striped table-hover table-bordered">
+            <table id="hidden_row2" class="hidden_row table table-striped table-hover table-bordered">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -184,12 +96,10 @@
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="col-sm-8">
-                    <h2>Детайли за всички <b>Активни Поръчки</b></h2>
-                </div>
+                <div class="col-sm-8" onclick="showHideRow('hidden_row3');"><h2><i class="material-icons">&#xe409;</i> Детайли за всички <b>Активни Поръчки</b></h2></div>
             </div>
         </div>
-        <table class="table table-striped table-hover">
+        <table id="hidden_row3" class="hidden_row table table-striped table-hover">
             <thead>
             <tr>
                 <th>№</th>
@@ -236,12 +146,12 @@
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
-                <div class="col-sm-8">
-                    <h2>Детайли за всички <b>Приключени Поръчки</b></h2>
+                <div class="col-sm-8" onclick="showHideRow('hidden_row4');">
+                    <h2><i class="material-icons">&#xe409;</i> Детайли за всички <b>Приключени Поръчки</b></h2>
                 </div>
             </div>
         </div>
-        <table class="table table-striped table-hover">
+        <table id="hidden_row4" class="hidden_row table table-striped table-hover">
             <thead>
             <tr>
                 <th>№</th>
