@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                         requestMatchers ("/", "/css/**", "/lib/**", "/images/**", "/js/**", "/scss/**", "/mail/**").permitAll().
                         requestMatchers (PathRequest.toStaticResources ().atCommonLocations ()).permitAll ().
                         requestMatchers ("/", "/login", "/register", "/about", "/product",
-                                "/login-error", "/product/info/{id}", "/gallery", "/api/**").permitAll ().
+                                "/login-error", "/product/info/{id}", "/gallery", "/api/comments").permitAll ().
 
                         requestMatchers ("/products/add", "/user/admin", "/product/delete/{id}","/user/change-role/{id}",
                                 "/message/delete/{id}", "/order/close/{id}", "/product/edit/{id}").hasRole(UserRoleEnum.ADMIN.name ()).

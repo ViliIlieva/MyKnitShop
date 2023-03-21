@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class MessagesView {
     private Long id;
     private String description;
-    private User author;
+    private String authorFullName;
 
     public String getDescription() {
         return description;
@@ -20,14 +20,22 @@ public class MessagesView {
         return this;
     }
 
-    public User getAuthor() {
-        return author;
+
+    public Long getId() {
+        return id;
     }
 
-    public MessagesView setAuthor(User author) {
-        this.author = author;
+    public MessagesView setId(Long id) {
+        this.id = id;
         return this;
     }
 
+    public String getAuthorFullName() {
+        return authorFullName;
+    }
 
+    public MessagesView setAuthorFullName(String authorFullName) {
+        this.authorFullName = authorFullName;
+        return this;
+    }
 }

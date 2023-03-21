@@ -3,10 +3,12 @@ package com.example.myknitshop.service;
 import com.example.myknitshop.models.dto.viewModels.messages.MessagesView;
 import com.example.myknitshop.models.entity.Message;
 import com.example.myknitshop.repository.MessageRepository;
+import org.apache.logging.log4j.util.StringBuilders;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +33,7 @@ public class MessageService {
         MessagesView messageDTO = new MessagesView ();
 
         messageDTO.setDescription(message.getDescription());
-        messageDTO.setAuthor(message.getAuthor());
+        messageDTO.setAuthorFullName ((message.getAuthor().getFirstName ()) + " " + (message.getAuthor().getLastName ()));
 
         return messageDTO;
     }
