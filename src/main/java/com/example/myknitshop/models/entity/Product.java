@@ -20,7 +20,7 @@ public class Product extends BaseEntity{
     @Column(updatable=true,nullable = false)
     private BigDecimal price;
 
-    @Column(updatable=true, nullable=false, unique = true, columnDefinition = "TEXT")
+    @Column(updatable=true, nullable=false, unique = true)
     private String img;
 
     @Column(nullable = false, columnDefinition = "TEXT")

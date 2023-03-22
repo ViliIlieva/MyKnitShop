@@ -9,7 +9,7 @@ public class GlobalExceptionHandler extends BaseController{
 
     @ExceptionHandler({Throwable.class})
     public ModelAndView handleSqlException(Throwable e){
-        ModelAndView modelAndView = new ModelAndView("error1");
+        ModelAndView modelAndView = new ModelAndView("error");
 
         Throwable throwable = e;
 

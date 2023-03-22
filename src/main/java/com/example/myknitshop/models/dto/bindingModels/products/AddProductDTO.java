@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -27,8 +28,7 @@ public class AddProductDTO {
     @Positive
     private BigDecimal price;
 
-    @NotNull
-    private String img;
+    private MultipartFile img;
 
     @NotNull
     private String category;

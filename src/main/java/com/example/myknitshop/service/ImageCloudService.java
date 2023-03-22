@@ -13,17 +13,18 @@ import java.util.UUID;
 
 @Service
 public class ImageCloudService {
-    private Cloudinary cloudinary;
+    private final Cloudinary cloudinary;
 
     public ImageCloudService() {
         cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "dxx9gh1db",
-                "api_key", "164763266531856",
-                "api_secret", "RWgHxROJt_fgGfZnL9CU9Rkea9s",
+                "cloud_name", "dmowldibf",
+                "api_key", "969821936182642",
+                "api_secret", "C43_L0AnGwcy3wVIdovwq3bgyjA",
                 "secure", true));
     }
 
     public String saveImage(MultipartFile multipartFile) {
+        //използваме рандъм за да подсигурим уникалност на имената на снимките
         String imageId = UUID.randomUUID().toString();
 
         Map params = ObjectUtils.asMap(
@@ -41,7 +42,7 @@ public class ImageCloudService {
             throw new RuntimeException(e);
         }
 
-        return String.format("https://res.cloudinary.com/dxx9gh1db/image/upload/v1678739665/" +
+        return String.format("https://res.cloudinary.com/dmowldibf/image/upload/v1678104409/" +
                 imageId + "." + getFileExtension(multipartFile.getOriginalFilename()));
     }
 
