@@ -1,7 +1,5 @@
 package com.example.myknitshop.models.dto.bindingModels.products;
 
-import com.example.myknitshop.models.entity.Category;
-import com.example.myknitshop.models.enums.CategoryEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

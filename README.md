@@ -6,7 +6,7 @@ My goal is to became a full working site with java spring security.
 This site is for orders, not direct sales.
 
 There are users entered for test.
-**Administrator** with username: owner
-and password: owner
+**Administrator** with username: admin
+and password: admin
 **Client** with username: client 
 and password: client
