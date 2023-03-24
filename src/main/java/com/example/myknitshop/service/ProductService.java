@@ -9,6 +9,7 @@ import com.example.myknitshop.models.entity.Product;
 import com.example.myknitshop.repository.CategoryRepository;
 import com.example.myknitshop.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ImageCloudService imageCloudService;
 
+    @Autowired
     public ProductService(ModelMapper modelMapper, CategoryRepository categoryRepository,
                           ProductRepository productRepository, ImageCloudService imageCloudService) {
         this.modelMapper = modelMapper;

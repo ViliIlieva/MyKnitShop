@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 
@@ -21,7 +22,8 @@ public class PurchasedProducts extends BaseEntity{
     @Column(updatable=true,nullable = false)
     private BigDecimal price;
 
-    @Column(updatable=true, nullable=false, unique = true, columnDefinition = "TEXT")
+    @Column(updatable=true, nullable=false, unique = true)
+    @Length(max = 5000)
     private String img;
 
     @Column

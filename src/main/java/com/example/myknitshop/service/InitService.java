@@ -10,6 +10,7 @@ import com.example.myknitshop.repository.CategoryRepository;
 import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,7 @@ public class InitService {
     private final PasswordEncoder passwordEncoder;
     private String adminPass;
 
+    @Autowired
     public InitService(UserRoleRepository userRoleRepository,
                        UserRepository userRepository,
                        @Value("${app.default.admin.password}") String adminPass,

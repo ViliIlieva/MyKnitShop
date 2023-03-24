@@ -2,6 +2,7 @@ package com.example.myknitshop.models.entity;
 
 import jakarta.persistence.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 

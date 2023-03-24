@@ -9,6 +9,7 @@ import com.example.myknitshop.repository.OrderRepository;
 import com.example.myknitshop.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class OrderService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
 
+    @Autowired
     public OrderService(OrderRepository orderRepository, ModelMapper modelMapper, UserRepository userRepository) {
         this.orderRepository = orderRepository;
         this.modelMapper = modelMapper;

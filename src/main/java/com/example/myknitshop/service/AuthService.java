@@ -8,6 +8,7 @@ import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
 import com.example.myknitshop.util.UserNamePasswordLoginProcessor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class AuthService {
     private final ModelMapper modelMapper;
     private final UserRoleRepository roleRepository;
 
+    @Autowired
     public AuthService(PasswordEncoder passwordEncoder,
                        UserRepository userRepository,
                        ModelMapper modelMapper,

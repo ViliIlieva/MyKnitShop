@@ -45,4 +45,5 @@ public class Order extends BaseEntity {
 
     @OneToOne
     private Message message;
+
 }

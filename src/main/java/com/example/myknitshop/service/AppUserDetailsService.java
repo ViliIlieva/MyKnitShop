@@ -4,6 +4,7 @@ package com.example.myknitshop.service;
 import com.example.myknitshop.models.entity.Role;
 import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    @Autowired
     public AppUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

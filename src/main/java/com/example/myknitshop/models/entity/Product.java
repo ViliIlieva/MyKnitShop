@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
@@ -23,7 +24,8 @@ public class Product extends BaseEntity{
     @Column(updatable=true, nullable=false, unique = true)
     private String img;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
+    @Length(max = 5000)
     private String description;
 
     @ManyToOne

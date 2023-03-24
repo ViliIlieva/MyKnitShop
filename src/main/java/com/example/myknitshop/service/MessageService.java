@@ -5,6 +5,7 @@ import com.example.myknitshop.models.entity.Message;
 import com.example.myknitshop.repository.MessageRepository;
 import org.apache.logging.log4j.util.StringBuilders;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class MessageService {
     private final MessageRepository messageRepository;
     private final ModelMapper modelMapper;
 
+    @Autowired
     public MessageService(MessageRepository messageRepository,
                           ModelMapper modelMapper) {
         this.messageRepository = messageRepository;

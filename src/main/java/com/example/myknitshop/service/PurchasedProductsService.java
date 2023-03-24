@@ -2,6 +2,7 @@ package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.entity.PurchasedProducts;
 import com.example.myknitshop.repository.PurchaseProductsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.List;
 public class PurchasedProductsService {
     private final PurchaseProductsRepository purchaseProductsRepository;
 
+    @Autowired
     public PurchasedProductsService(PurchaseProductsRepository purchaseProductsRepository) {
         this.purchaseProductsRepository = purchaseProductsRepository;
     }

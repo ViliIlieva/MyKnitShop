@@ -2,12 +2,14 @@ package com.example.myknitshop.service;
 
 import com.example.myknitshop.models.entity.ChoseProducts;
 import com.example.myknitshop.repository.ChoseProductsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ChoseProductsService {
     private final ChoseProductsRepository choseProductsRepository;
 
+    @Autowired
     public ChoseProductsService(ChoseProductsRepository choseProductsRepository) {
         this.choseProductsRepository = choseProductsRepository;
     }

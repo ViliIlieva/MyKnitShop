@@ -15,6 +15,7 @@ import com.example.myknitshop.repository.OrderRepository;
 import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -37,6 +38,7 @@ public class UserService {
     private final PurchasedProductsService purchasedProductsService;
     private final UserRoleRepository userRoleRepository;
 
+    @Autowired
     public UserService(ModelMapper modelMapper, UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
@@ -69,7 +71,6 @@ public class UserService {
         this.choseProductsService.save (choseProduct);
         this.userRepository.save (user);
     }
-
 
     public void removeProductFromChoseList(Long productId, Principal username) {
         User user = getUserByPrincipal (username);
