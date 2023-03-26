@@ -16,50 +16,50 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceTest {
-//    @Mock
-//    private PasswordEncoder mockPasswordEncoder;
-//    @Mock
-//    private ModelMapper mockModelMapper;
-//    @Mock
-//    private UserRoleRepository mockUserRoleRepository;
-//    @Mock
-//    private UserRepository mockUserRepository;
-//
-//    private AuthService toTest;
-//
-//    @BeforeEach
-//    void setUp(){
-//        toTest = new AuthService (mockPasswordEncoder, mockUserRepository,
-//                mockModelMapper, mockUserRoleRepository);
-//    }
+    @Mock
+    private PasswordEncoder mockPasswordEncoder;
+    @Mock
+    private ModelMapper mockModelMapper;
+    @Mock
+    private UserRoleRepository mockUserRoleRepository;
+    @Mock
+    private UserRepository mockUserRepository;
 
-//    @Test
-//    void TestUserRegistration(){
-//        //Arrange
-//        String username = "test";
-//        String password = "test";
-//        String encodedPassword = "encoded_password";
-//        String email = "test@example.com";
-//        String firstName = "Test";
-//        String lastName = "Testov";
+    private AuthService toTest;
+
+    @BeforeEach
+    void setUp(){
+        toTest = new AuthService (mockPasswordEncoder, mockUserRepository,
+                mockModelMapper, mockUserRoleRepository);
+    }
+
+    @Test
+    void TestUserRegistration(){
+        //Arrange
+        String username = "test";
+        String password = "test";
+        String encodedPassword = "encoded_password";
+        String email = "test@example.com";
+        String firstName = "Test";
+        String lastName = "Testov";
+
+        UserRegistrationDTO testRegistrationDTO = new UserRegistrationDTO ()
+                .setUsername (username)
+                .setFirstName (firstName)
+                .setLastName (lastName)
+                .setEmail (email)
+                .setPassword (password);
+
+//        UserNamePasswordLoginProcessor testLoginProcessor = new UserNamePasswordLoginProcessor () {
+//            @Override
+//            public void doLogin(String userName, String password) {
 //
-//        UserRegistrationDTO testRegistrationDTO = new UserRegistrationDTO ()
-//                .setUsername (username)
-//                .setFirstName (firstName)
-//                .setLastName (lastName)
-//                .setEmail (email)
-//                .setPassword (password);
-//
-////        UserNamePasswordLoginProcessor testLoginProcessor = new UserNamePasswordLoginProcessor () {
-////            @Override
-////            public void doLogin(String userName, String password) {
-////
-////            }
-////        }
-//
-//       when(mockPasswordEncoder.encode (testRegistrationDTO.getPassword ()))
-//               .thenReturn (encodedPassword);
-//
-////       toTest.registerAndLogin (testRegistrationDTO, UserNamePasswordLoginProcessor);
-//    }
+//            }
+//        }
+
+       when(mockPasswordEncoder.encode (testRegistrationDTO.getPassword ()))
+               .thenReturn (encodedPassword);
+
+//       toTest.registerAndLogin (testRegistrationDTO, UserNamePasswordLoginProcessor);
+    }
 }
