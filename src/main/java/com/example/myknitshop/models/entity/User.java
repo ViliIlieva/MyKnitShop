@@ -1,6 +1,8 @@
 package com.example.myknitshop.models.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Builder
+@AllArgsConstructor
 public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String username;
