@@ -41,22 +41,24 @@ public class AppUserDetailsServiceTest {
 
     @Test
     void TestUserFound(){
+
+        //start Arrange
         Role testAdminRole = new Role().setUserRole(UserRoleEnum.ADMIN);
 
         String EXISTING_USERNAME = "admin";
         User testUser = new User().
                 setUsername(EXISTING_USERNAME).
                 setPassword("admin").
-                setUserRoles(List.of(testAdminRole)).
-                setEmail ("admin@example.com").
-                setFirstName ("Velislava").
-                setLastName ("Ilieva");
+                setUserRoles(List.of(testAdminRole));
 
         when(mockUserRepository.findByUsername(EXISTING_USERNAME)).
                 thenReturn(Optional.of (testUser));
+        //end Arrange
 
+        //Act
         UserDetails adminDetails = toTest.loadUserByUsername (EXISTING_USERNAME);
 
+        //Assert
         Assertions.assertNotNull (adminDetails);
         Assertions.assertEquals (EXISTING_USERNAME, adminDetails.getUsername ());
         Assertions.assertEquals (EXISTING_USERNAME, adminDetails.getUsername ());
@@ -65,17 +67,16 @@ public class AppUserDetailsServiceTest {
         Assertions.assertEquals (1,
                 adminDetails.getAuthorities ().size (),
                 "The authorities are supposed to be just one - ADMIN.");
-        assertRole(adminDetails.getAuthorities (), "ROLE_ADMIN");
+        assertRole(adminDetails.getAuthorities ());
 
     }
 
-    private void assertRole(Collection<? extends GrantedAuthority> authorities,
-                            String role) {
+    private void assertRole(Collection<? extends GrantedAuthority> authorities) {
         authorities.
                 stream().
-                filter(a -> role.equals(a.getAuthority())).
+                filter(a -> "ROLE_ADMIN".equals(a.getAuthority())).
                 findAny().
-                orElseThrow(() -> new AssertionFailedError ("Role " + role + " not found!"));
+                orElseThrow(() -> new AssertionFailedError ("Role " + "ROLE_ADMIN" + " not found!"));
     }
 
     @Test
