@@ -52,19 +52,10 @@ public class AuthController {
 
             return "redirect:/register";
         }
-        authService.registerAndLogin(registrationDTO, withHttpRequest(req));
-        return "redirect:/";
+        authService.registerUser (registrationDTO);
+        return "redirect:/login";
     }
 
-    private UserNamePasswordLoginProcessor withHttpRequest(HttpServletRequest request) {
-        return (userName, password) -> {
-            try {
-                request.login(userName, password);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            }
-        };
-    }
 
     @GetMapping("/login")
     public String login() {

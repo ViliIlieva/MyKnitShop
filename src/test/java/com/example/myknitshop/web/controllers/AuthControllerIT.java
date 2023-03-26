@@ -29,6 +29,6 @@ public class AuthControllerIT {
                 .with (csrf())
         ).andExpect (status ()
                 .is3xxRedirection ())
-                .andExpect (redirectedUrl ("/"));
+                .andExpect (redirectedUrl ("/login"));
     }
 }

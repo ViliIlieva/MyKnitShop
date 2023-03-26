@@ -31,16 +31,12 @@ public class AuthService {
         this.roleRepository = roleRepository;
     }
 
-    public void registerAndLogin(UserRegistrationDTO userRegistrationDTO,
-        UserNamePasswordLoginProcessor userNamePasswordLoginProcessor) {
+    public void registerUser(UserRegistrationDTO userRegistrationDTO) {
 
         User newUser = modelMapper.map (userRegistrationDTO, User.class);
         newUser.setPassword (passwordEncoder.encode (userRegistrationDTO.getPassword ()));
-
         newUser.setUserRoles (roleRepository.findByUserRole (UserRoleEnum.CLIENT));
-        userRepository.save (newUser);
 
-        userNamePasswordLoginProcessor.doLogin(userRegistrationDTO.getUsername(),
-            userRegistrationDTO.getPassword());
+        userRepository.save (newUser);
     }
 }

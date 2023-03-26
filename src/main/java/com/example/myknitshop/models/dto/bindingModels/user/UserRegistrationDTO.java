@@ -1,5 +1,6 @@
 package com.example.myknitshop.models.dto.bindingModels.user;
 
+import com.example.myknitshop.validations.matchingPasswords.PasswordMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@PasswordMatch(password = "password", confirmPassword = "confirmPassword")
 public class UserRegistrationDTO {
 
     @NotNull
