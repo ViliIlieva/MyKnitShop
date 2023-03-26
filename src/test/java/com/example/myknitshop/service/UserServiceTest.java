@@ -1,6 +1,10 @@
 package com.example.myknitshop.service;
 
+import com.example.myknitshop.models.dto.bindingModels.messages.MessageDTO;
+import com.example.myknitshop.models.dto.viewModels.orders.OrderDetailView;
 import com.example.myknitshop.models.dto.viewModels.users.AllUsersView;
+import com.example.myknitshop.models.entity.Message;
+import com.example.myknitshop.models.entity.Order;
 import com.example.myknitshop.models.entity.Role;
 import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.models.enums.UserRoleEnum;
@@ -8,7 +12,6 @@ import com.example.myknitshop.repository.MessageRepository;
 import com.example.myknitshop.repository.OrderRepository;
 import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +21,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.math.BigDecimal;
+import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.lenient;
 
@@ -61,7 +68,9 @@ public class UserServiceTest {
 
     private AllUsersView allUsersView;
 
-    private User user;
+    private User testUser;
+    private Order testOrder;
+    private OrderDetailView testOrderDetailView;
 
     private Role testRole;
 
@@ -79,32 +88,49 @@ public class UserServiceTest {
         testRole = new Role ();
         testRole.setUserRole (UserRoleEnum.CLIENT);
 
-        user = new User ()
+        testUser = new User ()
                 .setUsername (NEW_USERNAME)
                 .setPassword (mockPasswordEncoder.encode (RAW_PASSWORD))
                 .setFirstName (FIRST_NAME)
                 .setLastName (LAST_NAME)
-                .setUserRoles (List.of (testRole))
                 .setEmail (EMAIL);
-        allUsersView = AllUsersView.builder()
+
+        testOrder = Order.builder ()
+                .client (testUser)
+                .dateOrdered (LocalDate.now ())
+                .build ();
+
+        testOrderDetailView = new OrderDetailView ();
+
+        allUsersView = AllUsersView.builder ()
                 .id (VALID_ID)
                 .username (NEW_USERNAME)
                 .email (EMAIL)
                 .roles (List.of (testRole))
-                .build();
+                .build ();
 
     }
+
     @Test
     void testGetAllUsersFromRepo() {
-        lenient().when(mockUserRepository.findAll()).thenReturn(List.of(user));
-        lenient().when(mockMapper.map(user, AllUsersView.class)).thenReturn(allUsersView);
+        lenient ().when (mockUserRepository.findAll ()).thenReturn (List.of (testUser));
+        lenient ().when (mockMapper.map (testUser, AllUsersView.class)).thenReturn (allUsersView);
 
         AllUsersView allUsersView1 = toTest.getAllUsers ().get (0);
 
         Assertions.assertEquals (allUsersView1.getUsername (), (allUsersView.getUsername ()));
 
-        Assertions.assertEquals(user.getUsername (), allUsersView.getUsername ());
+        Assertions.assertEquals (testUser.getUsername (), allUsersView.getUsername ());
     }
 
+    @Test
+    void testGetOrderDetailsById(){
+        lenient ().when (mockMapper.map (testOrder, OrderDetailView.class)).thenReturn (testOrderDetailView);
+        testOrderDetailView.setClientAddress ("гр.Варна ул.Тестова №3");
+        testOrderDetailView.setClientFirstName (FIRST_NAME + " " + LAST_NAME);
+        testOrderDetailView.setOrderSum (BigDecimal.valueOf (75));
+        testOrderDetailView.setClientFullName (FIRST_NAME);
 
+//        OrderDetailView orderDetailView = toTest.getOrderDetailsById ((Principal) testUser, VALID_ID);
+    }
 }
