@@ -42,8 +42,11 @@ public class UserService {
     public UserService(ModelMapper modelMapper, UserRepository userRepository,
                        ProductService productService,
                        OrderRepository orderRepository,
-                       MessageRepository messageRepository, OrderService orderService, ChoseProductsService choseProductsService,
-                       PurchasedProductsService purchasedProductsService, UserRoleRepository userRoleRepository) {
+                       MessageRepository messageRepository,
+                       OrderService orderService,
+                       ChoseProductsService choseProductsService,
+                       PurchasedProductsService purchasedProductsService,
+                       UserRoleRepository userRoleRepository) {
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;

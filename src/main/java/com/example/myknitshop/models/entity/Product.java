@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "products")
@@ -31,4 +29,49 @@ public class Product extends BaseEntity{
     @ManyToOne
     @JoinColumn(nullable = false)
     private Category category;
+
+    public String getName() {
+        return name;
+    }
+
+    public Product setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Product setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public Product setImg(String img) {
+        this.img = img;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Product setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Product setCategory(Category category) {
+        this.category = category;
+        return this;
+    }
 }
