@@ -50,16 +50,10 @@ public class AuthServiceTest {
                 .setEmail (email)
                 .setPassword (password);
 
-//        UserNamePasswordLoginProcessor testLoginProcessor = new UserNamePasswordLoginProcessor () {
-//            @Override
-//            public void doLogin(String userName, String password) {
-//
-//            }
-//        }
 
        when(mockPasswordEncoder.encode (testRegistrationDTO.getPassword ()))
                .thenReturn (encodedPassword);
 
-//       toTest.registerAndLogin (testRegistrationDTO, UserNamePasswordLoginProcessor);
+       toTest.registerUser (testRegistrationDTO);
     }
 }
