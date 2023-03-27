@@ -35,13 +35,9 @@
                         th:text="${role.userRole}"></td>
 
                     <td>
-                        <a th:href="@{/user/change-role/{id} (id = *{id})}" class="edit" title="Направи Клиент"
-                           data-toggle="tooltip">
-                            <i class="material-icons"><span class="material-icons-outlined">person_add_alt_1</span></i></a>
-                        <a th:href="@{/user/change-role/{id} (id = *{id})}" class="edit" title="Направи Администратор"
+                        <a th:href="@{/user/change-role/{id} (id = *{id})}" class="edit" title="Промени Роля"
                            data-toggle="tooltip">
                             <i class="material-icons"><span class="material-icons-outlined">manage_accounts</span></i></a>
-
                     </td>
                 </tr>
                 </tbody>
@@ -134,7 +130,7 @@
                 <td colspan="2" th:text="${prod.name}"></td>
                 <td th:text="${prod.quantity}"></td>
                 <td th:text="${prod.price}"></td>
-                <td th:text="${prod.sum}"></td>
+                <td th:text="${prod.getProductSum}"></td>
             </tr>
             </tbody>
         </table>
@@ -183,7 +179,7 @@
                 <td colspan="2" th:text="${prod.name}"></td>
                 <td th:text="${prod.quantity}"></td>
                 <td th:text="${prod.price}"></td>
-                <td th:text="${prod.sum}"></td>
+                <td th:text="${prod.getProductSum}"></td>
             </tr>
 
             <tr>

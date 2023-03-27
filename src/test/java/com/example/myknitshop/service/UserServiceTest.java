@@ -1,9 +1,7 @@
 package com.example.myknitshop.service;
 
-import com.example.myknitshop.models.dto.bindingModels.messages.MessageDTO;
 import com.example.myknitshop.models.dto.viewModels.orders.OrderDetailView;
 import com.example.myknitshop.models.dto.viewModels.users.AllUsersView;
-import com.example.myknitshop.models.entity.Message;
 import com.example.myknitshop.models.entity.Order;
 import com.example.myknitshop.models.entity.Role;
 import com.example.myknitshop.models.entity.User;
@@ -22,10 +20,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.lenient;
 
@@ -130,7 +126,5 @@ public class UserServiceTest {
         testOrderDetailView.setClientFirstName (FIRST_NAME + " " + LAST_NAME);
         testOrderDetailView.setOrderSum (BigDecimal.valueOf (75));
         testOrderDetailView.setClientFullName (FIRST_NAME);
-
-//        OrderDetailView orderDetailView = toTest.getOrderDetailsById ((Principal) testUser, VALID_ID);
     }
 }
