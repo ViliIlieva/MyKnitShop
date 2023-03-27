@@ -38,7 +38,7 @@ public class OrderControllerIT {
                 .id(1L)
                 .price(BigDecimal.valueOf(35))
                 .name("testProduct")
-                .sum(BigDecimal.valueOf(35))
+                .productSum (BigDecimal.valueOf(35))
                 .quantity(1)
                 .build();
         ChoseProducts choseProducts = ChoseProducts.builder()

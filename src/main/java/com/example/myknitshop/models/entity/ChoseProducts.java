@@ -3,7 +3,6 @@ package com.example.myknitshop.models.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -31,5 +30,5 @@ public class ChoseProducts extends BaseEntity{
     private int quantity;
 
     @Column
-    private BigDecimal sum;
+    private BigDecimal productSum;
 }

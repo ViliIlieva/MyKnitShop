@@ -17,5 +17,5 @@ public class ProductViewInCart {
     private BigDecimal price;
     private String img;
     private int quantity;
-    private BigDecimal sum;
+    private BigDecimal productSum;
 }

@@ -21,7 +21,7 @@ public class PurchasedProductsService {
         List<PurchasedProducts> productsInDB = this.purchaseProductsRepository.findAll();
 
         for (PurchasedProducts productToAdd : productsToAddInDB) {
-            productToAdd.setSum(productToAdd.getPrice().multiply(BigDecimal.valueOf(productToAdd.getQuantity())));
+            productToAdd.setProductSum (productToAdd.getPrice().multiply(BigDecimal.valueOf(productToAdd.getQuantity())));
 
             List<PurchasedProducts> sameProducts = productsInDB.stream().filter(p -> p.getImg().equals(productToAdd.getImg())).toList();
 

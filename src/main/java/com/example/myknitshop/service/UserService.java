@@ -22,7 +22,6 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -70,7 +69,7 @@ public class UserService {
             user.getChoseProduct ().add (choseProduct);
             choseProduct.setQuantity (1);
         }
-        choseProduct.setSum (choseProduct.getPrice ().multiply (BigDecimal.valueOf (choseProduct.getQuantity ())));
+        choseProduct.setProductSum (choseProduct.getPrice ().multiply (BigDecimal.valueOf (choseProduct.getQuantity ())));
         this.choseProductsService.save (choseProduct);
         this.userRepository.save (user);
     }
@@ -128,7 +127,7 @@ public class UserService {
 
     public BigDecimal sumForAllPurchaseProduct(Principal principal) {
         return getChoseListByUserToViewInShoppingCard (principal).stream ()
-                .map (ProductViewInCart::getSum)
+                .map (ProductViewInCart::getProductSum)
                 .reduce (BigDecimal.ZERO, BigDecimal::add);
     }
 

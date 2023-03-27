@@ -30,5 +30,5 @@ public class PurchasedProducts extends BaseEntity{
     private int quantity;
 
     @Column
-    private BigDecimal sum;
+    private BigDecimal productSum;
 }
