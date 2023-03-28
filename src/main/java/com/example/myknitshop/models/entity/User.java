@@ -7,6 +7,7 @@ import lombok.Builder;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Entity
 @Table(name = "users")
@@ -172,10 +173,10 @@ public class User extends BaseEntity {
     }
 
     public ChoseProducts findByImg(String img){
-       return this.choseProduct.stream().filter(p-> p.getImg().equals(img)).findFirst().get();
+       return this.choseProduct.stream().filter(p-> p.getImg().equals(img)).findFirst().orElseThrow (NoSuchElementException::new);
     }
     public PurchasedProducts findPurchaseProductByImg(String img){
-        return this.purchaseProduct.stream().filter(p-> p.getImg().equals(img)).findFirst().get();
+        return this.purchaseProduct.stream().filter(p-> p.getImg().equals(img)).findFirst().orElseThrow (NoSuchElementException::new);
     }
 
     public void addProductToPurchaseList(PurchasedProducts product){
@@ -188,7 +189,7 @@ public class User extends BaseEntity {
     }
 
     public Order findOrderById(Long orderId){
-       return this.orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().get();
+       return this.orders.stream().filter(o -> o.getId().equals(orderId)).findFirst().orElseThrow (NoSuchElementException::new);
     }
 
     public String getUserFullName(Long id){
