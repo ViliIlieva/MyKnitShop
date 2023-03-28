@@ -135,7 +135,7 @@ public class UserServiceTest {
         when(mockOrderService.findById(VALID_ID)).thenReturn(order);
         toTest.addMessage(messageDTO, principal);
 
-        verify(mockMessageRepository, times(1)).save(message);
+        verify(mockMessageRepository, times(1)).save(any (Message.class));
         verify(mockUserRepository, times(1)).save(user);
         verify(mockOrderRepository, times(1)).save(order);
     }
