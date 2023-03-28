@@ -101,43 +101,43 @@ VALUES ('Плетена диадема за Принцеси',
         35,
         1);
 
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Бебешко мерино чувалче за количка',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-3_bkt9hc.jpg',
         135,
         2,
         270);
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Плетени зимни терлички',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104407/product-7_bo02ka.jpg',
         20,
         1,
         20);
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Плетена шапка с "Пепа"',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1678104408/product-12_fw7s27.jpg',
         30,
         1,
         30);
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Плетена диадема "Елза"',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-5_haow2h.jpg',
         30,
         1,
         30);
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Плетено одеяло в размер по избор',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589295/samples/MyKnitShop/product-1_irpbq2.jpg',
         56,
         3,
         168);
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Плетена шапка "Мишленце"',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589296/samples/MyKnitShop/product-8_beuv2w.jpg',
         23,
         1,
         23);
-INSERT INTO purchase_products(name, img, price, quantity, sum)
+INSERT INTO purchase_products(name, img, price, quantity, product_sum)
 VALUES ('Плетени летни терличета',
         'https://res.cloudinary.com/dmowldibf/image/upload/v1677589294/samples/MyKnitShop/product-2_lvfxip.jpg',
         12,
