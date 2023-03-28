@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 @Entity
 @Table(name = "messages")
 @Getter
@@ -13,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Message extends BaseEntity{
+public class Message extends BaseEntity  {
 
     @Column(nullable = false)
     @Length(max = 5000)

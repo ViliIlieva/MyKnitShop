@@ -21,9 +21,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.Mockito.*;
 
@@ -77,31 +75,34 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        testRole = new Role ();
-        testRole.setUserRole (UserRoleEnum.CLIENT);
+        testRole = new Role();
+        testRole.setUserRole(UserRoleEnum.CLIENT);
 
-       user = User .builder()
-               .username(NEW_USERNAME)
-               .password(mockPasswordEncoder.encode (RAW_PASSWORD))
-               .firstName(FIRST_NAME)
-               .lastName(LAST_NAME)
-               .email(EMAIL)
-               .messages(List.of( message))
-               .build();
+        List<Message> messages = new ArrayList<>();
+        messages.add(message);
 
-        order = Order.builder ()
-                .client (user)
-                .dateOrdered (LocalDate.now ())
-                .build ();
+        user = User.builder()
+                .username(NEW_USERNAME)
+                .password(mockPasswordEncoder.encode(RAW_PASSWORD))
+                .firstName(FIRST_NAME)
+                .lastName(LAST_NAME)
+                .email(EMAIL)
+                .messages(messages)
+                .build();
 
-        orderDetailView = new OrderDetailView ();
+        order = Order.builder()
+                .client(user)
+                .dateOrdered(LocalDate.now())
+                .build();
 
-        allUsersView = AllUsersView.builder ()
-                .id (VALID_ID)
-                .username (NEW_USERNAME)
-                .email (EMAIL)
-                .roles (List.of (testRole))
-                .build ();
+        orderDetailView = new OrderDetailView();
+
+        allUsersView = AllUsersView.builder()
+                .id(VALID_ID)
+                .username(NEW_USERNAME)
+                .email(EMAIL)
+                .roles(List.of(testRole))
+                .build();
         message = Message.builder()
                 .author(user)
                 .description("Test Message Test Message Test Message")
@@ -119,7 +120,7 @@ public class UserServiceTest {
 
     }
 
-//    @Test
+    //    @Test
 //    void testRemoveProductFromChoseList(){
 //        when(mockUserRepository.findByUsername(NEW_USERNAME)).thenReturn(Optional.of(testUser));
 //        Mockito.<Optional<User>>when(mockUserRepository.findByUsername(NEW_USERNAME)).thenReturn(Optional.of(testUser));
@@ -130,7 +131,7 @@ public class UserServiceTest {
 //    }
     @Test
     @WithMockUser(username = "client", roles = {"CLIENT"})
-    void testAddMessage(){
+    void testAddMessage() {
         when(mockOrderService.findById(VALID_ID)).thenReturn(order);
         toTest.addMessage(messageDTO, principal);
 
@@ -141,22 +142,22 @@ public class UserServiceTest {
 
     @Test
     void testGetAllUsersFromRepo() {
-        lenient ().when (mockUserRepository.findAll ()).thenReturn (List.of (user));
-        lenient ().when (mockMapper.map (user, AllUsersView.class)).thenReturn (allUsersView);
+        lenient().when(mockUserRepository.findAll()).thenReturn(List.of(user));
+        lenient().when(mockMapper.map(user, AllUsersView.class)).thenReturn(allUsersView);
 
-        AllUsersView allUsersView1 = toTest.getAllUsers ().get (0);
+        AllUsersView allUsersView1 = toTest.getAllUsers().get(0);
 
-        Assertions.assertEquals (allUsersView1.getUsername (), (allUsersView.getUsername ()));
+        Assertions.assertEquals(allUsersView1.getUsername(), (allUsersView.getUsername()));
 
-        Assertions.assertEquals (user.getUsername (), allUsersView.getUsername ());
+        Assertions.assertEquals(user.getUsername(), allUsersView.getUsername());
     }
 
     @Test
-    void testGetOrderDetailsById(){
-        lenient ().when (mockMapper.map (order, OrderDetailView.class)).thenReturn (orderDetailView);
-        orderDetailView.setClientAddress ("гр.Варна ул.Тестова №3");
-        orderDetailView.setClientFirstName (FIRST_NAME + " " + LAST_NAME);
-        orderDetailView.setOrderSum (BigDecimal.valueOf (75));
-        orderDetailView.setClientFullName (FIRST_NAME);
+    void testGetOrderDetailsById() {
+        lenient().when(mockMapper.map(order, OrderDetailView.class)).thenReturn(orderDetailView);
+        orderDetailView.setClientAddress("гр.Варна ул.Тестова №3");
+        orderDetailView.setClientFirstName(FIRST_NAME + " " + LAST_NAME);
+        orderDetailView.setOrderSum(BigDecimal.valueOf(75));
+        orderDetailView.setClientFullName(FIRST_NAME);
     }
 }
