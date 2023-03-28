@@ -25,7 +25,6 @@ public class MessageService {
     }
 
     public List<MessagesView> getAllMessagesViewOnHomePage() {
-
         return  this.messageRepository.findAll().stream()
                 .map(this::mapMessageDTO)
                 .collect(Collectors.toList());
@@ -33,10 +32,8 @@ public class MessageService {
 
     private MessagesView mapMessageDTO(Message message) {
         MessagesView messageDTO = new MessagesView ();
-
         messageDTO.setDescription(message.getDescription());
         messageDTO.setAuthorFullName ((message.getAuthor().getFirstName ()) + " " + (message.getAuthor().getLastName ()));
-
         return messageDTO;
     }
 
