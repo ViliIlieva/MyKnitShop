@@ -70,6 +70,7 @@ public class UserServiceTest {
     private Order order;
     private MessageDTO messageDTO;
     private OrderDetailView orderDetailView;
+    private List<Message> messages = new ArrayList<>();
 
     private Role testRole;
 
@@ -78,7 +79,6 @@ public class UserServiceTest {
         testRole = new Role();
         testRole.setUserRole(UserRoleEnum.CLIENT);
 
-        List<Message> messages = new ArrayList<>();
         messages.add(message);
 
         user = User.builder()
