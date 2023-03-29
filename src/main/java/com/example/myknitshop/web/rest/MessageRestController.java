@@ -1,4 +1,4 @@
-package com.example.myknitshop.web.controllers;
+package com.example.myknitshop.web.rest;
 
 import com.example.myknitshop.models.dto.viewModels.messages.MessagesView;
 import com.example.myknitshop.repository.MessageRepository;
