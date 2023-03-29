@@ -1,12 +1,11 @@
 package com.example.myknitshop.models.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import com.example.myknitshop.models.enums.CategoryEnum;
 
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity {
