@@ -123,9 +123,6 @@ public class OrderControllerIT {
         lenient().when(purchasedProductsRepository.findAll()).thenReturn(List.of(purchasedProduct));
         lenient().when(purchasedProductsRepository.save(any())).thenReturn(purchasedProduct);
         lenient().when(mockMapper.map(product, ProductViewInCart.class)).thenReturn(productViewInCart);
-        lenient().when(toTest.orderProducts(makeOrderDTO, principal)).thenReturn(1L);
-        lenient().when((toTest.getChoseListByUserToViewInShoppingCard(principal))).thenReturn(Set.of(productViewInCart));
-        lenient().when(toTest.sumForAllPurchaseProduct(principal)).thenReturn(BigDecimal.valueOf(35));
 
         lenient().when(userRepository.findByUsername(NEW_USERNAME)).thenReturn(Optional.of(client));
         Mockito.<Optional<User>>when(userRepository.findByUsername(NEW_USERNAME)).thenReturn(Optional.of(client));
@@ -147,6 +144,9 @@ public class OrderControllerIT {
     @Test
     @WithMockUser(username = "client", roles = {"CLIENT"})
     void testCartPatch() throws Exception {
+        when(toTest.orderProducts(makeOrderDTO, principal)).thenReturn(1L);
+        when((toTest.getChoseListByUserToViewInShoppingCard(principal))).thenReturn(Set.of(productViewInCart));
+        when(toTest.sumForAllPurchaseProduct(principal)).thenReturn(BigDecimal.valueOf(35));
 
         mockMvc.perform(patch("/cart").with(csrf()))
                 .andExpect(status().is3xxRedirection())
