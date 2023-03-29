@@ -136,12 +136,7 @@ public class UserServiceTest {
         Mockito.<Optional<User>>when (mockUserRepository.findByUsername (NEW_USERNAME)).thenReturn (Optional.of (user));
         lenient ().when (principal.getName ()).thenReturn (NEW_USERNAME);
         lenient ().when ((toTest.getUserByPrincipal (principal))).thenReturn (user);
-
-
     }
-
-
-
 
     @Test
     @WithMockUser(username = "client", roles = {"CLIENT"})
