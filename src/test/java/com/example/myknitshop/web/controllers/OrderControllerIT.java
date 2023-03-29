@@ -11,6 +11,9 @@ import com.example.myknitshop.service.AuthService;
 import com.example.myknitshop.service.OrderService;
 import com.example.myknitshop.service.PurchasedProductsService;
 import com.example.myknitshop.service.UserService;
+import jakarta.el.LambdaExpression;
+import net.bytebuddy.description.type.TypeDescription;
+import org.apache.el.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,6 +28,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.xml.stream.StreamFilter;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -49,6 +53,8 @@ public class OrderControllerIT {
     Principal principal;
     @Mock
     private ModelMapper mockMapper;
+    @Mock
+    private Stream mockReducer;
     @MockBean
     private OrderService orderService;
     @Mock
@@ -69,106 +75,110 @@ public class OrderControllerIT {
     private Category category;
     private Product product;
     private User client;
-    List<ChoseProducts> choseProducts = new ArrayList<>();
+    List<ChoseProducts> choseProducts = new ArrayList<> ();
+    List<ProductViewInCart> productsViewInCart = new ArrayList<> ();
 
     @BeforeEach
     void setUp() {
-        category = Category.builder()
-                .name(CategoryEnum.HAT)
-                .build();
-        makeOrderDTO = MakeOrderDTO.builder()
-                .address("Test address")
-                .phoneNumber("0899987654")
-                .build();
-        client = User.builder()
-                .username(NEW_USERNAME)
-                .password("test")
-                .email("test@test.test")
-                .firstName("Test")
-                .lastName("Test")
-                .choseProduct(choseProducts)
-                .build();
-        product = Product.builder()
-                .name("chose product name")
-                .price(BigDecimal.valueOf(35))
-                .description("Test description Test description")
-                .category(category)
-                .build();
-        choseProduct = ChoseProducts.builder()
-                .name("chose product name")
-                .img("img")
-                .quantity(1)
-                .productSum(BigDecimal.valueOf(35))
-                .price(BigDecimal.valueOf(35))
-                .build();
-        choseProducts.add(choseProduct);
-        productViewInCart = ProductViewInCart.builder()
-                .name("chose product name")
-                .img("img")
-                .quantity(1)
-                .productSum(BigDecimal.valueOf(35))
-                .price(BigDecimal.valueOf(35))
-                .build();
-        purchasedProduct = PurchasedProducts.builder()
-                .name("chose product name")
-                .img("img")
-                .quantity(1)
-                .productSum(BigDecimal.valueOf(35))
-                .price(BigDecimal.valueOf(35))
-                .build();
-        userRepository.save(client);
+        category = Category.builder ()
+                .name (CategoryEnum.HAT)
+                .build ();
+        makeOrderDTO = MakeOrderDTO.builder ()
+                .address ("Test address")
+                .phoneNumber ("0899987654")
+                .build ();
+        client = User.builder ()
+                .username (NEW_USERNAME)
+                .password ("test")
+                .email ("test@test.test")
+                .firstName ("Test")
+                .lastName ("Test")
+                .choseProduct (choseProducts)
+                .build ();
+        product = Product.builder ()
+                .name ("chose product name")
+                .price (BigDecimal.valueOf (35))
+                .description ("Test description Test description")
+                .category (category)
+                .build ();
+        choseProduct = ChoseProducts.builder ()
+                .name ("chose product name")
+                .img ("img")
+                .quantity (1)
+                .productSum (BigDecimal.valueOf (35))
+                .price (BigDecimal.valueOf (35))
+                .build ();
+        choseProducts.add (choseProduct);
+        productViewInCart = ProductViewInCart.builder ()
+                .name ("chose product name")
+                .img ("img")
+                .quantity (1)
+                .productSum (BigDecimal.valueOf (35))
+                .price (BigDecimal.valueOf (35))
+                .build ();
+        productsViewInCart.add (productViewInCart);
+        purchasedProduct = PurchasedProducts.builder ()
+                .name ("chose product name")
+                .img ("img")
+                .quantity (1)
+                .productSum (BigDecimal.valueOf (35))
+                .price (BigDecimal.valueOf (35))
+                .build ();
+        userRepository.save (client);
 
-        lenient().when(client.getChoseProduct()).thenReturn(List.of(choseProduct));
-        lenient().when(purchasedProductsService.addProducts(List.of(purchasedProduct))).thenReturn(List.of(purchasedProduct));
-        lenient().when(purchasedProductsRepository.findAll()).thenReturn(List.of(purchasedProduct));
-        lenient().when(purchasedProductsRepository.save(any())).thenReturn(purchasedProduct);
-        lenient().when(mockMapper.map(product, ProductViewInCart.class)).thenReturn(productViewInCart);
+        lenient ().when (client.getChoseProduct ()).thenReturn (List.of (choseProduct));
+        lenient ().when (purchasedProductsService.addProducts (List.of (purchasedProduct))).thenReturn (List.of (purchasedProduct));
+        lenient ().when (purchasedProductsRepository.findAll ()).thenReturn (List.of (purchasedProduct));
+        lenient ().when (purchasedProductsRepository.save (any ())).thenReturn (purchasedProduct);
+        lenient ().when (mockMapper.map (product, ProductViewInCart.class)).thenReturn (productViewInCart);
 
-        lenient().when(userRepository.findByUsername(NEW_USERNAME)).thenReturn(Optional.of(client));
-        Mockito.<Optional<User>>when(userRepository.findByUsername(NEW_USERNAME)).thenReturn(Optional.of(client));
-        lenient().when(principal.getName()).thenReturn(NEW_USERNAME);
-        lenient().when((toTest.getUserByPrincipal(principal))).thenReturn(client);
+        lenient ().when (userRepository.findByUsername (NEW_USERNAME)).thenReturn (Optional.of (client));
+        Mockito.<Optional<User>>when (userRepository.findByUsername (NEW_USERNAME)).thenReturn (Optional.of (client));
+        lenient ().when (principal.getName ()).thenReturn (NEW_USERNAME);
+        lenient ().when ((toTest.getUserByPrincipal (principal))).thenReturn (client);
     }
 
     @Test
     @WithMockUser(username = "client", roles = {"CLIENT"})
     void testCart() throws Exception {
-        mockMvc.perform(get("/cart"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(model().attributeExists("cartCashProduct"))
-                .andExpect(model().attributeExists("count"))
-                .andExpect(model().attributeExists("sumForAllProducts"))
-                .andExpect(view().name("cart"));
+        mockMvc.perform (get ("/cart"))
+                .andExpect (status ().is2xxSuccessful ())
+                .andExpect (model ().attributeExists ("cartCashProduct"))
+                .andExpect (model ().attributeExists ("count"))
+                .andExpect (model ().attributeExists ("sumForAllProducts"))
+                .andExpect (view ().name ("cart"));
     }
 
     @Test
     @WithMockUser(username = "client", roles = {"CLIENT"})
     void testCartPatch() throws Exception {
-        when(toTest.orderProducts(makeOrderDTO, principal)).thenReturn(1L);
-        when((toTest.getChoseListByUserToViewInShoppingCard(principal))).thenReturn(Set.of(productViewInCart));
-        when(toTest.sumForAllPurchaseProduct(principal)).thenReturn(BigDecimal.valueOf(35));
+        when (toTest.orderProducts (makeOrderDTO, principal)).thenReturn (1L);
+        when ((toTest.getChoseListByUserToViewInShoppingCard (principal))).thenReturn (Set.of (productViewInCart));
+//        when (toTest.sumForAllPurchaseProduct (principal)).thenReturn (BigDecimal.valueOf (35));
+        when (toTest.sumForAllPurchaseProduct(principal)) .thenReturn (productsViewInCart.stream().map (ProductViewInCart::getProductSum).reduce (BigDecimal::add).get ());
+//        when (BigDecimal.ZERO.add (any ())).thenReturn (BigDecimal.valueOf (35));
 
-        mockMvc.perform(patch("/cart").with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/order/details/1"));
+        mockMvc.perform (patch ("/cart").with (csrf ()))
+                .andExpect (status ().is3xxRedirection ())
+                .andExpect (redirectedUrl ("/order/details/1"));
     }
 
     @Test
     @WithMockUser(username = "client", roles = {"CLIENT"})
     void testOrderByClientId() throws Exception {
-        mockMvc.perform(get("/orders"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(model().attributeExists("clientOrders"))
-                .andExpect(model().attributeExists("completedOrders"))
-                .andExpect(view().name("orders"));
+        mockMvc.perform (get ("/orders"))
+                .andExpect (status ().is2xxSuccessful ())
+                .andExpect (model ().attributeExists ("clientOrders"))
+                .andExpect (model ().attributeExists ("completedOrders"))
+                .andExpect (view ().name ("orders"));
     }
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     void testCloseOrderById() throws Exception {
-        mockMvc.perform(get("/order/close/1"))
-                .andExpect(status()
-                        .is3xxRedirection())
-                .andExpect(redirectedUrl("/user/admin"));
+        mockMvc.perform (get ("/order/close/1"))
+                .andExpect (status ()
+                        .is3xxRedirection ())
+                .andExpect (redirectedUrl ("/user/admin"));
     }
 }
