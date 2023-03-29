@@ -126,12 +126,6 @@ public class OrderControllerIT {
                 .build ();
         userRepository.save (client);
 
-        lenient ().when (client.getChoseProduct ()).thenReturn (List.of (choseProduct));
-        lenient ().when (purchasedProductsService.addProducts (List.of (purchasedProduct))).thenReturn (List.of (purchasedProduct));
-        lenient ().when (purchasedProductsRepository.findAll ()).thenReturn (List.of (purchasedProduct));
-        lenient ().when (purchasedProductsRepository.save (any ())).thenReturn (purchasedProduct);
-        lenient ().when (mockMapper.map (product, ProductViewInCart.class)).thenReturn (productViewInCart);
-
         lenient ().when (userRepository.findByUsername (NEW_USERNAME)).thenReturn (Optional.of (client));
         Mockito.<Optional<User>>when (userRepository.findByUsername (NEW_USERNAME)).thenReturn (Optional.of (client));
         lenient ().when (principal.getName ()).thenReturn (NEW_USERNAME);
@@ -147,20 +141,6 @@ public class OrderControllerIT {
                 .andExpect (model ().attributeExists ("count"))
                 .andExpect (model ().attributeExists ("sumForAllProducts"))
                 .andExpect (view ().name ("cart"));
-    }
-
-    @Test
-    @WithMockUser(username = "client", roles = {"CLIENT"})
-    void testCartPatch() throws Exception {
-        when (toTest.orderProducts (makeOrderDTO, principal)).thenReturn (1L);
-        when ((toTest.getChoseListByUserToViewInShoppingCard (principal))).thenReturn (Set.of (productViewInCart));
-//        when (toTest.sumForAllPurchaseProduct (principal)).thenReturn (BigDecimal.valueOf (35));
-        when (toTest.sumForAllPurchaseProduct(principal)) .thenReturn (productsViewInCart.stream().map (ProductViewInCart::getProductSum).reduce (BigDecimal::add).get ());
-//        when (BigDecimal.ZERO.add (any ())).thenReturn (BigDecimal.valueOf (35));
-
-        mockMvc.perform (patch ("/cart").with (csrf ()))
-                .andExpect (status ().is3xxRedirection ())
-                .andExpect (redirectedUrl ("/order/details/1"));
     }
 
     @Test

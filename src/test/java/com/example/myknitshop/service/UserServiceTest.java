@@ -72,10 +72,12 @@ public class UserServiceTest {
     private Order order;
     private Product product;
     private ChoseProducts choseProduct;
+    private PurchasedProducts purchasedProducts;
     private MessageDTO messageDTO;
-    private OrderDetailView orderDetailView;
+    private OrderDetailView orderDetailView = new OrderDetailView ();
     private List<Message> messages = new ArrayList<> ();
     private List<ChoseProducts> choseProducts = new ArrayList<> ();
+    private List<Order> orders = new ArrayList<> ();
 
     private Role testRole;
 
@@ -94,6 +96,7 @@ public class UserServiceTest {
                 .lastName (LAST_NAME)
                 .email (EMAIL)
                 .messages (messages)
+                .orders (orders)
                 .choseProduct (choseProducts)
                 .build ();
         product = Product.builder ()
@@ -110,12 +113,26 @@ public class UserServiceTest {
                 .build ();
         choseProduct.setId (VALID_ID);
 
+        purchasedProducts = PurchasedProducts.builder ()
+                .name ("test product")
+                .price (BigDecimal.valueOf (35))
+                .quantity (1)
+                .productSum (BigDecimal.valueOf (35))
+                .build ();
         order = Order.builder ()
                 .client (user)
+                .orderSum (BigDecimal.valueOf (35))
                 .dateOrdered (LocalDate.now ())
                 .build ();
-
-        orderDetailView = new OrderDetailView ();
+        order.setId (VALID_ID.longValue ());
+        orders.add (order);
+        orderDetailView = OrderDetailView.builder ()
+                .id (VALID_ID)
+                .clientAddress ("Varna")
+                .clientFirstName (FIRST_NAME)
+                .clientFullName (FIRST_NAME + " " + LAST_NAME)
+                .orderSum (BigDecimal.valueOf (35))
+                .build ();
 
         allUsersView = AllUsersView.builder ()
                 .id (VALID_ID)
@@ -168,5 +185,26 @@ public class UserServiceTest {
         orderDetailView.setClientFirstName (FIRST_NAME + " " + LAST_NAME);
         orderDetailView.setOrderSum (BigDecimal.valueOf (75));
         orderDetailView.setClientFullName (FIRST_NAME);
+    }
+
+    @Test
+    void testMapProductToChoseProduct() {
+        lenient ().when (toTest.mapProductToChoseProduct (product)).thenReturn (choseProduct);
+        Assertions.assertEquals (product.getName (), choseProduct.getName ());
+        Assertions.assertEquals (product.getImg (), choseProduct.getImg ());
+    }
+
+    @Test
+    void testMapProductToPurchaseProduct() {
+        lenient ().when (toTest.mapProductToPurchaseProduct (choseProduct)).thenReturn (purchasedProducts);
+        Assertions.assertEquals (choseProduct.getName (), purchasedProducts.getName ());
+        Assertions.assertEquals (choseProduct.getImg (), purchasedProducts.getImg ());
+    }
+
+    @Test
+    void testOrderDetailView() {
+        lenient ().when (mockMapper.map (order, OrderDetailView.class)).thenReturn (orderDetailView);
+        lenient ().when (toTest.getOrderDetailsById (principal, VALID_ID)).thenReturn (orderDetailView);
+        Assertions.assertEquals (order.getOrderSum (), orderDetailView.getOrderSum ());
     }
 }
