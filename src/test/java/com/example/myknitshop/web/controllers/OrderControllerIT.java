@@ -42,7 +42,7 @@ public class OrderControllerIT {
 
     @Mock
     Principal principal;
-    @Mock
+    @MockBean
     private OrderService orderService;
     @Mock
     private PurchasedProductsService purchasedProductsService;
