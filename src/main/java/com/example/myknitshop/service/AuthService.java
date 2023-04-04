@@ -6,7 +6,6 @@ import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.models.enums.UserRoleEnum;
 import com.example.myknitshop.repository.UserRepository;
 import com.example.myknitshop.repository.UserRoleRepository;
-import com.example.myknitshop.util.UserNamePasswordLoginProcessor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

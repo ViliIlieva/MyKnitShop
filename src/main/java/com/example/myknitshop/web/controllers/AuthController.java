@@ -3,8 +3,6 @@ package com.example.myknitshop.web.controllers;
 import com.example.myknitshop.models.dto.bindingModels.user.LoginDTO;
 import com.example.myknitshop.models.dto.bindingModels.user.UserRegistrationDTO;
 import com.example.myknitshop.service.AuthService;
-import com.example.myknitshop.util.UserNamePasswordLoginProcessor;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;

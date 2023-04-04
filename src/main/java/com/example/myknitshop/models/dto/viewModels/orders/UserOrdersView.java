@@ -2,7 +2,6 @@ package com.example.myknitshop.models.dto.viewModels.orders;
 
 import com.example.myknitshop.models.entity.Message;
 import com.example.myknitshop.models.entity.PurchasedProducts;
-import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.models.enums.OrderStatusEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;

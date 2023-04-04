@@ -1,6 +1,5 @@
 package com.example.myknitshop.models.dto.viewModels.messages;
 
-import com.example.myknitshop.models.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

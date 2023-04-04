@@ -1,7 +1,6 @@
 package com.example.myknitshop.models.dto.viewModels.products;
 
 import com.example.myknitshop.models.entity.Category;
-import com.example.myknitshop.models.enums.CategoryEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

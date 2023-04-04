@@ -5,7 +5,6 @@ import com.example.myknitshop.models.entity.Role;
 import com.example.myknitshop.models.entity.User;
 import com.example.myknitshop.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

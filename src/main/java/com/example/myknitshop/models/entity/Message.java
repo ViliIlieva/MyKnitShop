@@ -1,12 +1,9 @@
 package com.example.myknitshop.models.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
-import java.util.List;
 
 @Entity
 @Table(name = "messages")

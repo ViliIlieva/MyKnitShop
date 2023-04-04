@@ -3,7 +3,6 @@ package com.example.myknitshop.models.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
 
