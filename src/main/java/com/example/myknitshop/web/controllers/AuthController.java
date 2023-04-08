@@ -61,10 +61,16 @@ public class AuthController {
     }
 
     @PostMapping("/login-error")
-    public String onFiledLogin(
+    public String onFiledLogin(@Valid LoginDTO loginDTO, BindingResult bindingResult,
             @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY) String username,
             RedirectAttributes redirectAttributes) {
 
+        if(bindingResult.hasErrors ()){
+            redirectAttributes.addFlashAttribute ("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute (
+                    "org.springframework.validation.BindingResult.loginDTO", bindingResult);
+            return "redirect:/login";
+        }
         redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, username);
         redirectAttributes.addFlashAttribute("bad_credentials", true);
 
