@@ -162,19 +162,19 @@ VALUES (5,7);
 
 -- orders
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
-VALUES ('2020-05-01', 2, 'COMPLETED', 56, 2);
+VALUES ('2020-05-01', 2, 'COMPLETED', 320, 2);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
-VALUES ('2020-06-01', 3, 'COMPLETED', 78, 1);
+VALUES ('2020-06-01', 3, 'COMPLETED', 30, 1);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`, `message_id`)
-VALUES ('2023-07-01', 4, 'COMPLETED', 25, 3);
+VALUES ('2023-07-01', 4, 'COMPLETED', 191, 3);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-08-01', 5, 'COMPLETED', 64);
+VALUES ('2023-08-01', 5, 'COMPLETED', 12);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-05-01', 2, 'COMPLETED', 56);
+VALUES ('2023-05-01', 2, 'COMPLETED', 320);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-05-01', 2, 'OPEN', 56);
+VALUES ('2023-05-01', 2, 'OPEN', 320);
 INSERT INTO orders (`date_ordered`, `client_id`, `order_status`, `order_sum`)
-VALUES ('2023-06-01', 3, 'OPEN', 78);
+VALUES ('2023-06-01', 3, 'OPEN', 30);
 
 
 
