@@ -41,14 +41,6 @@ public class ProductService {
         return true;
     }
 
-//    public boolean addProduct(AddProductDTO addProductDTO) {
-//        Product product = modelMapper.map(addProductDTO, Product.class);
-//
-//        product.setCategory(categoryRepository.findById (Long.parseLong (addProductDTO.getCategory()))
-//                .orElseThrow(() -> new Error("Category not found!")));
-//        this.productRepository.save(product);
-//        return true;
-//    }
 
     public List<ProductsViewOnHomePage> getAllProductsToViewOnHomePage() {
         return this.productRepository.findAll()
