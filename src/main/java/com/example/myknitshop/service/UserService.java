@@ -1,5 +1,6 @@
 package com.example.myknitshop.service;
 
+import com.example.myknitshop.config.SecurityConfiguration;
 import com.example.myknitshop.models.dto.bindingModels.orders.MakeOrderDTO;
 import com.example.myknitshop.models.dto.bindingModels.messages.MessageDTO;
 import com.example.myknitshop.models.dto.viewModels.orders.CompleteOrdersIdView;
