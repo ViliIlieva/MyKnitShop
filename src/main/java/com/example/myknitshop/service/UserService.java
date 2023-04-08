@@ -201,6 +201,7 @@ public class UserService {
     public List<AllUsersView> getAllUsers() {
         return this.userRepository.findAll ()
                 .stream ()
+                .filter (user -> user.getId () > 1)
                 .map (u -> {
                     return modelMapper.map (u, AllUsersView.class);
                 })
